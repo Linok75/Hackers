@@ -7,6 +7,7 @@ package model;
 import exceptions.NoSuffisantMoney;
 import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import model.maps.Node;
@@ -28,7 +29,8 @@ public final class Player {
     private ArrayList<Hardware> hardwares;
     private int power;
 
-    //private int advanced (numero du niveau max que le joueur a atteint)
+    private int advanced; //(numero du niveau max que le joueur a atteint)
+    //private Date dateOfLastGame; //(date de la dernière partie jouée (aide pour se retrouver lors des chargements))
 
     public Player() {
         this.money = 0;
@@ -36,11 +38,25 @@ public final class Player {
         this.hardwares = new ArrayList<Hardware>();
         this.power = 100;
         this.name = "Unnamed";
+        this.advanced = 0;
     }
 
     public Player(String name) {
         this();
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAdvanced() {
+        return advanced;
+    }
+
+    public void setAdvanced(int advanced) {
+        if (advanced <= this.advanced) throw new IllegalArgumentException("Impossible de 'set' l'avancé d'un joueur sur un niveaux antérieur");
+        this.advanced = advanced;
     }
 
     public void addAttack(Attack attack) {

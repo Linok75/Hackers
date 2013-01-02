@@ -90,8 +90,22 @@ public final class MapHexa implements IMap {
     }
 
     @Override
+    public void virus(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Virus(new Virus(), this).start(nodes);
+    }
+
+    @Override
+    public void trojan(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
+    }
+
+    @Override
     public void setNode(int li, int co, Node node) {
-        // verifier li et co ... 
+        // verifier li et co ...
         if (li < LI && co < CO) {
             this.nodes[li][co] = node;
         }
@@ -205,17 +219,4 @@ public final class MapHexa implements IMap {
         }
     }
 
-    @Override
-    public void virus(Node node) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        nodes.add(node);
-        new DF_Hexa_Virus(new Virus(), this).start(nodes);
-    }
-    
-    @Override
-    public void trojan(Node node) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        nodes.add(node);
-        new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
-    }
 }

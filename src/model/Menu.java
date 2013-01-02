@@ -23,15 +23,17 @@ public class Menu {
     private static Player player;
     //private static ArrayList<Level> levels;
     private static ArrayList<Level> levels = new ArrayList<Level>();
+    private static ArrayList<Player> players = new ArrayList<Player>();
 
     //View :
     // 0 - Menu
     // 1 - Nouvelle Partie
     // 2 - Charger Partie
-    // 3 - Paramètres
+    // 3 - Param√®tres
     public static void run() {
 
         loadLevels();
+        loadPlayers();
 
         do {
             if (currentView == 0) {
@@ -81,19 +83,43 @@ public class Menu {
         }
 
         if (mauvaisChargement) {
-            System.out.println("/!\\ Certains niveaux n'ont pas pu être chargés.");
+            System.out.println("/!\\ Certains niveaux n'ont pas pu √™tre charg√©s.");
         }
 
+    }
+    private static void loadPlayers() {
+        XStreamer<Player> xsPlayers = new XStreamer<Player>();
+        File f = new File(Menu.class.getResource("../saves/").getPath());
+        FileFilter ff = new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.getName().matches("player[0-9][0-9]*.xml");
+            }
+        };
+
+        boolean mauvaisChargement = false;
+        Player player;
+        for (File file : f.listFiles(ff)) {
+            try {
+                player = xsPlayers.load(file.getAbsolutePath());
+                players.add(player);
+            } catch (Exception e) {
+                mauvaisChargement = true;
+            }
+        }
+
+        if (mauvaisChargement) {
+            System.out.println("/!\\ Certains players n'ont pas pu √™tre charg√©s.");
+        }
     }
 
     public static void affichMenu() {
         System.out.println("Menu");
         System.out.println("\t1 - Nouvelle Partie");
         System.out.println("\t2 - Charger Partie");
-        System.out.println("\t3 - Paramètres");
+        System.out.println("\t3 - Param√®tres");
         System.out.println("\t4 - Quitter");
     }
-
     public static void saisieMenu() {
 
         String saisie = sc.nextLine();
@@ -108,7 +134,7 @@ public class Menu {
             System.out.println("Au revoir !");
             System.exit(0);
         } else {
-            System.out.println("Commande non valide, veuillez saisir le chiffre lié à la commande...");
+            System.out.println("Commande non valide, veuillez saisir le chiffre li√© √† la commande...");
         }
 
     }
@@ -118,7 +144,6 @@ public class Menu {
         System.out.println("\t0 - Retour");
         System.out.println("\tVeuillez saisir votre surnom :");
     }
-
     public static void saisieNouvellePartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -126,7 +151,7 @@ public class Menu {
         } else {
             System.out.println("Chargement...");
 
-            // TO-DO : Vérifier que le nom ne comporte pas des caractères invalides
+            // TO-DO : V√©rifier que le nom ne comporte pas des caract√®res invalides
             player = new Player(saisie);
             player.addAttack(new DDoS());
             player.addAttack(new Phishing());
@@ -134,7 +159,7 @@ public class Menu {
             // Chargement du premier niveau
             Level level = levels.get(0);
 
-            System.out.println("Début de la partie.");
+            System.out.println("D√©but de la partie.");
 
             // Lancement de la partie
             Game.makeInstance(player, level);
@@ -148,22 +173,43 @@ public class Menu {
         System.out.println("Charger Partie");
         System.out.println("\t0 - Retour");
         System.out.println("-----------------------");
-        //for
-        //System.out.println("i - Niveau Date");
+        int i = 1;
+        for (Player player : players) {
+            System.out.println("\t"+i+" - "+player.getName());
+        }
         System.out.println("-----------------------");
     }
-
     public static void saisieChargerPartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
             currentView = 0;
-        } //else if () { //Verification saisie = num d'une sauvegarde
+        } else { //Verification saisie = num d'une sauvegarde
+            try {
+                int num = Integer.parseInt(saisie);
+                if (num >= 1 && num <= players.size()) {
+                    System.out.println("Chargement...");
 
-        //}
+                    player = players.get(num-1);
+
+                    if (player.getAdvanced() > levels.size()) {
+                        //System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
+                    }
+                    Level level = levels.get(player.getAdvanced());
+
+                    // Lancement de la partie
+                    Game.makeInstance(player, level);
+                    Game.getInstance().play();
+                } else {
+                    System.out.println("Num√©ro de sauvegarde inexistant");
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Erreur, veuillez saisir le num√©ro de la sauvegarde que vous voulez charger.");
+            }
+        }
     }
 
     public static void affichParametre() {
-        System.out.println("Pas de paramètres pour le moment ...");
+        System.out.println("Pas de param√®tres pour le moment ...");
     }
 
     public static void saisieParametre() {
