@@ -124,3 +124,18 @@ Antoine : C'est bizarre moi je l'ai plus
                   l'instanciation en truetypefont est déprécié et ne correspond plus au version actuel de java.
                   Maintenant il faut instancier en Unicode (alors c'est trois ligne en plus donc la flemme pour l'instant
                   je le ferai plus tard^^)
+
+Ludo : Ok, (Je me disais bien qu'il restait quelques problèmes de police), donc il ne reste plus qu'a gerer le systeme 
+de passage au niveaux suivants, les sauvegardes, et apres conception des niveaux.
+
+         Antoine : Il semblerait que tout spécialement MAC supporte mal les polices ttf (de slick) et après sur tout 
+         les os quand tu dépasse 70-80 c'est mort.
+         Si vous mettez dans le modèle la sauvegarde et le passage au niveau suivant avant que je parte au ski 
+         j'essayerai de l'ajouter à la vu avant de partir.
+         Et quand je reviendrai du ski j'améliorai la vue dans sa dimension esthétique (avec mes maigres compétence)
+
+Ludo : Bon, prochain objectif : terminer le système de sauvegarde, chargement => Faire que le Modele soit completement 
+fonctionnel, et faire les derniers "schema" de la vue en cours de jeu pour voir quelles sont les informations que doit 
+voir l'utilisateur et ou les mettre. Apres, ce sera la creation de niveaux, de contenu (description personnage, histoire?,
+images, etc...) et la mise en place de la vue "final".
+Je vais donc essayer d'avancer un max pendant ces vacances pour qu'apres ca soit quasiment que de la finition.

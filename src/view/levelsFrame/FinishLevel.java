@@ -48,7 +48,9 @@ public class FinishLevel extends BasicGameState{
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
             Font fontBase = fontStart.deriveFont(Font.PLAIN, 70);
             this.font = new TrueTypeFont(fontBase, true);
-        } catch (FontFormatException | IOException ex) {
+        } catch (FontFormatException ex) {
+            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }catch (IOException ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }

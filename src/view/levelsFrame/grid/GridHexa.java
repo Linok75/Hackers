@@ -42,8 +42,8 @@ public class GridHexa extends BasicGameState {
     public GridHexa(int stateID, Game gameInstance) throws SlickException {
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
-        this.nodeViewList = new ArrayList<>();
-        this.assocColorAtk = new HashMap<>();
+        this.nodeViewList = new ArrayList<NodeView>();
+        this.assocColorAtk = new HashMap<Attack,Color>();
 
         this.setAssocColorDef();
         this.setNodeViewList();
