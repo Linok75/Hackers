@@ -95,6 +95,13 @@ public final class Game {
                 //this.level.getMap().phishing(this.level.getMap().getNode(li, co));
 
             } else if (request.equals("ddos")) {
+                try {
+                    player.attack("DDoS", this.level.getTarget());
+                    System.out.println("DDoS OK !");
+                } catch (NoSuffisantPA ex) {
+                    System.out.println("DDoS OK !");
+                    //Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
             } else if (request.equals("help")) {
                 printCommands();
             } else if (request.equals("exit")) {

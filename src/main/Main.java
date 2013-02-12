@@ -10,6 +10,7 @@ import model.Level;
 import model.Mission;
 import model.Player;
 import model.maps.*;
+import model.ressources.attacks.DDoS;
 import model.ressources.attacks.Phishing;
 
 /**
@@ -24,6 +25,7 @@ public class Main {
 
     public static void test() {
         Player player = new Player();
+        player.addAttack(new DDoS());
         player.addAttack(new Phishing());
         //System.out.println("Player :\n"+player);
 
