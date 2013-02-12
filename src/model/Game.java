@@ -97,7 +97,14 @@ public final class Game {
             } else if (request.equals("ddos")) {
                 try {
                     player.attack("DDoS", this.level.getTarget());
-                    System.out.println("DDoS OK !");
+
+                    if (this.level.getTarget().isHack()) {
+                        System.out.println("Mission Accomplie !");
+                        System.exit(0);
+                    } else {
+                        System.out.println("L'attaque DDoS n'a pas été suffisante pour faire tomber le serveur ...");
+                    }
+                    //System.out.println("DDoS OK !");
                 } catch (NoSuffisantPA ex) {
                     System.out.println("DDoS OK !");
                     //Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -108,6 +115,11 @@ public final class Game {
                 System.exit(0);
             } else {
                 System.out.println("Commande introuvable ... (taper 'help' pour afficher la liste des commandes)");
+            }
+
+            if (this.player.getPower() < 10) {
+                System.out.println("Vous ne disposez plus de suffisament de 'ressources' pour continuer :\n\n\tGAME OVER");
+                System.exit(0);
             }
         }
 

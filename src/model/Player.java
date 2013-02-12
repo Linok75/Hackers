@@ -39,6 +39,10 @@ public final class Player {
         this.attacks.add(attack);
     }
 
+    public int getPower() {
+        return power;
+    }
+
     public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
 
         for (Attack attack : attacks) {
