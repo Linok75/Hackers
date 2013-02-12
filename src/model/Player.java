@@ -26,7 +26,7 @@ public final class Player {
         this.money = 0;
         this.attacks = new ArrayList<Attack>();
         this.hardwares = new ArrayList<Hardware>();
-        this.power = 35;
+        this.power = 100;
     }
 
     public void addAttack(Attack attack) {
