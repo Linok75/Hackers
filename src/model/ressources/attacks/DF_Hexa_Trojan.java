@@ -19,7 +19,11 @@ public class DF_Hexa_Trojan extends DiffusionMethod{
     
     @Override
     protected ArrayList<Node> getAllNodesAround(Node node) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        MapHexa map = (MapHexa) this.map;
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        addNodeIfNotNull(nodes, map.getEst(map.getEst(node)));
+        addNodeIfNotNull(nodes, map.getOuest(map.getOuest(node)));
+        return nodes;
     }
     
 }
