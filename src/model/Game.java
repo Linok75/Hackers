@@ -4,8 +4,10 @@
  */
 package model;
 
+import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 import model.maps.Node;
 
 /**
@@ -80,19 +82,25 @@ public final class Game {
                     System.out.println("Veuillez saisir la colonne :");
                     co = sc.nextInt();
                 }
+                try {
+                    this.player.attack("Phishing", this.level.getMap().getNode(li, co));
+                    System.out.println("Phishing OK !");
+                    System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+                    System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
+                } catch (NoSuffisantPA ex) {
+                    //Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    System.out.println("Phishing KO : Vous ne possedez pas suffisament de points d'action !");
+                }
 
-                this.level.getMap().phishing(this.level.getMap().getNode(li, co));
-                //System.out.println("Phishing terminé !");
-                System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-                System.out.println("Total de noeuds dans votre botnet : "+this.level.getMap().countAllNodesHack());
+                //this.level.getMap().phishing(this.level.getMap().getNode(li, co));
+
             } else if (request.equals("ddos")) {
-
             } else if (request.equals("help")) {
                 printCommands();
             } else if (request.equals("exit")) {
                 System.exit(0);
             } else {
-                System.out.println("Commande introuvable");
+                System.out.println("Commande introuvable ... (taper 'help' pour afficher la liste des commandes)");
             }
         }
 

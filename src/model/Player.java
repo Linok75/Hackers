@@ -5,6 +5,7 @@
 package model;
 
 import exceptions.NoSuffisantMoney;
+import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
 import model.maps.Node;
 import model.ressources.Hardware;
@@ -20,14 +21,12 @@ public final class Player {
     private ArrayList<Attack> attacks;
     private ArrayList<Hardware> hardwares;
     private int power;
-    //private Attack currentAttack;
 
     public Player() {
         this.money = 0;
         this.attacks = new ArrayList<Attack>();
         this.hardwares = new ArrayList<Hardware>();
         this.power = 35;
-        //this.currentAttack = null;
     }
 
     public void addAttack(Attack attack) {
@@ -40,29 +39,16 @@ public final class Player {
         this.attacks.add(attack);
     }
 
-//    public void attack(Attack attack, Target target) throws CurrentAttackIsNotNull {
-//        if (this.currentAttack != null) {
-//            throw new CurrentAttackIsNotNull();
-//        }
-//        if (!this.attacks.contains(attack)) {
-//            //throw new ...
-//        }
-//        this.currentAttack = attack;
-//        this.currentAttack.active(target);
-//
-//    }
-    /*
-     * public void cancel() { this.currentAttack.cancel(); this.currentAttack =
-     * null; }
-     */
-
-    public void attack(String nameOfAttack, Node node) {
+    public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
 
         for (Attack attack : attacks) {
             if (attack.getTitle().equals(nameOfAttack)) {
-                //if (attack.getRessource() > power) exception ...
-                //else power -= attack.getRessource()
-                //attack.execute();
+                if (attack.getCost() > power) {
+                    throw new NoSuffisantPA();
+                } else {
+                    power -= attack.getCost();
+                }
+                attack.execute(node);
             }
         }
 
@@ -91,12 +77,17 @@ public final class Player {
     }
 
     public void receiveMoney(int money) {
-        // money > 0
+        if (money < 0) {
+            throw new IllegalArgumentException("Impossible d'ajouter de la 'money' négatif !");
+        }
         this.money += money;
     }
 
-    public void addPower() {
-        this.power++;
+    public void addPower(int nb) {
+        if (nb < 0) {
+            throw new IllegalArgumentException("Impossible d'ajouter du 'power' négatif !");
+        }
+        this.power += nb;
     }
 
     public String toString() {
@@ -111,10 +102,6 @@ public final class Player {
             str += "\t- " + hardware.getTitle() + "\n";
         }
         str += "Power : " + this.power + "\n";
-        //if (this.currentAttack != null)
-        //str += "CurrentAttack : "+this.currentAttack.getTitle()+"\n";
-        //else
-        //str += "CurrentAttack : -\n";
         return str;
     }
 }

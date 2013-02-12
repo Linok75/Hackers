@@ -17,7 +17,7 @@ public class DDoS extends Attack {
     private int power;
 
     public DDoS(int power) {
-        super("DDoS", "", Defence.DDoS);
+        super("DDoS", "", Defence.DDoS, 10);
         this.power = power;
     }
 
@@ -30,6 +30,6 @@ public class DDoS extends Attack {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
+
 
 }
