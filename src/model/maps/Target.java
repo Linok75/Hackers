@@ -15,30 +15,30 @@ import model.ressources.attacks.DDoS;
 public final class Target extends Node {
 
     private int difficulty;
+    //private int life;
+    //private int defence;
 
     public Target(int difficulty, ArrayList<Defence> behavior) {
         super(behavior);
         this.difficulty = difficulty;
     }
 
-
     @Override
     public boolean hack(Attack attack) {
 
         //Vérifier que ce n'est pas déjà hacké
 
-        if (attack instanceof DDoS) {
-            DDoS ddos = (DDoS) attack;
-            if (ddos.getPower() >= this.difficulty) {
-                this.isHack = true;
-                //...
-                return true;
-            } else {
-                return false;
-            }
-        } else {
+        if (!(attack instanceof DDoS)) {
+            throw new IllegalArgumentException("Pour attaquer la cible, il faut obligatoirement une attaque DDoS");
+        }
+        DDoS ddos = (DDoS) attack;
+        if (ddos.getPower() >= this.difficulty) {
+            this.isHack = true;
             //...
+            return true;
+        } else {
             return false;
         }
+
     }
 }

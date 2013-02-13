@@ -6,7 +6,7 @@ package model.maps;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import model.ressources.attacks.DF_Grille_Phishing;
+//import model.ressources.attacks.DF_Grille_Phishing;
 import model.ressources.attacks.Phishing;
 
 /**
@@ -75,9 +75,9 @@ public class MapGrille implements IMap {
 
     @Override
     public void phishing(Node node) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        nodes.add(node);
-        new DF_Grille_Phishing(new Phishing(), this).start(nodes);
+//        ArrayList<Node> nodes = new ArrayList<Node>();
+//        nodes.add(node);
+//        new DF_Grille_Phishing(new Phishing(), this).start(nodes);
     }
 
     @Override
