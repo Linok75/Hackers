@@ -16,7 +16,7 @@ import model.maps.Node;
 public class Phishing extends Attack {
 
     public Phishing() {
-        super("Phishing", "...", Defence.Phishing);
+        super("Phishing", "...", Defence.Phishing, 15);
     }
 
     public void execute(Node node) {
