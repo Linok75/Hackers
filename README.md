@@ -7,3 +7,5 @@ En tout cas, je ne peux pas push sur le master, donc y'a surement un truc à con
 
 #Benji: bon bah quand je push, c'est automatiquement dans master mais comment ne pas transfèrer en même temps l'autre dossier Hackers.
         Egalement, comment puis-je le supprimer ?
+        
+#Ludo : Mais pourquoi tu a un autre dossier Hackers  ?
