@@ -7,6 +7,7 @@ package model.maps;
 import java.awt.Point;
 import java.util.ArrayList;
 import model.ressources.attacks.DF_Hexa_Phishing;
+import model.ressources.attacks.DF_Hexa_Troyen;
 import model.ressources.attacks.Phishing;
 
 /**

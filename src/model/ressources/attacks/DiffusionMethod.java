@@ -30,28 +30,31 @@ public abstract class DiffusionMethod {
     public boolean start(ArrayList<Node> nodes) {
         //System.out.println("DiffusionMethod : start !");
 
-        for (Node node : nodes) {
-            if (!node.isHackable(attack)) return false;
-        }
-
-        old_nodes.addAll(nodes);
-
-        ArrayList<Node> nextNodes = new ArrayList<Node>();
-
-        for (Node node : nodes) {
-            nextNodes.addAll(getAllNodesAround(node));
-            nextNodes.removeAll(old_nodes);
-            node.hack(attack);
-        }
-
-        for (Node node : nodes) {
-            if (!AllNodesAroundAreHackable(node)) {
-                //System.out.println("Au moins une node autour de la cible n'est pas hackable");
-                return false;
+        if (!nodes.isEmpty()) {
+            for (Node node : nodes) {
+                if (!node.isHackable(attack)) return false;
             }
-        }
 
-        return start(nextNodes);
+            old_nodes.addAll(nodes);
+
+            ArrayList<Node> nextNodes = new ArrayList<Node>();
+
+            for (Node node : nodes) {
+                nextNodes.addAll(getAllNodesAround(node));
+                nextNodes.removeAll(old_nodes);
+                node.hack(attack);
+            }
+
+            for (Node node : nodes) {
+                if (!AllNodesAroundAreHackable(node)) {
+                    //System.out.println("Au moins une node autour de la cible n'est pas hackable");
+                    return false;
+                }
+            }
+            return start(nextNodes);
+        } else {
+            return false;
+        }
     }
 
     private boolean AllNodesAroundAreHackable(Node node) {
