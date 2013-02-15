@@ -14,17 +14,14 @@ import model.maps.Node;
  */
 public class DF_Hexa_Troyen extends DiffusionMethod {
 
-    private static int diffusion;
-    
     public DF_Hexa_Troyen(Attack attack, MapHexa map) {
         super(attack, map);
-        this.diffusion = 0;
     }
 
     @Override
     protected ArrayList<Node> getAllNodesAround(Node node) {
-        MapHexa map = (MapHexa) this.map;
         ArrayList<Node> nodes = new ArrayList<Node>();
+        MapHexa map = (MapHexa) this.map;
         addNodeIfNotNull(nodes, map.getNordOuest(node));
         //addNodeIfNotNull(nodes, map.getSudOuest(node));
         //addNodeIfNotNull(nodes, map.getNordEst(node));
