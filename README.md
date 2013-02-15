@@ -16,3 +16,7 @@ Benji : c'est bon pour moi
 Ludo : OK, donc je pense que j'aurai pas le temps de le supprimer avant lundi, et je vais essayer de re-cloner le projet pour voir si j'arrive a push dans le master, en attendant, bon week-end à tous !
 
 Benji : Pareil, et bon courage ! "Courage fière Chevalier, ramenez la victoire !"
+
+Antoine : J'ai fini la diffusion en anneau vite fait (sur le principe c'est bon après tout dépent de quand on initialise l'attaque)
+          Si on inititialise l'attaque avant chaque execution, rien à changer, si par contre on décide de l'initialisé qu'une seul fois faudra rajouter une ligne qui remet le rayon à 1.
+          (j'ai pas pu tester j'ai du arrêter avant donc je fais confiance à mon instinct)
