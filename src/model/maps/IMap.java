@@ -19,6 +19,7 @@ public interface IMap {
     public int countAllNodesHack();
 
     public void phishing(Node node);
+    public void virus(Node node);
 
     public boolean in0_LI(int n);
     public boolean in0_CO(int n);
