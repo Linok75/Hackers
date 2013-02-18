@@ -5,10 +5,8 @@
 package model;
 
 import exceptions.NoSuffisantPA;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Logger;
-import model.maps.Node;
+import model.maps.Target;
 
 /**
  *
@@ -96,7 +94,7 @@ public final class Game {
 
             } else if (request.equals("ddos")) {
                 try {
-                    player.attack("DDoS", this.level.getTarget());
+                    player.ddos(this.level.getMap().countAllNodesHack(), (Target)this.level.getTarget());
 
                     if (this.level.getTarget().isHack()) {
                         System.out.println("Mission Accomplie !");
