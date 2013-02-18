@@ -19,12 +19,14 @@ public final class Level {
     private int time;
     private Target target;
     private Mission mission;
-
+    private boolean isCompleted;
+    
     public Level(IMap map, int time, Target target, Mission mission) {
         this.map = map;
         this.time = time;
         this.target = target;
         this.mission = mission;
+        this.isCompleted = false;
     }
 
     public IMap getMap() {
@@ -41,6 +43,13 @@ public final class Level {
 
     public int getTime() {
         return time;
+    }
+    
+    public boolean completed () {
+        if (this.target.isHack()) {
+            this.isCompleted= true;
+        }
+        return this.isCompleted;
     }
 
     @Override

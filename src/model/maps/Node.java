@@ -60,6 +60,8 @@ public class Node implements Hackable {
             str = "X";
         } else if (this.behaviors != null && this.behaviors.contains(Defence.Phishing)) {
             str = "P";
+        } else if (this instanceof Target) {
+            str = "T";
         } else {
             str = "O";
             //str = " ";

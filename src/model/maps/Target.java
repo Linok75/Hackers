@@ -39,6 +39,5 @@ public final class Target extends Node {
         } else {
             return false;
         }
-
     }
 }

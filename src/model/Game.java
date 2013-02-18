@@ -88,11 +88,9 @@ public final class Game {
                     System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
                     System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
                 } catch (NoSuffisantPA ex) {
-                    //Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     System.out.println("Phishing KO : Vous ne possedez pas suffisament de points d'action !");
                 }
 
-                //this.level.getMap().phishing(this.level.getMap().getNode(li, co));
 
             } else if (request.equals("ddos")) {
                 try {
@@ -119,6 +117,11 @@ public final class Game {
 
             if (this.player.getPower() < 10) {
                 System.out.println("Vous ne disposez plus de suffisament de 'ressources' pour continuer :\n\n\tGAME OVER");
+                System.exit(0);
+            }
+            
+            if (this.level.completed()) {
+                System.out.println("Bravo ! Vous avez réussi le niveau");
                 System.exit(0);
             }
         }
