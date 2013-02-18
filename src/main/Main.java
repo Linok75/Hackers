@@ -67,11 +67,8 @@ public class Main {
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
         Target target = new Target(30, new ArrayList<Defence>());
-
-        
+   
         IMap map = new MapHexa();
-        // on place la cible de la mission
-        map.setNode(2,2,target);
         
         // defense anti phishing
         behavior.add(Defence.Phishing);
