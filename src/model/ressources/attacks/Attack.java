@@ -12,7 +12,7 @@ import model.ressources.Ressource;
  *
  * @author ldavid
  */
-public abstract class Attack extends Ressource implements Activable {
+public abstract class Attack extends Ressource {
 
     protected boolean activated;
     //private ... time; //durée total d'execution
