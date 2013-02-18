@@ -6,6 +6,7 @@ package model.maps;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import model.ressources.attacks.DF_Hexa_Courbe;
 import model.ressources.attacks.DF_Hexa_Phishing;
 import model.ressources.attacks.DF_Hexa_Troyen;
 import model.ressources.attacks.Phishing;
@@ -80,7 +81,7 @@ public final class MapHexa implements IMap {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
         //new DF_Hexa_Phishing(new Phishing(), this).start(nodes);
-        new DF_Hexa_Troyen(new Phishing(), this).start(nodes);
+        new DF_Hexa_Courbe(new Phishing(), this).start(nodes);
     }
 
     @Override

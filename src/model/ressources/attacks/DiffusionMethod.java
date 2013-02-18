@@ -57,7 +57,7 @@ public abstract class DiffusionMethod {
         }
     }
 
-    private boolean AllNodesAroundAreHackable(Node node) {
+    protected boolean AllNodesAroundAreHackable(Node node) {
         ArrayList<Node> nodes = getAllNodesAround(node);
         if (nodes.isEmpty()) return false;
         nodes.removeAll(old_nodes);
