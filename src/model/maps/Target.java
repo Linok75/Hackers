@@ -35,6 +35,9 @@ public final class Target extends Node {
         if (ddos.getPower() >= this.difficulty) {
             this.isHack = true;
             //...
+
+            System.out.println("Target HACKED !");
+
             return true;
         } else {
             return false;

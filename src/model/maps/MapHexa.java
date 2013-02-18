@@ -80,8 +80,8 @@ public final class MapHexa implements IMap {
     public void phishing(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        //new DF_Hexa_Phishing(new Phishing(), this).start(nodes);
-        new DF_Hexa_Courbe(new Phishing(), this).start(nodes);
+        new DF_Hexa_Phishing(new Phishing(), this).start(nodes);
+        // DF_Hexa_Courbe(new Phishing(), this).start(nodes);
     }
 
     @Override

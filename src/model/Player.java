@@ -8,8 +8,10 @@ import exceptions.NoSuffisantMoney;
 import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
 import model.maps.Node;
+import model.maps.Target;
 import model.ressources.Hardware;
 import model.ressources.attacks.Attack;
+import model.ressources.attacks.DDoS;
 
 /**
  *
@@ -56,6 +58,20 @@ public final class Player {
             }
         }
 
+    }
+
+    public void ddos(int power, Target target) throws NoSuffisantPA {
+        for (Attack attack : attacks) {
+            if (attack instanceof DDoS) {
+                if (attack.getCost() > this.power) {
+                    throw new NoSuffisantPA();
+                } else {
+                    this.power -= attack.getCost();
+                }
+                ((DDoS)attack).setPower(power);
+                attack.execute(target);
+            }
+        }
     }
 
     public void buy(Hardware hardware) throws NoSuffisantMoney {
