@@ -4,6 +4,7 @@
  */
 package model.maps;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 /**
@@ -15,7 +16,8 @@ public interface IMap {
     public void setNode(int li, int co, Node node);
     public Node getNode(int li, int co);
     public Point getPoint(Node node);
-
+    public Dimension getDimensionMap();
+    
     public int countAllNodesHack();
 
     public void phishing(Node node);

@@ -77,6 +77,7 @@ public final class MapHexa implements IMap {
         return null;
     }
     
+    @Override
     public Dimension getDimensionMap(){
         return new Dimension(CO,LI);
     }

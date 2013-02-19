@@ -4,6 +4,7 @@
  */
 package model.maps;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 //import model.ressources.attacks.DF_Grille_Phishing;
@@ -48,6 +49,11 @@ public class MapGrille implements IMap {
             }
         }
         return null;
+    }
+    
+    @Override
+    public Dimension getDimensionMap(){
+        return new Dimension(CO,LI);
     }
 
     @Override
