@@ -4,6 +4,7 @@
  */
 package model.maps;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import model.ressources.attacks.DF_Hexa_Courbe;
@@ -74,6 +75,10 @@ public final class MapHexa implements IMap {
             }
         }
         return null;
+    }
+    
+    public Dimension getDimensionMap(){
+        return new Dimension(CO,LI);
     }
 
     @Override
