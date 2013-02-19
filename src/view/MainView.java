@@ -26,7 +26,7 @@ public class MainView {
 
     public static void main(String arg[]) {
         //Construction Model...
-        
+        ViewLauncher viewLauncher = new ViewLauncher();
         Player player = new Player();
         player.addAttack(new DDoS());
         player.addAttack(new Phishing());
@@ -58,16 +58,10 @@ public class MainView {
         Game.makeInstance(player, level);
         
         //Construction Vue...
-//        try {
-//            AppGameContainer baseFrame = new AppGameContainer(new MasterFrame());
-//            baseFrame.setDisplayMode(baseFrame.getScreenWidth() * 75 / 100, baseFrame.getScreenHeight() * 75 / 100, false);
-//            baseFrame.setShowFPS(false);
-//            baseFrame.start();
-//        } catch (SlickException e) {
-//            e.printStackTrace();
-//        }
+        View.makeInstance();
         
-        
+        //Lancement vue...
+        viewLauncher.start();
         
         //Lancement jeu...
         Game.getInstance().play();

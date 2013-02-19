@@ -32,6 +32,10 @@ public final class Game {
     public Level getLevel() {
         return level;
     }
+    
+    public Player getPlayer(){
+        return player;
+    }
 
     public static Game makeInstance(Player player, Level level) {
         if (instance != null) {

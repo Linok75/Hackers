@@ -203,4 +203,9 @@ public final class MapHexa implements IMap {
             return this.getNode(li - 1, co + 1);
         }
     }
+
+    @Override
+    public void virus(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

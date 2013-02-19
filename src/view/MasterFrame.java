@@ -31,7 +31,7 @@ public class MasterFrame extends BasicGame {
     private Illustration infosNode;
     private Image tmp;
     private String path;
-    private ArrayList<Node> nodeList;
+    private ArrayList<NodeView> nodeList;
     private ArrayList<Image> nodeImageList;
     private boolean infosVisible;
     private float scaleX;
@@ -62,48 +62,6 @@ public class MasterFrame extends BasicGame {
         this.nodeFaceNew = null;
         this.nodeDescribeNew = "";
         this.nodeFacePathNew = "";
-
-        this.makeNodeList();
-    }
-
-    private void makeNodeList() {
-        boolean tall = true, altX = true, altY = true;
-        int maxRow = 7;
-        int maxCol = 9;
-        int x, y;
-
-        x = 70;
-        y = 288;
-
-        for (int row = 0; row < maxRow; row++) {
-            if (tall) {
-                maxCol = 9;
-                x = 70;
-                tall = false;
-            } else {
-                maxCol = 8;
-                x = 130;
-                tall = true;
-            }
-            for (int col = 0; col < maxCol; col++) {
-                this.nodeList.add(new Node((int) (Math.random() * 6), new Point(x, y)));
-                if (altX) {
-                    x += 117;
-                    altX = false;
-                } else {
-                    x += 116;
-                    altX = true;
-                }
-            }
-            if (altY) {
-                y += 115;
-                altY = false;
-            } else {
-                y += 114;
-                altY = true;
-            }
-
-        }
     }
 
     @Override
@@ -227,7 +185,7 @@ public class MasterFrame extends BasicGame {
     public void mousePressed(int button, int x, int y) {
         Rectangle scaleArea;
 
-        for (Node node : this.nodeList) {
+        for (NodeView node : this.nodeList) {
             scaleArea = new Rectangle((int) (node.getPos().x * this.scaleX), (int) (node.getPos().y * this.scaleY), (int) (node.getClickableArea().width * this.scaleX), (int) (node.getClickableArea().height * this.scaleY));
             if (scaleArea.contains(new Point(x, y))) {
                 if (this.infosVisible) {

@@ -45,6 +45,10 @@ public final class Player {
         return power;
     }
 
+    public ArrayList<Attack> getAttackList(){
+        return this.attacks;
+    }
+    
     public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
 
         for (Attack attack : attacks) {
