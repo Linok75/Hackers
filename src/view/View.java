@@ -124,7 +124,7 @@ public final class View {
                 pair = true;
             }
             for (int col = 0; col < maxCol; col++) {
-                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
+//                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Entry<Attack, Color> assoc : this.assocColorAtk.entrySet()) {
                     if (assoc.getKey() != null) {
                         if (this.gameInstance.getLevel().getMap().getNode(row, col).isHackable(assoc.getKey())) {
@@ -143,7 +143,7 @@ public final class View {
 
                 x += 117;
             }
-            System.out.println("");
+//            System.out.println("");
             y += 115;
         }
     }
