@@ -18,8 +18,8 @@ import model.ressources.attacks.Phishing;
  */
 public final class MapHexa implements IMap {
 
-    private static final int LI = 8;
-    private static final int CO = 12;
+    private static final int LI = 7;
+    private static final int CO = 9;
     private Node nodes[][]; // [LI][CO]
 
     public MapHexa() {

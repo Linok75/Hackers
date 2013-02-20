@@ -4,16 +4,16 @@
  */
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import org.newdawn.slick.Color;
 
 /**
  *
  * @author ara
  */
-public class NodeView {
+public class NodeView implements Cloneable {
     
     private final static Dimension SIZE = new Dimension(110,140);
     private Rectangle clickableArea;
@@ -30,6 +30,10 @@ public class NodeView {
 
     public void setColor(Color color) {
         this.color=color;
+    }
+    
+    public void setPos(Point pos){
+        this.pos=pos;
     }
     
     public void corrupt(){
