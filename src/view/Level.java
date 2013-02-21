@@ -47,11 +47,11 @@ public class Level extends BasicGameState {
     private Illustration infosNode;
     private Illustration arrowHide;
     private Illustration defaultNode;
-    private Illustration nodeFocus;
-    private Illustration nodeActive;
+    private NodeIllustration nodeFocus;
+    private NodeIllustration nodeActive;
     private boolean infosNodeVisible;
 
-    public Level(int stateID, Game gameInstance) {
+    public Level(int stateID, Game gameInstance) throws SlickException {
         this.stateID = stateID;
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
@@ -94,7 +94,7 @@ public class Level extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-//        container.sleep(10);
+        container.sleep(20);
         g.scale(this.scaleX, this.scaleY);
         g.setColor(this.fontColor);
         g.setFont(this.font);
@@ -112,36 +112,38 @@ public class Level extends BasicGameState {
         g.drawImage(this.grid.getImage(), this.grid.getPos().x, this.grid.getPos().y);
 
         if (this.nodeFocus != null) {
-            g.drawImage(this.nodeFocus.getImage(), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY());
-            g.drawString(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
+            if (this.nodeFocus.getXEnd() < this.nodeFocus.getImage().getWidth()) {
+                g.drawImage(this.nodeFocus.getImage().getSubImage(0, 0, this.nodeFocus.getXEnd(), this.nodeFocus.getImage().getHeight()), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY());
+                //g.drawImage(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
+            } else {
+                g.drawImage(this.nodeFocus.getImage(), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY());
+                if(this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth()+20){
+                    g.drawImage(this.nodeFocus.getDescr().getSubImage(0, 0, this.nodeFocus.getXEnd()-(this.nodeFocus.getImage().getWidth()+20), this.nodeFocus.getDescr().getHeight()), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
+                }else if(this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth()+20+this.nodeFocus.getDescr().getWidth()){
+                    g.drawImage(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
+                }
+            }
+
         }
 
         if (this.nodeActive != null) {
             g.drawImage(this.nodeActive.getImage(), (int) this.nodeActive.getPos().getX(), (int) this.nodeActive.getPos().getY());
-            g.drawString(this.nodeActive.getDescr(), (int) this.nodeActive.getPos().getX() + this.nodeActive.getImage().getWidth() + 20, (int) this.nodeActive.getPos().getY());
+            g.drawImage(this.nodeActive.getDescr(), (int) this.nodeActive.getPos().getX() + this.nodeActive.getImage().getWidth() + 20, (int) this.nodeActive.getPos().getY());
         }
-
-        
-//        if (this.nodeFaceOld != null) {
-//            g.drawImage(this.nodeFaceOld.getImage(), this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y);
-//            g.drawString(this.nodeDescribeOld, this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y);
-//        }
-//        if (this.nodeFaceNew != null) {
-//            g.drawImage(this.nodeFaceNew.getImage(), this.nodeFaceNew.getPos().x, this.nodeFaceNew.getPos().y);
-//            g.drawString(this.nodeDescribeNew, this.nodeDescribeNewPos.x, this.nodeDescribeNewPos.y);
-//        }
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if (this.nodeActive == null) {
-            if (this.infosNodeVisible) {
+        if (this.infosNodeVisible) {
+            if (this.nodeActive == null) {
                 this.showInfosNode();
             } else {
-                this.hideInfosNode();
+                if (this.nodeFocus != null) {
+                    this.transitionInfosNode();
+                }
             }
         } else {
-            this.transitionInfosNode();
+            this.hideInfosNode();
         }
     }
 
@@ -152,16 +154,14 @@ public class Level extends BasicGameState {
         for (NodeView node : this.nodeViewList) {
             scaleArea = new Rectangle((int) (node.getPos().x * this.scaleX), (int) (node.getPos().y * this.scaleY), (int) (node.getClickableArea().width * this.scaleX), (int) (node.getClickableArea().height * this.scaleY));
             if (scaleArea.contains(x, y)) {
-//                if (this.infosVisible) {
-//                    this.nodeFacePathNew = node.getPath();
-//                    this.next = true;
-//                } else {
-//                    this.nodeFacePathOld = node.getPath();
-//                    this.infosVisible = true;
-//                }
                 this.infosNodeVisible = true;
                 try {
-                    this.nodeFocus = new Illustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), node.getDescr());
+                    if (this.nodeActive == null) {
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr()));
+                    } else {
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr()));
+                        this.nodeFocus.setXEnd(0);
+                    }
                 } catch (SlickException ex) {
                     Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
@@ -175,17 +175,47 @@ public class Level extends BasicGameState {
 
     }
 
-    private void transitionInfosNode(){
-        
+    private void transitionInfosNode() {
+        if (this.nodeActive.getXStart() < this.nodeActive.getImage().getWidth()) {
+            this.nodeActive.setXStart(this.nodeActive.getXStart() + 1);
+            this.nodeActive.setImage(this.nodeActive.getImage().getSubImage(this.nodeActive.getXStart(), 0, this.nodeActive.getImage().getWidth() - this.nodeActive.getXStart(), this.nodeActive.getImage().getHeight()));
+        } else {
+            this.nodeActive.setImage(this.nodeActive.getImage().getSubImage(0, 0, 0, 0));
+
+            if (this.nodeActive.getPos().x <= 50) {
+                this.nodeActive.setXStart(this.nodeActive.getXStart() + 1);
+                if (this.nodeActive.getXStart() < this.nodeActive.getDescr().getWidth()) {
+                    this.nodeActive.setDescr(this.nodeActive.getDescr().getSubImage(this.nodeActive.getXStart(), 0, this.nodeActive.getDescr().getWidth() - this.nodeActive.getXStart(), this.nodeActive.getDescr().getHeight()));
+                } else {
+                    this.nodeActive.setDescr(this.nodeActive.getDescr().getSubImage(0, 0, 0, 0));
+                }
+            } else {
+                if (this.nodeActive.getXStart() != 0) {
+                    this.nodeActive.setXStart(0);
+                }
+                this.nodeActive.setPos(new Point(this.nodeActive.getPos().x - 5, this.infosNode.getPos().y + 30));
+            }
+        }
+
+        if (this.nodeFocus.getXEnd() < this.nodeFocus.getImage().getWidth() + 20 + this.nodeFocus.getDescr().getWidth() + 5) {
+            this.nodeFocus.setXEnd(this.nodeFocus.getXEnd() + 10);
+            this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x - 10, this.nodeFocus.getPos().y));
+        } else {
+            if (this.nodeFocus.getPos().x > this.nodeActive.getPos().x + 30) {
+                this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x - 10, this.nodeFocus.getPos().y));
+            } else {
+                this.nodeFocus.setPos(new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30));
+                this.nodeActive = this.nodeFocus;
+                this.nodeFocus = null;
+            }
+        }
     }
-    
+
     private void showInfosNode() {
         if (this.infosNode.getPos().y < 0) {
             this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y + 5));
             this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y + 5));
             this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x, this.nodeFocus.getPos().y + 5));
-//            this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y + 5));
-//            this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y + 5);
         } else {
             if (this.nodeFocus != null) {
                 this.nodeActive = this.nodeFocus;
@@ -204,8 +234,6 @@ public class Level extends BasicGameState {
             } else {
                 this.nodeActive.setPos(new Point(this.nodeActive.getPos().x, this.nodeActive.getPos().y - 5));
             }
-//                this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y - 5));
-//                this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y - 5);
         } else {
             this.nodeActive = null;
         }
@@ -246,7 +274,7 @@ public class Level extends BasicGameState {
         }
     }
 
-    private void setNodeViewList() {
+    private void setNodeViewList() throws SlickException {
         boolean pair;
         int x, y, maxCol;
         NodeView tmp = null;

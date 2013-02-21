@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
 
 /**
  *
@@ -26,7 +27,7 @@ public class NodeView implements Cloneable {
     public NodeView(Point pos, Color color, String pathPortrait, String descr) {
         this.pos = pos;
         this.corrupt = false;
-        this.clickableArea=new Rectangle(pos, this.SIZE);
+        this.clickableArea=new Rectangle(pos, NodeView.SIZE);
         this.color = color;
         this.pathPortrait = pathPortrait; 
         this.descr=descr;

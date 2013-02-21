@@ -15,17 +15,10 @@ import org.newdawn.slick.SlickException;
 public class Illustration {
     private Image image;
     private Point pos;
-    private String descr;
     
     public Illustration(Image image, Point pos) throws SlickException{
         this.image = image;
         this.pos = pos;
-    }
-    
-    public Illustration(Image image, Point pos, String descr) throws SlickException{
-        this.image = image;
-        this.pos = pos;
-        this.descr = descr;
     }
     
     public void setPos(Point pos){
@@ -38,10 +31,6 @@ public class Illustration {
     
     public Image getImage() {
         return image;
-    }
-    
-    public String getDescr(){
-        return this.descr;
     }
 
     public Point getPos() {
