@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import model.Game;
 import model.ressources.attacks.Attack;
 import org.newdawn.slick.Color;
@@ -46,7 +47,8 @@ public class Level extends BasicGameState {
     private Illustration infosNode;
     private Illustration arrowHide;
     private Illustration defaultNode;
-    private NodeView nodeFocus;
+    private Illustration nodeFocus;
+    private Illustration nodeActive;
     private boolean infosNodeVisible;
 
     public Level(int stateID, Game gameInstance) {
@@ -56,6 +58,7 @@ public class Level extends BasicGameState {
         this.nodeViewList = new ArrayList<>();
         this.assocColorAtk = new HashMap<>();
         this.nodeFocus = null;
+        this.nodeActive = null;
         this.infosNodeVisible = false;
 
         this.setAssocColorDef();
@@ -104,14 +107,21 @@ public class Level extends BasicGameState {
         for (NodeView node : this.nodeViewList) {
             g.drawImage(this.defaultNode.getImage(), (int) node.getPos().getX(), (int) node.getPos().getY(), node.getColor());
         }
-        
+
 
         g.drawImage(this.grid.getImage(), this.grid.getPos().x, this.grid.getPos().y);
-        
-        if(this.nodeFocus!=null){
-            g.drawImage(this.defaultNode.getImage(), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY(), this.nodeFocus.getColor());
+
+        if (this.nodeFocus != null) {
+            g.drawImage(this.nodeFocus.getImage(), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY());
+            g.drawString(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
         }
 
+        if (this.nodeActive != null) {
+            g.drawImage(this.nodeActive.getImage(), (int) this.nodeActive.getPos().getX(), (int) this.nodeActive.getPos().getY());
+            g.drawString(this.nodeActive.getDescr(), (int) this.nodeActive.getPos().getX() + this.nodeActive.getImage().getWidth() + 20, (int) this.nodeActive.getPos().getY());
+        }
+
+        
 //        if (this.nodeFaceOld != null) {
 //            g.drawImage(this.nodeFaceOld.getImage(), this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y);
 //            g.drawString(this.nodeDescribeOld, this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y);
@@ -124,19 +134,15 @@ public class Level extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if (this.infosNodeVisible && this.infosNode.getPos().y < 0) {
-            this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y + 5));
-            this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y + 5));
-            this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x, this.nodeFocus.getPos().y + 5));
-//            this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y + 5));
-//            this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y + 5);
-        }else if (!this.infosNodeVisible && this.infosNode.getPos().y > -350) {
-                this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y - 5));
-                this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y - 5));
-                this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x, this.nodeFocus.getPos().y - 5));
-//                this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y - 5));
-//                this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y - 5);
+        if (this.nodeActive == null) {
+            if (this.infosNodeVisible) {
+                this.showInfosNode();
+            } else {
+                this.hideInfosNode();
             }
+        } else {
+            this.transitionInfosNode();
+        }
     }
 
     @Override
@@ -145,7 +151,7 @@ public class Level extends BasicGameState {
 
         for (NodeView node : this.nodeViewList) {
             scaleArea = new Rectangle((int) (node.getPos().x * this.scaleX), (int) (node.getPos().y * this.scaleY), (int) (node.getClickableArea().width * this.scaleX), (int) (node.getClickableArea().height * this.scaleY));
-            if (scaleArea.contains(x,y)) {
+            if (scaleArea.contains(x, y)) {
 //                if (this.infosVisible) {
 //                    this.nodeFacePathNew = node.getPath();
 //                    this.next = true;
@@ -154,7 +160,11 @@ public class Level extends BasicGameState {
 //                    this.infosVisible = true;
 //                }
                 this.infosNodeVisible = true;
-                this.nodeFocus = new NodeView(new Point(70,-320), node.getColor());
+                try {
+                    this.nodeFocus = new Illustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), node.getDescr());
+                } catch (SlickException ex) {
+                    Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
                 break;
             }
         }
@@ -164,7 +174,43 @@ public class Level extends BasicGameState {
         }
 
     }
+
+    private void transitionInfosNode(){
+        
+    }
     
+    private void showInfosNode() {
+        if (this.infosNode.getPos().y < 0) {
+            this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y + 5));
+            this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y + 5));
+            this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x, this.nodeFocus.getPos().y + 5));
+//            this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y + 5));
+//            this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y + 5);
+        } else {
+            if (this.nodeFocus != null) {
+                this.nodeActive = this.nodeFocus;
+                this.nodeFocus = null;
+            }
+        }
+    }
+
+    private void hideInfosNode() {
+        if (this.infosNode.getPos().y > -350) {
+            this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y - 5));
+            this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y - 5));
+            if (this.nodeActive == null) {
+                this.nodeActive = this.nodeFocus;
+                this.nodeFocus = null;
+            } else {
+                this.nodeActive.setPos(new Point(this.nodeActive.getPos().x, this.nodeActive.getPos().y - 5));
+            }
+//                this.nodeFaceOld.setPos(new Point(this.nodeFaceOld.getPos().x, this.nodeFaceOld.getPos().y - 5));
+//                this.nodeDescribeOldPos.setLocation(this.nodeDescribeOldPos.x, this.nodeDescribeOldPos.y - 5);
+        } else {
+            this.nodeActive = null;
+        }
+    }
+
     private void setAssocColorDef() {
         for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
@@ -226,17 +272,17 @@ public class Level extends BasicGameState {
                             break;
                         }
                         if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), assoc.getValue());
+                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription());
                         } else {
                             tmp.setColor(assoc.getValue());
                         }
                     }
                 }
                 if (tmp == null) {
-                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null));
+                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription());
                 }
                 this.nodeViewList.add(tmp);
-                tmp=null;
+                tmp = null;
                 x += 117;
             }
 //            System.out.println("");

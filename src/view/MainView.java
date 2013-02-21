@@ -15,15 +15,13 @@ import model.maps.MapHexa;
 import model.maps.Target;
 import model.ressources.attacks.DDoS;
 import model.ressources.attacks.Phishing;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.SlickException;
 
 /**
  *
  * @author ara
  */
 public class MainView {
-
+    
     public static void main(String arg[]) {
         //Construction Model...
         ViewLauncher viewLauncher = new ViewLauncher();
@@ -43,14 +41,14 @@ public class MainView {
         behavior.add(Defence.Phishing);
 
         // placement des cibles anti phishing sur la map
-        map.setNode(5, 4, new model.maps.Node(behavior, test, test));
-        map.setNode(1, 5, new model.maps.Node(behavior, test, test));
-        map.setNode(2, 5, new model.maps.Node(behavior, test, test));
-        map.setNode(4, 6, new model.maps.Node(behavior, test, test));
-        map.setNode(3, 8, new model.maps.Node(behavior, test, test));
-        map.setNode(5, 2, new model.maps.Node(behavior, test, test));
-        map.setNode(1, 7, new model.maps.Node(behavior, test, test));
-        map.setNode(6, 2, new model.maps.Node(behavior, test, test));
+        map.setNode(5, 4, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 5, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(2, 5, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(4, 6, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(3, 8, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 2, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 7, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 2, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
 
 
         Mission mission = new Mission("Level_1", "Créez ton botnet et attaque la cible de la mission !");

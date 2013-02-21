@@ -18,6 +18,9 @@ import model.ressources.attacks.Phishing;
  */
 public final class MapHexa implements IMap {
 
+    public final static String NODEDEFAULTPATH="ressources/defaultPortrait.png";
+    public final static String NODEDEFAULTDESC="Description encore inconnue...";
+    
     private static final int LI = 7;
     private static final int CO = 9;
     private Node nodes[][]; // [LI][CO]
@@ -26,7 +29,7 @@ public final class MapHexa implements IMap {
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
-                this.nodes[li][co] = new Node(null, null, null);
+                this.nodes[li][co] = new Node(null, NODEDEFAULTDESC, NODEDEFAULTPATH);
             }
         }
     }

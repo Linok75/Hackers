@@ -20,13 +20,17 @@ public class NodeView implements Cloneable {
     private Point pos;
     private boolean corrupt;
     private Color color;
+    private String pathPortrait;
+    private String descr;
 
-    public NodeView(Point pos, Color color) {
+    public NodeView(Point pos, Color color, String pathPortrait, String descr) {
         this.pos = pos;
         this.corrupt = false;
         this.clickableArea=new Rectangle(pos, this.SIZE);
         this.color = color;
-    }
+        this.pathPortrait = pathPortrait; 
+        this.descr=descr;
+   }
 
     public void setColor(Color color) {
         this.color=color;
@@ -46,8 +50,16 @@ public class NodeView implements Cloneable {
         return pos;
     }
 
+    public String getPathPortrait(){
+        return this.pathPortrait;
+    }
+    
     public Color getColor() {
         return this.color;
+    }
+    
+    public String getDescr(){
+        return this.descr;
     }
     
     public Rectangle getClickableArea() {
