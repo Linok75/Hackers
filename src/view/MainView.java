@@ -50,7 +50,7 @@ public class MainView {
         map.setNode(1, 7, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(6, 2, new model.maps.Node(behavior, test, MapHexa.NODEDEFAULTPATH));
 
-
+        //-Djava.library=C:\Users\Maxou's computer\Dropbox\Hackers\Hackers\lib\lwjgl-2.8.5\native\windows
         Mission mission = new Mission("Level_1", "Créez ton botnet et attaque la cible de la mission !");
 
         Level level = new Level(map, 30, target, mission);

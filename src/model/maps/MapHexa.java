@@ -18,9 +18,8 @@ import model.ressources.attacks.Phishing;
  */
 public final class MapHexa implements IMap {
 
-    public final static String NODEDEFAULTPATH="ressources/defaultPortrait.png";
-    public final static String NODEDEFAULTDESC="Description encore inconnue...";
-    
+    public final static String NODEDEFAULTPATH = "ressources/defaultPortrait.png";
+    public final static String NODEDEFAULTDESC = "Description encore inconnue...";
     private static final int LI = 7;
     private static final int CO = 9;
     private Node nodes[][]; // [LI][CO]
@@ -79,10 +78,10 @@ public final class MapHexa implements IMap {
         }
         return null;
     }
-    
+
     @Override
-    public Dimension getDimensionMap(){
-        return new Dimension(CO,LI);
+    public Dimension getDimensionMap() {
+        return new Dimension(CO, LI);
     }
 
     @Override
@@ -95,8 +94,10 @@ public final class MapHexa implements IMap {
 
     @Override
     public void setNode(int li, int co, Node node) {
-        // verifier li et co ...
-        this.nodes[li][co] = node;
+        // verifier li et co ... 
+        if (li < LI && co < CO) {
+            this.nodes[li][co] = node;
+        }
     }
 
     @Override
