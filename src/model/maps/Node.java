@@ -15,10 +15,14 @@ public class Node implements Hackable {
 
     private ArrayList<Defence> behaviors;
     protected boolean isHack;
+    private String description;
+    private String path;
 
-    public Node(ArrayList<Defence> behavior) {
+    public Node(ArrayList<Defence> behavior, String Description, String path) {
         this.behaviors = behavior;
         this.isHack = false;
+        this.description = description;
+        this.path = path;
     }
 
     public boolean isHack() {
@@ -45,6 +49,18 @@ public class Node implements Hackable {
             this.isHack = true;
             return true;
         }
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public String getPath() {
+        return this.path;
+    }
+    
+    public Image getPath() {
+        return new Image(this.getClass.getResource(this.path));
     }
 
     @Override
