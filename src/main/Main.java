@@ -31,7 +31,9 @@ public class Main {
 
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
-        Target target = new Target(30, new ArrayList<Defence>());
+        String test = "test";
+
+        Target target = new Target(30, new ArrayList<Defence>(), test, test);
 
         IMap map = new MapHexa();
 
@@ -51,7 +53,6 @@ public class Main {
 //        map.setNode(1,10, new Node(behavior));
 //        map.setNode(7,11, new Node(behavior));
 
-        String test = "test";
         map.setNode(5, 4, new model.maps.Node(behavior, test, test));
         map.setNode(1, 5, new model.maps.Node(behavior, test, test));
         map.setNode(2, 5, new model.maps.Node(behavior, test, test));
@@ -77,14 +78,15 @@ public class Main {
 
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
-        Target target = new Target(30, new ArrayList<Defence>());
+        String test = "test";
+
+        Target target = new Target(30, new ArrayList<Defence>(), test, test);
 
         IMap map = new MapHexa();
 
         // defense anti phishing
         behavior.add(Defence.Phishing);
 
-        String test = "test";
         // placement des cibles anti phishing sur la map
         map.setNode(5, 4, new Node(behavior, test, test));
         map.setNode(1, 5, new Node(behavior, test, test));
