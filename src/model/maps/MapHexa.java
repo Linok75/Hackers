@@ -26,7 +26,7 @@ public final class MapHexa implements IMap {
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
-                this.nodes[li][co] = new Node(null);
+                this.nodes[li][co] = new Node(null, null, null);
             }
         }
     }
