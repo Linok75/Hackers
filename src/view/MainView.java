@@ -33,7 +33,9 @@ public class MainView {
 
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
-        Target target = new Target(30, new ArrayList<Defence>());
+        String test = "test";
+        
+        Target target = new Target(30, new ArrayList<Defence>(), test, test);
 
         IMap map = new MapHexa();
 
@@ -41,14 +43,14 @@ public class MainView {
         behavior.add(Defence.Phishing);
 
         // placement des cibles anti phishing sur la map
-        map.setNode(5, 4, new model.maps.Node(behavior));
-        map.setNode(1, 5, new model.maps.Node(behavior));
-        map.setNode(2, 5, new model.maps.Node(behavior));
-        map.setNode(4, 6, new model.maps.Node(behavior));
-        map.setNode(3, 8, new model.maps.Node(behavior));
-        map.setNode(5, 2, new model.maps.Node(behavior));
-        map.setNode(1, 7, new model.maps.Node(behavior));
-        map.setNode(6, 2, new model.maps.Node(behavior));
+        map.setNode(5, 4, new model.maps.Node(behavior, test, test));
+        map.setNode(1, 5, new model.maps.Node(behavior, test, test));
+        map.setNode(2, 5, new model.maps.Node(behavior, test, test));
+        map.setNode(4, 6, new model.maps.Node(behavior, test, test));
+        map.setNode(3, 8, new model.maps.Node(behavior, test, test));
+        map.setNode(5, 2, new model.maps.Node(behavior, test, test));
+        map.setNode(1, 7, new model.maps.Node(behavior, test, test));
+        map.setNode(6, 2, new model.maps.Node(behavior, test, test));
 
 
         Mission mission = new Mission("Level_1", "Créez ton botnet et attaque la cible de la mission !");
