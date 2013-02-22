@@ -50,6 +50,9 @@ public class Level extends BasicGameState {
     private NodeIllustration nodeFocus;
     private NodeIllustration nodeActive;
     private boolean infosNodeVisible;
+    private SubIllustration atkList;
+    private boolean preAtk;
+    private boolean nextAtk;
 
     public Level(int stateID, Game gameInstance) throws SlickException {
         this.stateID = stateID;
@@ -60,6 +63,8 @@ public class Level extends BasicGameState {
         this.nodeFocus = null;
         this.nodeActive = null;
         this.infosNodeVisible = false;
+        this.preAtk = false;
+        this.nextAtk = false;
 
         this.setAssocColorDef();
         this.setNodeViewList();
@@ -73,10 +78,10 @@ public class Level extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         try {
-            Font fontBase = new Font("Agency FB", java.awt.Font.PLAIN, 30);
+            Font fontBase = new Font("Agency FB", java.awt.Font.TRUETYPE_FONT, 30);
             InputStream tmpFont = ResourceLoader.getResourceAsStream(getClass().getResource("ressources/AgencyFB.ttf").getPath());
             Font.createFont(Font.TRUETYPE_FONT, tmpFont);
-            this.font = new TrueTypeFont(fontBase, false);
+            this.font = new TrueTypeFont(fontBase, true);
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
@@ -87,7 +92,8 @@ public class Level extends BasicGameState {
         this.infosNode = new Illustration(new Image(getClass().getResource("ressources/infosNode.png").getPath()), new Point(0, -350));
         this.arrowHide = new Illustration(new Image(getClass().getResource("ressources/arrowHide.png").getPath()).getScaledCopy((float) 0.08), new Point(1095, -180));
         this.defaultNode = new Illustration(new Image(getClass().getResource("ressources/nodeDefault.png").getPath()), null);
-
+        this.atkList = new SubIllustration(AttackList.getListImg(gameInstance), new Point(1180,735));
+        
         this.scaleX = (float) container.getWidth() / this.background.getImage().getWidth();
         this.scaleY = (float) container.getHeight() / this.background.getImage().getHeight();
     }
@@ -130,6 +136,9 @@ public class Level extends BasicGameState {
             g.drawImage(this.nodeActive.getImage(), (int) this.nodeActive.getPos().getX(), (int) this.nodeActive.getPos().getY());
             g.drawImage(this.nodeActive.getDescr(), (int) this.nodeActive.getPos().getX() + this.nodeActive.getImage().getWidth() + 20, (int) this.nodeActive.getPos().getY());
         }
+        
+        
+        g.drawImage(this.atkList.getImage().getSubImage(this.atkList.getStartX(), this.atkList.getStartY(), this.atkList.getEndX(), this.atkList.getEndY()), this.atkList.getPos().x, this.atkList.getPos().y);
     }
 
     @Override
@@ -157,9 +166,9 @@ public class Level extends BasicGameState {
                 this.infosNodeVisible = true;
                 try {
                     if (this.nodeActive == null) {
-                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr()));
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font));
                     } else {
-                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr()));
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font));
                         this.nodeFocus.setXEnd(0);
                     }
                 } catch (SlickException ex) {
@@ -172,7 +181,7 @@ public class Level extends BasicGameState {
         if (scaleArea.contains(x, y)) {
             this.infosNodeVisible = false;
         }
-
+        
     }
 
     private void transitionInfosNode() {
@@ -228,14 +237,13 @@ public class Level extends BasicGameState {
         if (this.infosNode.getPos().y > -350) {
             this.infosNode.setPos(new Point(this.infosNode.getPos().x, this.infosNode.getPos().y - 5));
             this.arrowHide.setPos(new Point(this.arrowHide.getPos().x, this.arrowHide.getPos().y - 5));
-            if (this.nodeActive == null) {
-                this.nodeActive = this.nodeFocus;
-                this.nodeFocus = null;
-            } else {
-                this.nodeActive.setPos(new Point(this.nodeActive.getPos().x, this.nodeActive.getPos().y - 5));
+            if (this.nodeFocus == null) {
+                this.nodeFocus = this.nodeActive;
+                this.nodeActive = null;
             }
+            this.nodeFocus.setPos(new Point(this.nodeFocus.getPos().x, this.nodeFocus.getPos().y - 5));
         } else {
-            this.nodeActive = null;
+            this.nodeFocus = null;
         }
     }
 
