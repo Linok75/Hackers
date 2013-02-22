@@ -10,4 +10,4 @@ Antoine : La méthode isHackable plante si elle reçoit une attack null c'est ma
          Complément Model à apporter : 
                   Les node doivent avoir une description et une image (il en va de même pour la cible principale).
 
-Benji: en plus de la ligne et du slick.jar, je dois ajouter quoi pur que ça marche ?
+Benji: en plus de la ligne et du slick.jar, je dois ajouter quoi pour que ça marche ?
