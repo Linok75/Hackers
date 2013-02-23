@@ -22,7 +22,7 @@ public interface IMap {
 
     public void phishing(Node node);
     public void virus(Node node);
-    public void chevalDeTroie(Node node);
+    public void trojan(Node node);
     
     public boolean in0_LI(int n);
     public boolean in0_CO(int n);

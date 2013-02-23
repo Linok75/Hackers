@@ -18,6 +18,6 @@ public class Trojan extends Attack {
     }
 
     public void execute(Node node) {
-        Game.getInstance().getLevel().getMap().chevalDeTroie(node);
+        Game.getInstance().getLevel().getMap().trojan(node);
     }
 }

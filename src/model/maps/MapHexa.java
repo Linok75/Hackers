@@ -213,7 +213,7 @@ public final class MapHexa implements IMap {
     }
     
     @Override
-    public void chevalDeTroie(Node node) {
+    public void trojan(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
         new DF_Hexa_Trojan(new Trojan(), this).start(nodes);

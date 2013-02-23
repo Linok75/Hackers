@@ -127,7 +127,7 @@ public class MapGrille implements IMap {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void chevalDeTroie(Node node) {
+    public void trojan(Node node) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
