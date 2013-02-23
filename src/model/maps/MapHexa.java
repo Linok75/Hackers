@@ -7,10 +7,7 @@ package model.maps;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
-import model.ressources.attacks.DF_Hexa_Courbe;
-import model.ressources.attacks.DF_Hexa_Phishing;
-import model.ressources.attacks.DF_Hexa_Troyen;
-import model.ressources.attacks.Phishing;
+import model.ressources.attacks.*;
 
 /**
  *
@@ -210,6 +207,15 @@ public final class MapHexa implements IMap {
 
     @Override
     public void virus(Node node) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Virus(new Virus(), this).start(nodes);
+    }
+    
+    @Override
+    public void chevalDeTroie(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Trojan(new ChevalDeTroie(), this).start(nodes);
     }
 }
