@@ -12,9 +12,9 @@ import model.maps.Node;
  *
  * @author Quentin
  */
-public class ChevalDeTroie extends Attack {
-    public ChevalDeTroie() {
-        super("Virus", "...", Defence.Virus, 15);
+public class Trojan extends Attack {
+    public Trojan() {
+        super("Trojan", "...", Defence.Trojan, 15);
     }
 
     public void execute(Node node) {

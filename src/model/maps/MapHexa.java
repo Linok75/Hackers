@@ -216,6 +216,6 @@ public final class MapHexa implements IMap {
     public void chevalDeTroie(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        new DF_Hexa_Trojan(new ChevalDeTroie(), this).start(nodes);
+        new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
     }
 }

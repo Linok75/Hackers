@@ -12,6 +12,7 @@ import model.Player;
 import model.maps.*;
 import model.ressources.attacks.DDoS;
 import model.ressources.attacks.Phishing;
+import model.ressources.attacks.Virus;
 
 /**
  *
@@ -75,6 +76,7 @@ public class Main {
         Player player = new Player();
         player.addAttack(new DDoS());
         player.addAttack(new Phishing());
+        player.addAttack(new Virus());
 
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 

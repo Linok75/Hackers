@@ -94,6 +94,27 @@ public final class Game {
                 }
 
 
+            } else if (request.equals("virus")){
+                System.out.println("Quel 'node' voulez vous hacker ?");
+                System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+
+                int li = -1, co = -1;
+                while (!this.level.getMap().in0_LI(li)) {
+                    System.out.println("Veuillez saisir la ligne :");
+                    li = sc.nextInt();
+                }
+                while (!this.level.getMap().in0_CO(co)) {
+                    System.out.println("Veuillez saisir la colonne :");
+                    co = sc.nextInt();
+                }
+                try {
+                    this.player.attack("Virus", this.level.getMap().getNode(li, co));
+                    System.out.println("Virus OK !");
+                    System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+                    System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
+                } catch (NoSuffisantPA ex) {
+                    System.out.println("Virus KO : Vous ne possedez pas suffisament de points d'action !");
+                }
             } else if (request.equals("ddos")) {
                 try {
                     player.ddos(this.level.getMap().countAllNodesHack(), (Target)this.level.getTarget());
@@ -139,6 +160,7 @@ public final class Game {
                 + "- player\taffiche les caractéristiques du joueur\n\t"
                 + "- level\t\taffiche les caractéristiques de niveau\n\t"
                 + "- phishing\tlance une attaque 'phishing' sur un 'node'\n\t"
+                + "- virus\tlance une attaque 'virus' sur un 'node'\n\t"
                 + "- ddos\t\tlance une attaque DDoS sur le serveur cible\n\t"
                 + "- map\t\taffiche la map\n\t"
                 + "- exit\t\tpermet de quitter le jeu\n");
