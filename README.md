@@ -37,3 +37,4 @@ Déjà vu ?
 
 Antoine : Jamais vu mais vu le message d'erreur je pense que c'est parce 
 que tu as une apostrophe dans le nom de ton dossier (Maxou's).
+Soit tu renommes ton dossier, soit tu trouve le caractère d'échappement que je ne connais pas^^
