@@ -46,3 +46,5 @@ Antoine : Nickez vous, j'étais en train d'écrire un putain de truc pour expliq
 aussi parce que t'as commit...la flemme de tout réécrire je vous explique ou ça en est lundi.
 (donne le nom de ton fichier xml et de ton jar que je laisse passez que ceux la sinon on va 
 se retrouver avec le fichier config de netbeans qui est un .xml)
+
+Ludo : lol x), xstream-1.4.2.jar et level1.xml (y'aura surement d'autre xml comme ca plus tard, donc si tu peux l'appliquer a au dossier (package) levels c'est mieux)
