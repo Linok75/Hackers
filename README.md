@@ -31,3 +31,13 @@ Benji: en plus de la ligne et du slick.jar, je dois ajouter quoi pour que ça ma
                                                                -Djava.library.path=C:\Users\X\Documents\NetBeansProjects\lib\lwjgl-2.8.5\native\windows
                                                       exemple Linux :
                                                                -Djava.library.path=/home/X/NetBeansProjects/lib/lwjgl-2.8.5/native/linux
+
+Benji : voila le message que me renvoi netbeans à l'execution : "unbalanced quotes in -Djava.library.path=C:\Users\Maxou's computer\Dropbox\Hackers\Hackers\lib\lwjgl-2.8.5\native\windows"
+Déjà vu ?
+
+Antoine : Jamais vu mais vu le message d'erreur je pense que c'est parce 
+que tu as une apostrophe dans le nom de ton dossier (Maxou's).
+Soit tu renommes ton dossier, soit tu trouve le caractère d'échappement que je ne connais pas^^
+
+Ludo : Nom de Zeus ! t'a commit le readme pendant que j'ecrivais et ca a supp ce que j'avais ecrit x)
+Je disais que j'ai add un level en xml et une librairie en jar et que du coup, avec le gitignore, ca synchro pas...

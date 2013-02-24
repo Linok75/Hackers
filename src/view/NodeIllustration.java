@@ -14,19 +14,25 @@ import org.newdawn.slick.SlickException;
  */
 public class NodeIllustration extends Illustration {
 
+    private Point linkToNode;
     private Image descr;
     private int xStart;
     private int xEnd;
 
-    public NodeIllustration(Image image, Point pos, Image descr) throws SlickException {
+    public NodeIllustration(Image image, Point pos, Image descr, Point linkToNode) throws SlickException {
         super(image, pos);
         this.descr = descr;
         this.xStart = 0;
-        this.xEnd = image.getWidth()+20+descr.getWidth()+5;
+        this.xEnd = image.getWidth() + 20 + descr.getWidth() + 5;
+        this.linkToNode = linkToNode;
     }
     
-    public void setDescr(Image descr){
-        this.descr=descr;
+    public Point getLinkToNode(){
+        return this.linkToNode;
+    }
+
+    public void setDescr(Image descr) {
+        this.descr = descr;
     }
 
     public void setXStart(int xStart) {

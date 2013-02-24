@@ -4,6 +4,7 @@
  */
 package view;
 
+import exceptions.NoSuffisantPA;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -50,9 +51,11 @@ public class Level extends BasicGameState {
     private NodeIllustration nodeFocus;
     private NodeIllustration nodeActive;
     private boolean infosNodeVisible;
-    private SubIllustration atkList;
+    private AttackList atkList;
     private boolean preAtk;
     private boolean nextAtk;
+    private Illustration nextButton;
+    private Illustration preButton;
 
     public Level(int stateID, Game gameInstance) throws SlickException {
         this.stateID = stateID;
@@ -65,6 +68,7 @@ public class Level extends BasicGameState {
         this.infosNodeVisible = false;
         this.preAtk = false;
         this.nextAtk = false;
+
 
         this.setAssocColorDef();
         this.setNodeViewList();
@@ -92,8 +96,10 @@ public class Level extends BasicGameState {
         this.infosNode = new Illustration(new Image(getClass().getResource("ressources/infosNode.png").getPath()), new Point(0, -350));
         this.arrowHide = new Illustration(new Image(getClass().getResource("ressources/arrowHide.png").getPath()).getScaledCopy((float) 0.08), new Point(1095, -180));
         this.defaultNode = new Illustration(new Image(getClass().getResource("ressources/nodeDefault.png").getPath()), null);
-        this.atkList = new SubIllustration(AttackList.getListImg(gameInstance), new Point(1180,735));
-        
+        this.atkList = new AttackList(gameInstance.getPlayer().getAttackList(), this.font, new Point(1180, 735));
+        this.nextButton = new Illustration(new Image(getClass().getResource("ressources/button.png").getPath()), new Point(1480, 830));
+        this.preButton = new Illustration(this.nextButton.getImage().getFlippedCopy(false, true), new Point(this.nextButton.getPos().x, this.nextButton.getPos().y + this.nextButton.getImage().getHeight() + 50));
+
         this.scaleX = (float) container.getWidth() / this.background.getImage().getWidth();
         this.scaleY = (float) container.getHeight() / this.background.getImage().getHeight();
     }
@@ -123,9 +129,9 @@ public class Level extends BasicGameState {
                 //g.drawImage(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
             } else {
                 g.drawImage(this.nodeFocus.getImage(), (int) this.nodeFocus.getPos().getX(), (int) this.nodeFocus.getPos().getY());
-                if(this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth()+20){
-                    g.drawImage(this.nodeFocus.getDescr().getSubImage(0, 0, this.nodeFocus.getXEnd()-(this.nodeFocus.getImage().getWidth()+20), this.nodeFocus.getDescr().getHeight()), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
-                }else if(this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth()+20+this.nodeFocus.getDescr().getWidth()){
+                if (this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth() + 20) {
+                    g.drawImage(this.nodeFocus.getDescr().getSubImage(0, 0, this.nodeFocus.getXEnd() - (this.nodeFocus.getImage().getWidth() + 20), this.nodeFocus.getDescr().getHeight()), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
+                } else if (this.nodeFocus.getXEnd() > this.nodeFocus.getImage().getWidth() + 20 + this.nodeFocus.getDescr().getWidth()) {
                     g.drawImage(this.nodeFocus.getDescr(), (int) this.nodeFocus.getPos().getX() + this.nodeFocus.getImage().getWidth() + 20, (int) this.nodeFocus.getPos().getY());
                 }
             }
@@ -136,9 +142,12 @@ public class Level extends BasicGameState {
             g.drawImage(this.nodeActive.getImage(), (int) this.nodeActive.getPos().getX(), (int) this.nodeActive.getPos().getY());
             g.drawImage(this.nodeActive.getDescr(), (int) this.nodeActive.getPos().getX() + this.nodeActive.getImage().getWidth() + 20, (int) this.nodeActive.getPos().getY());
         }
-        
-        
+
+
         g.drawImage(this.atkList.getImage().getSubImage(this.atkList.getStartX(), this.atkList.getStartY(), this.atkList.getEndX(), this.atkList.getEndY()), this.atkList.getPos().x, this.atkList.getPos().y);
+        g.drawImage(this.nextButton.getImage(), this.nextButton.getPos().x, this.nextButton.getPos().y);
+        g.drawImage(this.preButton.getImage(), this.preButton.getPos().x, this.preButton.getPos().y);
+
     }
 
     @Override
@@ -154,6 +163,14 @@ public class Level extends BasicGameState {
         } else {
             this.hideInfosNode();
         }
+        
+        if(this.nextAtk){
+            this.scrollNextAtk();
+        }
+        
+        if(this.preAtk){
+            this.scrollPreAtk();
+        }
     }
 
     @Override
@@ -166,9 +183,9 @@ public class Level extends BasicGameState {
                 this.infosNodeVisible = true;
                 try {
                     if (this.nodeActive == null) {
-                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font));
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font), node.getLinkToNode());
                     } else {
-                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font));
+                        this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), this.font), node.getLinkToNode());
                         this.nodeFocus.setXEnd(0);
                     }
                 } catch (SlickException ex) {
@@ -181,7 +198,43 @@ public class Level extends BasicGameState {
         if (scaleArea.contains(x, y)) {
             this.infosNodeVisible = false;
         }
-        
+
+        if (!this.nextAtk && !this.preAtk) {
+            scaleArea = new Rectangle((int) (this.nextButton.getPos().x * this.scaleX), (int) (this.nextButton.getPos().y * this.scaleY), (int) (this.nextButton.getImage().getWidth() * this.scaleX), (int) (this.nextButton.getImage().getHeight() * this.scaleY));
+            if (scaleArea.contains(x, y)) {
+                this.nextAtk = true;
+            }
+            
+            scaleArea = new Rectangle((int) (this.preButton.getPos().x * this.scaleX), (int) (this.preButton.getPos().y * this.scaleY), (int) (this.preButton.getImage().getWidth() * this.scaleX), (int) (this.preButton.getImage().getHeight() * this.scaleY));
+            if (scaleArea.contains(x, y)) {
+                this.preAtk = true;
+            }
+            
+            scaleArea = new Rectangle((int) (this.atkList.getPos().x * this.scaleX), (int) (this.atkList.getPos().y * this.scaleY), (int) (this.atkList.getImage().getWidth() * this.scaleX), (int) (this.atkList.getImage().getHeight() * this.scaleY));
+            if(scaleArea.contains(x, y)){
+                if(this.infosNodeVisible && this.nodeFocus==null){
+                    this.contamination();
+                }else{
+                    //Afficher message veuillez choisir une cible...
+                }
+            }
+        }
+    }
+    
+    private void scrollNextAtk(){
+        if(this.atkList.scrollAgain(true)){
+            this.atkList.setStartY(this.atkList.getStartY()+1);
+        }else{
+           this.nextAtk = false; 
+        }
+    }
+    
+    private void scrollPreAtk(){
+        if(this.atkList.scrollAgain(false)){
+            this.atkList.setStartY(this.atkList.getStartY()-1);
+        }else{
+           this.preAtk = false; 
+        }
     }
 
     private void transitionInfosNode() {
@@ -308,14 +361,14 @@ public class Level extends BasicGameState {
                             break;
                         }
                         if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription());
+                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row,col));
                         } else {
                             tmp.setColor(assoc.getValue());
                         }
                     }
                 }
                 if (tmp == null) {
-                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription());
+                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.gameInstance.getLevel().getMap().getNode(row, col).getPath(), this.gameInstance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row,col));
                 }
                 this.nodeViewList.add(tmp);
                 tmp = null;
@@ -323,6 +376,19 @@ public class Level extends BasicGameState {
             }
 //            System.out.println("");
             y += 115;
+        }
+    }
+
+    private void contamination() {
+        try {
+            this.gameInstance.getPlayer().attack(this.gameInstance.getPlayer().getAttackList().get(1).getTitle(), this.gameInstance.getLevel().getMap().getNode(this.nodeActive.getLinkToNode().x, this.nodeActive.getLinkToNode().y));
+            for(NodeView node : this.nodeViewList){
+                if(this.gameInstance.getLevel().getMap().getNode(node.getLinkToNode().x, node.getLinkToNode().y).isHack()){
+                    node.corrupt();
+                }
+            }
+        } catch (NoSuffisantPA ex) {
+            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 }

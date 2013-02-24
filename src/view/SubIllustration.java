@@ -25,6 +25,8 @@ public class SubIllustration extends Illustration{
         this.endX = endX;
         this.startY = startY;
         this.endY = endY;
+        
+
     }
     
     public SubIllustration(Image image, Point pos) throws SlickException{
@@ -33,6 +35,13 @@ public class SubIllustration extends Illustration{
         this.endX = image.getWidth();
         this.startY = 0;
         this.endY = image.getHeight();
+    }
+    
+    public void resetSubPos(){
+        this.startX=0;
+        this.endX = this.getImage().getWidth();
+        this.startY = 0;
+        this.endY = this.getImage().getHeight();
     }
 
     public int getStartX() {
