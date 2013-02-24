@@ -54,3 +54,5 @@ Antoine : C'est bon essaye et dit moi si ça marche.
 Ludo : Marche pas... (Le gitignore a pas l'air d'etre a jour)
 
 Antoine : bon git me troll mais la ça devrait être bon ;)
+
+Ludo : Nikel =D
