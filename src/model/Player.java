@@ -19,6 +19,8 @@ import model.ressources.attacks.DDoS;
  */
 public final class Player {
 
+    private String name;
+
     private int money;
     private ArrayList<Attack> attacks;
     private ArrayList<Hardware> hardwares;
@@ -29,6 +31,12 @@ public final class Player {
         this.attacks = new ArrayList<Attack>();
         this.hardwares = new ArrayList<Hardware>();
         this.power = 100;
+        this.name = "Unnamed";
+    }
+
+    public Player(String name) {
+        super();
+        this.name = name;
     }
 
     public void addAttack(Attack attack) {
@@ -48,7 +56,7 @@ public final class Player {
     public ArrayList<Attack> getAttackList(){
         return this.attacks;
     }
-    
+
     public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
 
         for (Attack attack : attacks) {

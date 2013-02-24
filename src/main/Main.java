@@ -7,6 +7,7 @@ package main;
 import java.util.ArrayList;
 import model.Game;
 import model.Level;
+import model.Menu;
 import model.Mission;
 import model.Player;
 import model.maps.*;
@@ -21,7 +22,8 @@ import model.ressources.attacks.Virus;
 public class Main {
 
     public static void main(String args[]) {
-        test2();
+        Menu.run();
+        //test2();
     }
 
     public static void test() {
