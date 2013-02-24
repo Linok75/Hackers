@@ -60,8 +60,11 @@ public /*abstract*/ class XStreamer<E> {
         E e = null;
 
         try {
-            e = (E) xstream.fromXML(new File(location));
+            File f = new File(location);
+            System.out.println("File OK");
+            e = (E) xstream.fromXML(f);
         } catch (Exception exception) {
+            exception.printStackTrace();
             throw new ImpossibleLoadOfXML();
         }
         //make(e);

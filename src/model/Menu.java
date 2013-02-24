@@ -65,9 +65,12 @@ public class Menu {
         Level level;
         for (File file : f.listFiles(ff)) {
             try {
+                System.out.println(file.getAbsolutePath());
                 level = xsLevels.load(file.getAbsolutePath());
                 levels.add(level);
             } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Erreur de chargement");
                 mauvaisChargement = true;
             }
         }

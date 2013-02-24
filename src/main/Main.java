@@ -14,6 +14,7 @@ import model.maps.*;
 import model.ressources.attacks.DDoS;
 import model.ressources.attacks.Phishing;
 import model.ressources.attacks.Virus;
+import tools.XStreamer;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Main {
 
     public static void main(String args[]) {
         Menu.run();
+        //test();
         //test2();
     }
 
@@ -69,6 +71,7 @@ public class Main {
         Mission mission = new Mission("Level_1", "Attack !");
 
         Level level = new Level(map, 30, target, mission);
+        //new XStreamer<Level>().save(level, "/Users/MyMac/Github/Hackers/src/levels/level1.xml");
 
         Game.makeInstance(player, level);
         Game.getInstance().play();
