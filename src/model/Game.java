@@ -32,7 +32,7 @@ public final class Game {
     public Level getLevel() {
         return level;
     }
-    
+
     public Player getPlayer(){
         return player;
     }
@@ -142,7 +142,7 @@ public final class Game {
                 System.out.println("Vous ne disposez plus de suffisament de 'ressources' pour continuer :\n\n\tGAME OVER");
                 System.exit(0);
             }
-            
+
             if (this.level.completed()) {
                 System.out.println("Bravo ! Vous avez réussi le niveau");
                 System.exit(0);
@@ -160,7 +160,7 @@ public final class Game {
                 + "- player\taffiche les caractéristiques du joueur\n\t"
                 + "- level\t\taffiche les caractéristiques de niveau\n\t"
                 + "- phishing\tlance une attaque 'phishing' sur un 'node'\n\t"
-                + "- virus\tlance une attaque 'virus' sur un 'node'\n\t"
+                + "- virus\t\tlance une attaque 'virus' sur un 'node'\n\t"
                 + "- ddos\t\tlance une attaque DDoS sur le serveur cible\n\t"
                 + "- map\t\taffiche la map\n\t"
                 + "- exit\t\tpermet de quitter le jeu\n");

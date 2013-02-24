@@ -125,8 +125,8 @@ public class Menu {
 
             // TO-DO : Vérifier que le nom ne comporte pas des caractères invalides
             player = new Player(saisie);
-            //player.addAttack(new DDoS());
-            //player.addAttack(new Phishing());
+            player.addAttack(new DDoS());
+            player.addAttack(new Phishing());
 
             // Chargement du premier niveau
             Level level = levels.get(0);

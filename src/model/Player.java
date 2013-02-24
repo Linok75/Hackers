@@ -35,7 +35,7 @@ public final class Player {
     }
 
     public Player(String name) {
-        super();
+        this();
         this.name = name;
     }
 
