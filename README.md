@@ -50,3 +50,5 @@ se retrouver avec le fichier config de netbeans qui est un .xml)
 Ludo : lol x), xstream-1.4.2.jar et level1.xml (y'aura surement d'autre xml comme ca plus tard, donc si tu peux l'appliquer a au dossier (package) levels c'est mieux)
 
 Antoine : C'est bon essaye et dit moi si ça marche.
+
+Ludo : Marche pas... (Le gitignore a pas l'air d'etre a jour)
