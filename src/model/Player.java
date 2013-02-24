@@ -45,7 +45,6 @@ public final class Player {
         //if (!(class instanceof Attack)) ...
         //if (attacks.contains(class)) ...
 
-
         this.attacks.add(attack);
     }
 

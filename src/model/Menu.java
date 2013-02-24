@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.ressources.attacks.DDoS;
+import model.ressources.attacks.Phishing;
 import tools.XStreamer;
 
 /**
@@ -20,7 +22,7 @@ public class Menu {
     private static final Scanner sc = new Scanner(System.in);
     private static Player player;
     //private static ArrayList<Level> levels;
-    private static ArrayList<Level> levels;
+    private static ArrayList<Level> levels = new ArrayList<Level>();
 
     //View :
     // 0 - Menu
@@ -65,12 +67,12 @@ public class Menu {
         Level level;
         for (File file : f.listFiles(ff)) {
             try {
-                System.out.println(file.getAbsolutePath());
+                //System.out.println(file.getAbsolutePath());
                 level = xsLevels.load(file.getAbsolutePath());
                 levels.add(level);
             } catch (Exception e) {
-                e.printStackTrace();
-                System.err.println("Erreur de chargement");
+                //e.printStackTrace();
+                //System.err.println("Erreur de chargement");
                 mauvaisChargement = true;
             }
         }
@@ -119,13 +121,23 @@ public class Menu {
         if (saisie.equals("0")) {
             currentView = 0;
         } else {
+            System.out.println("Chargement...");
+
             // TO-DO : Vérifier que le nom ne comporte pas des caractères invalides
             player = new Player(saisie);
+            //player.addAttack(new DDoS());
+            //player.addAttack(new Phishing());
 
             // Chargement du premier niveau
-            // Lancement de la partie
+            Level level = levels.get(0);
 
-            throw new UnsupportedOperationException("Not implemented yet");
+            System.out.println("Début de la partie.");
+
+            // Lancement de la partie
+            Game.makeInstance(player, level);
+            Game.getInstance().play();
+
+            //throw new UnsupportedOperationException("Not implemented yet");
         }
     }
 

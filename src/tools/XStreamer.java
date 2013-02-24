@@ -57,11 +57,10 @@ public /*abstract*/ class XStreamer<E> {
             System.out.println(e.toString());
         }*/
 
-        E e = null;
+        E e;
 
         try {
             File f = new File(location);
-            System.out.println("File OK");
             e = (E) xstream.fromXML(f);
         } catch (Exception exception) {
             exception.printStackTrace();
