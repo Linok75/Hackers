@@ -41,3 +41,8 @@ Soit tu renommes ton dossier, soit tu trouve le caractère d'échappement que je
 
 Ludo : Nom de Zeus ! t'a commit le readme pendant que j'ecrivais et ca a supp ce que j'avais ecrit x)
 Je disais que j'ai add un level en xml et une librairie en jar et que du coup, avec le gitignore, ca synchro pas...
+
+Antoine : Nickez vous, j'étais en train d'écrire un putain de truc pour expliquer ou en était la vue et ça ma tout effacer
+aussi parce que t'as commit...la flemme de tout réécrire je vous explique ou ça en est lundi.
+(donne le nom de ton fichier xml et de ton jar que je laisse passez que ceux la sinon on va 
+se retrouver avec le fichier config de netbeans qui est un .xml)
