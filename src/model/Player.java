@@ -7,6 +7,8 @@ package model;
 import exceptions.NoSuffisantMoney;
 import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import model.maps.Node;
 import model.maps.Target;
 import model.ressources.Hardware;
@@ -22,13 +24,15 @@ public final class Player {
     private String name;
 
     private int money;
-    private ArrayList<Attack> attacks;
+    private Set<Attack> attacks;
     private ArrayList<Hardware> hardwares;
     private int power;
 
+    //private int advanced (numero du niveau max que le joueur a atteint)
+
     public Player() {
         this.money = 0;
-        this.attacks = new ArrayList<Attack>();
+        this.attacks = new HashSet<Attack>();
         this.hardwares = new ArrayList<Hardware>();
         this.power = 100;
         this.name = "Unnamed";
@@ -53,7 +57,7 @@ public final class Player {
     }
 
     public ArrayList<Attack> getAttackList(){
-        return this.attacks;
+        return new ArrayList<Attack>(this.attacks);
     }
 
     public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
