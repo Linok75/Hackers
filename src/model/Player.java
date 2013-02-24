@@ -45,18 +45,27 @@ public final class Player {
         return power;
     }
 
+    public ArrayList<Attack> getAttackList(){
+        return this.attacks;
+    }
+    
     public void attack(String nameOfAttack, Node node) throws NoSuffisantPA {
 
         for (Attack attack : attacks) {
+            System.out.println("test1");
             if (attack.getTitle().equals(nameOfAttack)) {
+                System.out.println("test2");
                 if (attack.getCost() > power) {
+                    System.out.println("test3");
                     throw new NoSuffisantPA();
                 } else {
+                    System.out.println("test4");
                     power -= attack.getCost();
                 }
                 attack.execute(node);
             }
         }
+        System.out.println("test5");
 
     }
 

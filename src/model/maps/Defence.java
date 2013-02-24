@@ -11,6 +11,6 @@ package model.maps;
  */
 public enum Defence {
 
-    DDoS, Phishing, Virus;
+    DDoS, Phishing, Virus, BruteForcing, Effraction, Trojan, Exploitation;
 
 }

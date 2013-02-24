@@ -4,12 +4,10 @@
  */
 package model.maps;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
-import model.ressources.attacks.DF_Hexa_Courbe;
-import model.ressources.attacks.DF_Hexa_Phishing;
-import model.ressources.attacks.DF_Hexa_Troyen;
-import model.ressources.attacks.Phishing;
+import model.ressources.attacks.*;
 
 /**
  *
@@ -17,15 +15,17 @@ import model.ressources.attacks.Phishing;
  */
 public final class MapHexa implements IMap {
 
-    private static final int LI = 8;
-    private static final int CO = 12;
+    public final static String NODEDEFAULTPATH = "ressources/defaultPortrait.png";
+    public final static String NODEDEFAULTDESC = "Description encore inconnue...";
+    private static final int LI = 7;
+    private static final int CO = 9;
     private Node nodes[][]; // [LI][CO]
 
     public MapHexa() {
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
-                this.nodes[li][co] = new Node(null);
+                this.nodes[li][co] = new Node(null, NODEDEFAULTDESC, NODEDEFAULTPATH);
             }
         }
     }
@@ -77,6 +77,11 @@ public final class MapHexa implements IMap {
     }
 
     @Override
+    public Dimension getDimensionMap() {
+        return new Dimension(CO, LI);
+    }
+
+    @Override
     public void phishing(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -86,8 +91,10 @@ public final class MapHexa implements IMap {
 
     @Override
     public void setNode(int li, int co, Node node) {
-        // verifier li et co ...
-        this.nodes[li][co] = node;
+        // verifier li et co ... 
+        if (li < LI && co < CO) {
+            this.nodes[li][co] = node;
+        }
     }
 
     @Override
@@ -196,5 +203,19 @@ public final class MapHexa implements IMap {
         } else {
             return this.getNode(li - 1, co + 1);
         }
+    }
+
+    @Override
+    public void virus(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Virus(new Virus(), this).start(nodes);
+    }
+    
+    @Override
+    public void trojan(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
     }
 }

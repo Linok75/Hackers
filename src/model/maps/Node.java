@@ -6,6 +6,8 @@ package model.maps;
 
 import java.util.ArrayList;
 import model.ressources.attacks.Attack;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  *
@@ -15,10 +17,14 @@ public class Node implements Hackable {
 
     private ArrayList<Defence> behaviors;
     protected boolean isHack;
+    private String description;
+    private String path;
 
-    public Node(ArrayList<Defence> behavior) {
+    public Node(ArrayList<Defence> behavior, String description, String path) {
         this.behaviors = behavior;
         this.isHack = false;
+        this.description = description;
+        this.path = path;
     }
 
     public boolean isHack() {
@@ -44,6 +50,22 @@ public class Node implements Hackable {
         } else {
             this.isHack = true;
             return true;
+        }
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public String getPath() {
+        return this.path;
+    }
+    
+    public Image getImage() {
+        try {
+            return new Image(this.path);
+        } catch (SlickException se) {
+            return null;
         }
     }
 

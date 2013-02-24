@@ -4,6 +4,7 @@
  */
 package model.maps;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 //import model.ressources.attacks.DF_Grille_Phishing;
@@ -23,7 +24,7 @@ public class MapGrille implements IMap {
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
-                this.nodes[li][co] = new Node(null);
+                this.nodes[li][co] = new Node(null, null, null);
             }
         }
     }
@@ -48,6 +49,11 @@ public class MapGrille implements IMap {
             }
         }
         return null;
+    }
+    
+    @Override
+    public Dimension getDimensionMap(){
+        return new Dimension(CO,LI);
     }
 
     @Override
@@ -115,5 +121,13 @@ public class MapGrille implements IMap {
         }
 
         return str;
+    }
+
+    public void virus(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void trojan(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

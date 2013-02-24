@@ -18,8 +18,8 @@ public final class Target extends Node {
     //private int life;
     //private int defence;
 
-    public Target(int difficulty, ArrayList<Defence> behavior) {
-        super(behavior);
+    public Target(int difficulty, ArrayList<Defence> behavior, String description, String path) {
+        super(behavior, description, path);
         this.difficulty = difficulty;
     }
 
