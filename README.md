@@ -31,3 +31,6 @@ Benji: en plus de la ligne et du slick.jar, je dois ajouter quoi pour que ça ma
                                                                -Djava.library.path=C:\Users\X\Documents\NetBeansProjects\lib\lwjgl-2.8.5\native\windows
                                                       exemple Linux :
                                                                -Djava.library.path=/home/X/NetBeansProjects/lib/lwjgl-2.8.5/native/linux
+
+Benji : voila le message que me renvoi netbeans à l'execution : "unbalanced quotes in -Djava.library.path=C:\Users\Maxou's computer\Dropbox\Hackers\Hackers\lib\lwjgl-2.8.5\native\windows"
+Déjà vu ?
