@@ -51,4 +51,4 @@ Ludo : lol x), xstream-1.4.2.jar et level1.xml (y'aura surement d'autre xml comm
 
 Antoine : C'est bon essaye et dit moi si ça marche.
 
-Ludo : Marche pas...
+Ludo : Marche pas... (Le gitignore a pas l'air d'etre a jour)
