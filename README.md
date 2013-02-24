@@ -34,3 +34,6 @@ Benji: en plus de la ligne et du slick.jar, je dois ajouter quoi pour que ça ma
 
 Benji : voila le message que me renvoi netbeans à l'execution : "unbalanced quotes in -Djava.library.path=C:\Users\Maxou's computer\Dropbox\Hackers\Hackers\lib\lwjgl-2.8.5\native\windows"
 Déjà vu ?
+
+Antoine : Jamais vu mais vu le message d'erreur je pense que c'est parce 
+que tu as une apostrophe dans le nom de ton dossier (Maxou's).
