@@ -17,12 +17,11 @@ Desktop.ini
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
 ### NETBEANS ###
-*.xml
-*.mf
 nbproject/*
-/build/
+build/*
+build.xml
+manifest.mf
