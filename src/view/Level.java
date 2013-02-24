@@ -61,8 +61,8 @@ public class Level extends BasicGameState {
         this.stateID = stateID;
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
-        this.nodeViewList = new ArrayList<>();
-        this.assocColorAtk = new HashMap<>();
+        this.nodeViewList = new ArrayList<NodeView>();
+        this.assocColorAtk = new HashMap<Attack, Color>();
         this.nodeFocus = null;
         this.nodeActive = null;
         this.infosNodeVisible = false;
@@ -87,8 +87,10 @@ public class Level extends BasicGameState {
             Font.createFont(Font.TRUETYPE_FONT, tmpFont);
             this.font = new TrueTypeFont(fontBase, true);
 
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
+        } catch (FontFormatException ffe) {
+            ffe.printStackTrace();
+        } catch (IOException io) {
+            io.printStackTrace();
         }
 
         this.background = new Illustration(new Image(getClass().getResource("ressources/background.png").getPath()), new Point(0, 0));
@@ -163,11 +165,11 @@ public class Level extends BasicGameState {
         } else {
             this.hideInfosNode();
         }
-        
+
         if(this.nextAtk){
             this.scrollNextAtk();
         }
-        
+
         if(this.preAtk){
             this.scrollPreAtk();
         }
@@ -204,12 +206,12 @@ public class Level extends BasicGameState {
             if (scaleArea.contains(x, y)) {
                 this.nextAtk = true;
             }
-            
+
             scaleArea = new Rectangle((int) (this.preButton.getPos().x * this.scaleX), (int) (this.preButton.getPos().y * this.scaleY), (int) (this.preButton.getImage().getWidth() * this.scaleX), (int) (this.preButton.getImage().getHeight() * this.scaleY));
             if (scaleArea.contains(x, y)) {
                 this.preAtk = true;
             }
-            
+
             scaleArea = new Rectangle((int) (this.atkList.getPos().x * this.scaleX), (int) (this.atkList.getPos().y * this.scaleY), (int) (this.atkList.getImage().getWidth() * this.scaleX), (int) (this.atkList.getImage().getHeight() * this.scaleY));
             if(scaleArea.contains(x, y)){
                 if(this.infosNodeVisible && this.nodeFocus==null){
@@ -220,20 +222,20 @@ public class Level extends BasicGameState {
             }
         }
     }
-    
+
     private void scrollNextAtk(){
         if(this.atkList.scrollAgain(true)){
             this.atkList.setStartY(this.atkList.getStartY()+1);
         }else{
-           this.nextAtk = false; 
+           this.nextAtk = false;
         }
     }
-    
+
     private void scrollPreAtk(){
         if(this.atkList.scrollAgain(false)){
             this.atkList.setStartY(this.atkList.getStartY()-1);
         }else{
-           this.preAtk = false; 
+           this.preAtk = false;
         }
     }
 
