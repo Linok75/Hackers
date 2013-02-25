@@ -4,6 +4,7 @@
  */
 package view;
 
+import view.tools.Illustration;
 import java.awt.Point;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
