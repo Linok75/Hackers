@@ -63,3 +63,6 @@ Bon du coup j'ai pensé à plein de truc à simplifier donc ça me prendra un pe
 (je laisserai peut être les animations de coté quelque temps pour qu'on ai vite une vue utilisable)
 Par contre pour vous c'est normal si l'attack est bloqué lorsqu'elle rencontre une cible déjà hacké ?
 Moi je trouve pas ça très logique qu'une cible déjà hacké l'empêche de propagé.
+
+Quentin : le Menu.java cherche un fichier il faut donc modifier le chemin pour chaque personne à chaque fois, 
+je ne sais pas s'il y a un moyen plus simple mais bon ! Juste pour prévenir les futurs utilisateurs !
