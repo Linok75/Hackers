@@ -18,7 +18,7 @@ public class Node implements Hackable {
     private ArrayList<Defence> behaviors;
     protected boolean isHack;
     private String description;
-    private String path;
+    private String path; //chemin pour accéder au portrait du personnage dans l'interface
 
     public Node(ArrayList<Defence> behavior, String description, String path) {
         this.behaviors = behavior;
@@ -33,7 +33,7 @@ public class Node implements Hackable {
 
     public boolean isHackable(Attack attack) {
 
-        if (!isHack && this.behaviors != null && this.behaviors.contains(attack.getDefence())) {
+        if (attack == null || (!isHack && this.behaviors != null && this.behaviors.contains(attack.getDefence()))) {
             return false;
         } else {
             return true;
@@ -56,11 +56,11 @@ public class Node implements Hackable {
     public String getDescription() {
         return this.description;
     }
-    
+
     public String getPath() {
         return this.path;
     }
-    
+
     public Image getImage() {
         try {
             return new Image(this.path);
