@@ -59,3 +59,7 @@ Ludo : Nikel =D
 
 Antoine : pas con j'y avais pas pensé à faire appel au render en envoyant le graphic...
 ça change pas mal de truc je vais essayer de retravailler la vue avec ça.
+Bon du coup j'ai pensé à plein de truc à simplifier donc ça me prendra un peu de temps.
+(je laisserai peut être les animations de coté quelque temps pour qu'on ai vite une vue utilisable)
+Par contre pour vous c'est normal si l'attack est bloqué lorsqu'elle rencontre une cible déjà hacké ?
+Moi je trouve pas ça très logique qu'une cible déjà hacké l'empêche de propagé.
