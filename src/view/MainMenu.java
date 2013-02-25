@@ -60,7 +60,7 @@ public class MainMenu extends BasicGameState implements ComponentListener{
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         quit.render(container, g);
         play.render(container, g);
-        g.drawString("Hello dans MenuState",100,100);
+        g.drawString("HACKERS",100,100);
     }
 
     @Override
