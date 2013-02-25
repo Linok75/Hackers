@@ -69,3 +69,7 @@ je ne sais pas s'il y a un moyen plus simple mais bon ! Juste pour prévenir les
 
 Antoine : C'est juste que Ludo a fait ça comme une brut en mettant les chemins en absolue pff...
 ludo tu me déçois tu me fera le plaisir de mettre le chemin en relatif ;)
+
+Antoine : Voilà à cause de toi ludo (XD) je me suis senti obliger de tout refaire donc si j'ai pas avancer c'est de ta faute.
+Enfin bref je me sentais plus du coup j'ai tout recoder version M.Propre et j'en ai profiter pour faire de jolie package
+que vous cherchiez pas 15 jours qu'est ce qui correspond à quoi.
