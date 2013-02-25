@@ -66,3 +66,6 @@ Moi je trouve pas ça très logique qu'une cible déjà hacké l'empêche de pro
 
 Quentin : le Menu.java cherche un fichier il faut donc modifier le chemin pour chaque personne à chaque fois, 
 je ne sais pas s'il y a un moyen plus simple mais bon ! Juste pour prévenir les futurs utilisateurs !
+
+Antoine : C'est juste que Ludo a fait ça comme une brut en mettant les chemins en absolue pff...
+ludo tu me déçois tu me fera le plaisir de mettre le chemin en relatif ;)
