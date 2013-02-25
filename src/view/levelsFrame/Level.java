@@ -21,9 +21,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.ResourceLoader;
 import view.levelsFrame.grid.GridHexa;
 import view.tools.Illustration;
-import view.infosNode.InfosNode;
-import view.listOfAtk.ListOfAtk;
-import view.infosNode.NodeIllustration;
+import view.levelsFrame.infosNode.InfosNode;
+import view.levelsFrame.listOfAtk.ListOfAtk;
+import view.levelsFrame.infosNode.NodeIllustration;
 import view.levelsFrame.grid.NodeView;
 
 /**
@@ -66,17 +66,13 @@ public class Level extends BasicGameState {
             Font.createFont(Font.TRUETYPE_FONT, tmpFont);
             this.font = new TrueTypeFont(fontBase, true);
 
-        } catch (FontFormatException ffe) {
+        } catch (FontFormatException | IOException ffe) {
             ffe.printStackTrace();
-        } catch (IOException io) {
-            io.printStackTrace();
         }
 
         this.background = new Illustration(new Image(getClass().getResource("ressources/background.png").getPath()), new Point(0, 0));
         this.scaleX = (float) container.getWidth() / this.background.getImage().getWidth();
         this.scaleY = (float) container.getHeight() / this.background.getImage().getHeight();
-        
-        
         
         this.grid.init(container, game);
         this.infosNode.init(container, game);
@@ -95,20 +91,9 @@ public class Level extends BasicGameState {
 
         g.drawImage(this.background.getImage(), this.background.getPos().x, this.background.getPos().y);
 
-
-
-        
-
         this.infosNode.render(container, game, g);
         this.grid.render(container, game, g);
         this.atkList.render(container, game, g);
-
-
-        
-
-
-        
-
     }
 
     @Override

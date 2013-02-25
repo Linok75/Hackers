@@ -23,8 +23,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import view.infosNode.NodeIllustration;
-import view.infosNode.NodeIllustration;
+import view.levelsFrame.infosNode.NodeIllustration;
+import view.levelsFrame.infosNode.NodeIllustration;
 
 /**
  *
