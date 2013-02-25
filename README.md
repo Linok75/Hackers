@@ -56,3 +56,6 @@ Ludo : Marche pas... (Le gitignore a pas l'air d'etre a jour)
 Antoine : bon git me troll mais la ça devrait être bon ;)
 
 Ludo : Nikel =D
+
+Antoine : pas con j'y avais pas pensé à faire appel au render en envoyant le graphic...
+ça change pas mal de truc je vais essayer de retravailler la vue avec ça.
