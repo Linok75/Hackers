@@ -73,3 +73,13 @@ ludo tu me déçois tu me fera le plaisir de mettre le chemin en relatif ;)
 Antoine : Voilà à cause de toi ludo (XD) je me suis senti obliger de tout refaire donc si j'ai pas avancer c'est de ta faute.
 Enfin bref je me sentais plus du coup j'ai tout recoder version M.Propre et j'en ai profiter pour faire de jolie package
 que vous cherchiez pas 15 jours qu'est ce qui correspond à quoi.
+
+Benji : voila mon message d'erreur pour le run du MainView :
+Exception in thread "Thread-0" java.lang.RuntimeException: Resource not found: /C:/Users/Maxou's%20computer/Documents/NetBeansProjects/Hackers_Git/Hackers/build/classes/view/ressources/quit.png
+at org.newdawn.slick.util.ResourceLoader.getResourceAsStream(ResourceLoader.java:69)
+at org.newdawn.slick.opengl.InternalTextureLoader.getTexture(InternalTextureLoader.java:273)
+at org.newdawn.slick.Image.<init>(Image.java:270)
+at org.newdawn.slick.Image.<init>(Image.java:244)
+at org.newdawn.slick.Image.<init>(Image.java:232)
+at org.newdawn.slick.Image.<init>(Image.java:198)...
+
