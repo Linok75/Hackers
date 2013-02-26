@@ -26,8 +26,8 @@ public class MasterFrame extends StateBasedGame {
 
         this.addState(new MainMenu(MAINMENUSTATE));
         this.addState(new Level(LEVELSTATE, this.gameInstance));
-        this.enterState(LEVELSTATE);
-//        this.enterState(MAINMENUSTATE);
+//        this.enterState(LEVELSTATE);
+        this.enterState(MAINMENUSTATE);
     }
 
     @Override

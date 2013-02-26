@@ -4,7 +4,6 @@
  */
 package view.levelsFrame.listOfAtk;
 
-import view.tools.Illustration;
 import java.awt.Point;
 import model.Game;
 import org.newdawn.slick.GameContainer;
@@ -15,6 +14,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import view.tools.Illustration;
 
 /**
  *
@@ -47,7 +47,7 @@ public class ListOfAtk extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.atkList = new AttackList(gameInstance.getPlayer().getAttackList(), this.font, new Point(1180, 735));
-        this.nextButton = new Illustration(new Image(getClass().getResource("ressources/button.png").getPath()), new Point(1480, 830));
+        this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/button.png").getPath()), new Point(1480, 830));
         this.preButton = new Illustration(this.nextButton.getImage().getFlippedCopy(false, true), new Point(this.nextButton.getPos().x, this.nextButton.getPos().y + this.nextButton.getImage().getHeight() + 50));
     }
 

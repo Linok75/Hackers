@@ -49,8 +49,8 @@ public class InfosNode extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.infosNode = new Illustration(new Image(getClass().getResource("ressources/infosNode.png").getPath()), new Point(0, -350));
-        this.arrowHide = new Illustration(new Image(getClass().getResource("ressources/arrowHide.png").getPath()).getScaledCopy((float) 0.08), new Point(1095, -180));
+        this.infosNode = new Illustration(new Image(getClass().getResource("../../ressources/infosNode.png").getPath()), new Point(0, -350));
+        this.arrowHide = new Illustration(new Image(getClass().getResource("../../ressources/arrowHide.png").getPath()).getScaledCopy((float) 0.08), new Point(1095, -180));
     }
 
     @Override

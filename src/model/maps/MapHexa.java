@@ -15,7 +15,7 @@ import model.ressources.attacks.*;
  */
 public final class MapHexa implements IMap {
 
-    public final static String NODEDEFAULTPATH = "ressources/defaultPortrait.png";
+    public final static String NODEDEFAULTPATH = "../../ressources/defaultPortrait.png";
     public final static String NODEDEFAULTDESC = "Description encore inconnue...";
     private static final int LI = 7;
     private static final int CO = 9;

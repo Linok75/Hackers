@@ -24,7 +24,6 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.levelsFrame.infosNode.NodeIllustration;
-import view.levelsFrame.infosNode.NodeIllustration;
 
 /**
  *
@@ -43,8 +42,8 @@ public class GridHexa extends BasicGameState {
     public GridHexa(int stateID, Game gameInstance) throws SlickException{
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
-        this.nodeViewList = new ArrayList<NodeView>();
-        this.assocColorAtk = new HashMap<Attack, Color>();
+        this.nodeViewList = new ArrayList<>();
+        this.assocColorAtk = new HashMap<>();
         
         this.setAssocColorDef();
         this.setNodeViewList();
@@ -56,8 +55,8 @@ public class GridHexa extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.grid = new Illustration(new Image(getClass().getResource("ressources/tabHexa.png").getPath()), new Point(65, 282));
-        this.defaultNode = new Illustration(new Image(getClass().getResource("ressources/nodeDefault.png").getPath()), null);
+        this.grid = new Illustration(new Image(getClass().getResource("../../ressources/tabHexa.png").getPath()), new Point(65, 282));
+        this.defaultNode = new Illustration(new Image(getClass().getResource("../../ressources/nodeDefault.png").getPath()), null);
     }
 
     @Override

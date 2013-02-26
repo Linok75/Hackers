@@ -28,7 +28,7 @@ public class AttackList extends SubIllustration {
     public AttackList(ArrayList<Attack> attacks, TrueTypeFont font, Point pos) throws SlickException {
         super(new Image(1, 1), pos);
 
-        this.cadreList = new Image(AttackList.class.getResource("ressources/cadreListElem.png").getPath());
+        this.cadreList = new Image(AttackList.class.getResource("../../ressources/cadreListElem.png").getPath());
         this.attacks = attacks;
         this.font = font;
         this.scrolledPx = 0;

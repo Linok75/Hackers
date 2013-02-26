@@ -62,7 +62,7 @@ public class Level extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         try {
             Font fontBase = new Font("Agency FB", java.awt.Font.TRUETYPE_FONT, 30);
-            InputStream tmpFont = ResourceLoader.getResourceAsStream(getClass().getResource("ressources/AgencyFB.ttf").getPath());
+            InputStream tmpFont = ResourceLoader.getResourceAsStream(getClass().getResource("../ressources/AgencyFB.ttf").getPath());
             Font.createFont(Font.TRUETYPE_FONT, tmpFont);
             this.font = new TrueTypeFont(fontBase, true);
 
@@ -70,7 +70,7 @@ public class Level extends BasicGameState {
             ffe.printStackTrace();
         }
 
-        this.background = new Illustration(new Image(getClass().getResource("ressources/background.png").getPath()), new Point(0, 0));
+        this.background = new Illustration(new Image(getClass().getResource("../ressources/background.png").getPath()), new Point(0, 0));
         this.scaleX = (float) container.getWidth() / this.background.getImage().getWidth();
         this.scaleY = (float) container.getHeight() / this.background.getImage().getHeight();
         
