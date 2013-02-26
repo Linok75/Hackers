@@ -92,3 +92,5 @@ Benji : voila mon message d'erreur pour le run du MainView :
                   at view.ViewLauncher.run(ViewLauncher.java:18)
                   
 Car tu demande l'image dans l'init de MainView ANTOINE !
+
+Antoine : Je regarde ça tout de suite (en passant ça c'est pas moi c'est Quentin ;) et oui je balance ! )
