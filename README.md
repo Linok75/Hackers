@@ -98,4 +98,4 @@ Antoine : Je regarde ça tout de suite (en passant ça c'est pas moi c'est Quent
          C'est bon problème réglé !
          (à noté pour mémoire que le getRessource par de l'emplacement auquel est la class qu'il l'utilise)
 
-Benji : tu l'as envoyé ?
+Benji : J'ai toujours le même message ...
