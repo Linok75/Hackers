@@ -82,4 +82,4 @@ at org.newdawn.slick.Image.<init>(Image.java:270)
 at org.newdawn.slick.Image.<init>(Image.java:244)
 at org.newdawn.slick.Image.<init>(Image.java:232)
 at org.newdawn.slick.Image.<init>(Image.java:198)...
-
+Car tu demande l'image dans l'init de MainView ANTOINE !
