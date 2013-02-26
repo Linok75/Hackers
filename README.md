@@ -75,6 +75,7 @@ Enfin bref je me sentais plus du coup j'ai tout recoder version M.Propre et j'en
 que vous cherchiez pas 15 jours qu'est ce qui correspond à quoi.
 
 Benji : voila mon message d'erreur pour le run du MainView :
+
          Exception in thread "Thread-0" java.lang.RuntimeException: Resource not found: /C:/Users/Maxou's%20computer/Documents/NetBeansProjects/Hackers_Git/Hackers/build/classes/view/ressources/quit.png
                   at org.newdawn.slick.util.ResourceLoader.getResourceAsStream(ResourceLoader.java:69)
                   at org.newdawn.slick.opengl.InternalTextureLoader.getTexture(InternalTextureLoader.java:273)
@@ -89,4 +90,5 @@ Benji : voila mon message d'erreur pour le run du MainView :
                   at org.newdawn.slick.AppGameContainer.start(AppGameContainer.java:357)
                   at view.View.start(View.java:55)
                   at view.ViewLauncher.run(ViewLauncher.java:18)
+                  
 Car tu demande l'image dans l'init de MainView ANTOINE !
