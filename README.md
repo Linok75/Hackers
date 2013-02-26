@@ -94,3 +94,6 @@ Benji : voila mon message d'erreur pour le run du MainView :
 Car tu demande l'image dans l'init de MainView ANTOINE !
 
 Antoine : Je regarde ça tout de suite (en passant ça c'est pas moi c'est Quentin ;) et oui je balance ! )
+         
+         C'est bon problème réglé !
+         (à noté pour mémoire que le getRessource par de l'emplacement auquel est la class qu'il l'utilise)
