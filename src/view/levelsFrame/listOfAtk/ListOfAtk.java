@@ -11,7 +11,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -30,7 +29,7 @@ public class ListOfAtk extends BasicGameState {
     private Illustration nextButton;
     private Illustration preButton;
     private Illustration cadreList;
-    private int scrolledPx;
+    private int scrolledPx, ligneMax;
     private Rectangle clipArea;
 
     public ListOfAtk(int stateID, Game gameInstance) {
@@ -39,6 +38,7 @@ public class ListOfAtk extends BasicGameState {
         this.preAtk = false;
         this.nextAtk = false;
         this.scrolledPx = 0;
+        this.ligneMax = 0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ListOfAtk extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.cadreList = new Illustration(new Image(AttackList.class.getResource("../../ressources/cadreListElem.png").getPath()), new Point(1180, 735));
+        this.cadreList = new Illustration(new Image(getClass().getResource("../../ressources/cadreListElem.png").getPath()), new Point(1180, 735));
         this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/button.png").getPath()), new Point(1480, 830));
         this.preButton = new Illustration(this.nextButton.getImage().getFlippedCopy(false, true), new Point(this.nextButton.getPos().x, this.nextButton.getPos().y + this.nextButton.getImage().getHeight() + 50));
         this.clipArea = new Rectangle(this.cadreList.getPos().x, this.cadreList.getPos().y, this.cadreList.getImage().getWidth(), this.cadreList.getImage().getHeight() * 5 - 10);
@@ -58,30 +58,43 @@ public class ListOfAtk extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         int numLigne;
 
-        g.drawImage(this.nextButton.getImage(), this.nextButton.getPos().x, this.nextButton.getPos().y);
-        g.drawImage(this.preButton.getImage(), this.preButton.getPos().x, this.preButton.getPos().y);
+        g.drawImage(this.nextButton.getImage(), this.nextButton.getPos().x, this.nextButton.getPos().y, this.nextButton.getFilter());
+        g.drawImage(this.preButton.getImage(), this.preButton.getPos().x, this.preButton.getPos().y, this.preButton.getFilter());
 
         g.setWorldClip(this.clipArea);
         numLigne = 0;
         for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
-            if (atk.getTitle() != "DDoS") {
+            if (!"DDoS".equals(atk.getTitle())) {
                 g.drawImage(this.cadreList.getImage(), this.cadreList.getPos().x, this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne);
                 g.drawString(atk.getTitle(), this.cadreList.getPos().x + 50, this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne + 25);
                 numLigne++;
             }
         }
-        while (numLigne < 5) {
+        while (numLigne < 6) {
             g.drawImage(this.cadreList.getImage(), this.cadreList.getPos().x, this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne);
             g.drawString("?????", this.cadreList.getPos().x + 50, this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne + 25);
             numLigne++;
         }
+        this.ligneMax = numLigne;
         g.clearWorldClip();
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        if (this.cadreList.getPos().y >= this.clipArea.getY()) {
+            this.nextButton.disabled();
+        } else {
+            this.nextButton.enabled();
+        }
+
+        if (this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * this.ligneMax - 10 <= this.clipArea.getY() + this.clipArea.getHeight()) {
+            this.preButton.disabled();
+        } else {
+            this.preButton.enabled();
+        }
+
         if (this.nextAtk || this.preAtk) {
-            this.scrollAtk();
+            this.scrolledAtk();
         }
     }
 
@@ -107,9 +120,9 @@ public class ListOfAtk extends BasicGameState {
 
         numLigne = 0;
         for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
-            if (atk.getTitle() != "DDoS") {
-                scaleArea = new Rectangle((int) (this.cadreList.getPos().x * scaleX), (int) ((this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne)* scaleY), (int) (this.cadreList.getImage().getWidth() * scaleX), (int) (this.cadreList.getImage().getHeight() * scaleY));
-                if(scaleArea.contains(x,y)){
+            if (!"DDoS".equals(atk.getTitle())) {
+                scaleArea = new Rectangle((int) (this.cadreList.getPos().x * scaleX), (int) ((this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne) * scaleY), (int) (this.cadreList.getImage().getWidth() * scaleX), (int) (this.cadreList.getImage().getHeight() * scaleY));
+                if (scaleArea.contains(x, y)) {
                     return atk.getTitle();
                 }
             }
@@ -117,11 +130,13 @@ public class ListOfAtk extends BasicGameState {
         return null;
     }
 
-    private void scrollAtk() {
+    private void scrolledAtk() {
         if (this.scrolledPx + 1 > this.cadreList.getImage().getHeight()) {
             if (this.nextAtk) {
-                this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y + (this.cadreList.getImage().getHeight() - this.scrolledPx)));
-            } else {
+                if (!this.nextButton.isDisabled()) {
+                    this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y + (this.cadreList.getImage().getHeight() - this.scrolledPx)));
+                }
+            } else if (!this.preButton.isDisabled()) {
                 this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y - (this.cadreList.getImage().getHeight() - this.scrolledPx)));
             }
             this.scrolledPx = 0;
@@ -130,8 +145,10 @@ public class ListOfAtk extends BasicGameState {
         } else {
             this.scrolledPx += 1;
             if (this.nextAtk) {
-                this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y + 1));
-            } else {
+                if (!this.nextButton.isDisabled()) {
+                    this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y + 1));
+                }
+            } else if (!this.preButton.isDisabled()) {
                 this.cadreList.setPos(new Point(this.cadreList.getPos().x, this.cadreList.getPos().y - 1));
             }
         }
