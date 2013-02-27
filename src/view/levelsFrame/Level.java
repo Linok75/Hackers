@@ -50,7 +50,7 @@ public class Level extends BasicGameState {
         
         this.grid = new GridHexa(stateID, gameInstance);
         this.infosNode = new InfosNode(stateID, gameInstance);
-        this.atkList = new ListOfAtk(stateID, gameInstance, null);
+        this.atkList = new ListOfAtk(stateID, gameInstance);
     }
 
     @Override
@@ -76,7 +76,6 @@ public class Level extends BasicGameState {
         
         this.grid.init(container, game);
         this.infosNode.init(container, game);
-        this.atkList.setFont(this.font);
         this.atkList.init(container, game);
 
         
@@ -110,6 +109,7 @@ public class Level extends BasicGameState {
         
         NodeView node;
         NodeIllustration nodeIllustration;
+        String atk;
 
         node = this.grid.nodeClicked(x, y,this.scaleX,this.scaleY);
         if (node != null) {
@@ -118,10 +118,12 @@ public class Level extends BasicGameState {
 
         this.infosNode.setToHide(x, y,this.scaleX,this.scaleY);
         this.atkList.scrollAtk(x, y, scaleX, scaleY);
-        if(this.atkList.launchAtk(x, y, scaleX, scaleY)){
+        
+        atk = this.atkList.launchAtk(x, y, scaleX, scaleY);
+        if(atk != null){
             nodeIllustration = this.infosNode.launchContamination();
             if(nodeIllustration != null){
-                this.grid.contamination(nodeIllustration);
+                this.grid.contamination(nodeIllustration, atk);
             }
         }
         

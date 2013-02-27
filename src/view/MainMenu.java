@@ -74,7 +74,7 @@ public class MainMenu extends BasicGameState implements ComponentListener{
             this.container.exit();
         }
         if (source == play) {
-            game.enterState(1);
+            game.enterState(MasterFrame.LEVELSTATE);
         }
     } 
 

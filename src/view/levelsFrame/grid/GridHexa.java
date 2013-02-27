@@ -163,9 +163,9 @@ public class GridHexa extends BasicGameState {
         }
     }
 
-    public void contamination(NodeIllustration nodeActive) {
+    public void contamination(NodeIllustration nodeActive, String atk) {
         try {
-            this.gameInstance.getPlayer().attack(this.gameInstance.getPlayer().getAttackList().get(1).getTitle(), this.gameInstance.getLevel().getMap().getNode(nodeActive.getLinkToNode().x, nodeActive.getLinkToNode().y));
+            this.gameInstance.getPlayer().attack(atk, this.gameInstance.getLevel().getMap().getNode(nodeActive.getLinkToNode().x, nodeActive.getLinkToNode().y));
             for (NodeView node : this.nodeViewList) {
                 if (this.gameInstance.getLevel().getMap().getNode(node.getLinkToNode().x, node.getLinkToNode().y).isHack()) {
                     node.corrupt();
