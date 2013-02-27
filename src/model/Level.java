@@ -37,7 +37,7 @@ public final class Level {
         return mission;
     }
 
-    public Node getTarget() {
+    public Target getTarget() {
         return target;
     }
 

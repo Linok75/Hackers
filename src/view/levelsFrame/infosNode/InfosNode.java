@@ -97,9 +97,9 @@ public class InfosNode extends BasicGameState {
         this.infosNodeVisible = true;
         try {
             if (this.nodeActive == null) {
-                this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), font), node.getLinkToNode());
+                this.nodeFocus = new NodeIllustration(new Image(getClass().getResource("../"+node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + 70, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), font), node.getLinkToNode());
             } else {
-                this.nodeFocus = new NodeIllustration(new Image(getClass().getResource(node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), font), node.getLinkToNode());
+                this.nodeFocus = new NodeIllustration(new Image(getClass().getResource("../"+node.getPathPortrait()).getPath()), new Point(this.infosNode.getPos().x + this.infosNode.getImage().getWidth() - 30, this.infosNode.getPos().y + 30), TextToImg.convertTextToImg(node.getDescr(), font), node.getLinkToNode());
                 this.nodeFocus.setXEnd(0);
             }
         } catch (SlickException ex) {

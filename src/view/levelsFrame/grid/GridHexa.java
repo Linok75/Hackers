@@ -39,15 +39,16 @@ public class GridHexa extends BasicGameState {
     private Illustration grid;
     private Illustration defaultNode;
 
-    public GridHexa(int stateID, Game gameInstance) throws SlickException{
+    public GridHexa(int stateID, Game gameInstance) throws SlickException {
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
         this.nodeViewList = new ArrayList<>();
         this.assocColorAtk = new HashMap<>();
-        
+
         this.setAssocColorDef();
         this.setNodeViewList();
     }
+
     @Override
     public int getID() {
         return this.stateID;
@@ -69,21 +70,20 @@ public class GridHexa extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        
     }
-    
+
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
         Rectangle scaleArea;
 
         for (NodeView node : this.nodeViewList) {
-            scaleArea = new Rectangle(node.getPos().x*scaleX, node.getPos().y*scaleY, node.getClickableArea().width*scaleX, node.getClickableArea().height*scaleY);
+            scaleArea = new Rectangle(node.getPos().x * scaleX, node.getPos().y * scaleY, node.getClickableArea().width * scaleX, node.getClickableArea().height * scaleY);
             if (scaleArea.contains(x, y)) {
                 return node;
             }
         }
         return null;
     }
-    
+
     private void setAssocColorDef() {
         for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
@@ -174,5 +174,17 @@ public class GridHexa extends BasicGameState {
         } catch (NoSuffisantPA ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+
+    public int getNbCorrupt() {
+        int nbCorrupt;
+
+        nbCorrupt = 0;
+        for (NodeView node : this.nodeViewList) {
+            if (this.gameInstance.getLevel().getMap().getNode(node.getLinkToNode().x, node.getLinkToNode().y).isHack()) {
+                nbCorrupt++;
+            }
+        }
+        return nbCorrupt;
     }
 }

@@ -33,7 +33,7 @@ public class MainView {
 
         String test = "test";
         
-        Target target = new Target(30, new ArrayList<Defence>(), test, test);
+        Target target = new Target(30, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
 
         IMap map = new MapHexa();
 

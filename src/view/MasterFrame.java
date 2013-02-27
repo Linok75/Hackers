@@ -9,6 +9,7 @@ import model.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import view.levelsFrame.FinishLevel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class MasterFrame extends StateBasedGame {
 
     public static final int MAINMENUSTATE = 0;
     public static final int LEVELSTATE = 1;
+    public static final int FINISHLEVELSTATE = 2;
     private Game gameInstance;
 
     public MasterFrame() throws SlickException {
@@ -26,7 +28,7 @@ public class MasterFrame extends StateBasedGame {
 
         this.addState(new MainMenu(MAINMENUSTATE));
         this.addState(new Level(LEVELSTATE, this.gameInstance));
-//        this.enterState(LEVELSTATE);
+        this.addState(new FinishLevel(FINISHLEVELSTATE, this.gameInstance));
         this.enterState(MAINMENUSTATE);
     }
 
@@ -34,6 +36,7 @@ public class MasterFrame extends StateBasedGame {
     public void initStatesList(GameContainer container) throws SlickException {
         this.getState(MAINMENUSTATE).init(container, this);
         this.getState(LEVELSTATE).init(container, this);
+        this.getState(FINISHLEVELSTATE).init(container, this);
     }
 
 }
