@@ -119,3 +119,8 @@ Antoine : C'est bizarre moi je l'ai plus
                   soit prête avant que je parte.)
                   Du coup si vous pouviez test ça très vite que je corrige les choses urgentes qui gênerai pour les
                   tests voily voilou je file manger mes chocapic.
+                  
+                  EDIT : J'ai chercher pourquoi sur certains pc la police est dégueulasse, c'est parce que
+                  l'instanciation en truetypefont est déprécié et ne correspond plus au version actuel de java.
+                  Maintenant il faut instancier en Unicode (alors c'est trois ligne en plus donc la flemme pour l'instant
+                  je le ferai plus tard^^)
