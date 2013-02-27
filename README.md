@@ -124,3 +124,6 @@ Antoine : C'est bizarre moi je l'ai plus
                   l'instanciation en truetypefont est déprécié et ne correspond plus au version actuel de java.
                   Maintenant il faut instancier en Unicode (alors c'est trois ligne en plus donc la flemme pour l'instant
                   je le ferai plus tard^^)
+
+         Ludo : Ok, (Je me disais bien qu'il restait quelques problèmes de police), donc il ne reste plus qu'a gerer le systeme 
+                  de passage au niveaux suivants, les sauvegardes, et apres conception des niveaux.
