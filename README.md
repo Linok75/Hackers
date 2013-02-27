@@ -102,3 +102,20 @@ Benji : J'ai toujours le même message ...
 
 Antoine : C'est bizarre moi je l'ai plus 
 (t'es bien en jdk 7? parce que je sais que y a des erreurs à la con qui peuvent venir de la)
+
+
+         Antoine :
+                  Vue fonctionnelle !
+                  Donc elle est moche les messages d'erreur s'affiche en console et pas en vue mais
+                  elle fonctionne de A à X (pas Z mais presque ^^).
+                  Donc on peut effectuer la partie en entière corrompre les cibles puis lancer le DDOS
+                  et on a le petit écran congratulation qui s'affiche à la sortie.
+                  Ce qui serait cool c'est qu'on se mettent bien d'accord sur comment le ddos est lancer
+                  (je suis pas sur de l'avoir fait de la façon dont vous y aviez pensé.) et aussi que 
+                  le passage d'un level à un autre soit programmer dans le model que je puisse aller au niveau
+                  suivant plutôt que de retourner au menu à la fin du niveau 1^^.
+                  (Bien sur énormément de correction sont à apporter mais comme je savai que je serai aux ski
+                  la première semaine je tenai à ce que une vue non pas potable mais utilisable pour des tests
+                  soit prête avant que je parte.)
+                  Du coup si vous pouviez test ça très vite que je corrige les choses urgentes qui gênerai pour les
+                  tests voily voilou je file manger mes chocapic.
