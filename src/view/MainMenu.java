@@ -17,6 +17,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
+import org.newdawn.slick.state.GameState;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.SelectTransition;
+import org.newdawn.slick.state.transition.Transition;
 /**
  *
  * @author Quentin
@@ -32,11 +37,11 @@ public class MainMenu extends BasicGameState implements ComponentListener{
 
     private MouseOverArea quit;
     private MouseOverArea play;
-    
+
     public MainMenu (int stateID) {
         this.stateID=stateID;
     }
-    
+
     @Override
     public int getID() {
         return this.stateID;
@@ -46,7 +51,7 @@ public class MainMenu extends BasicGameState implements ComponentListener{
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game=game;
         this.container=container;
-        quit = new MouseOverArea(container,new Image(getClass().getResource("ressources/quit.png").getPath()), 350, 620,this);
+        quit = new MouseOverArea(container,new Image(getClass().getResource("ressources/quit.png").getPath()), 350, 485,this);
         quit.setNormalColor(new Color(0.7f,0.7f,0.7f,1f));
         quit.setMouseOverColor(new Color(0.9f,0.9f,0.9f,1f));
 
@@ -67,15 +72,16 @@ public class MainMenu extends BasicGameState implements ComponentListener{
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
     //throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void componentActivated(AbstractComponent source) { //methode de l'interface ComponentListener
         if (source == quit) {
             this.container.exit();
         }
         if (source == play) {
-            game.enterState(MasterFrame.LEVELSTATE);
+            game.enterState(MasterFrame.LEVELSTATE, new FadeOutTransition(), new FadeInTransition());
+            //game.enterState(MasterFrame.LEVELSTATE);
         }
-    } 
+    }
 
 }

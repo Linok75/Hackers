@@ -27,7 +27,7 @@ public final class View {
     private static volatile View viewInstance = null;
 
     public View() {
-        
+
     }
 
     public static View makeInstance() {
