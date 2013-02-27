@@ -52,7 +52,10 @@ public class Menu {
 
     private static void loadLevels() {
         XStreamer<Level> xsLevels = new XStreamer<Level>();
-        File f = new File("/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels");
+        //System.out.println(Menu.class.getResource("../levels/").getPath());
+        //File f = new File("/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels");
+        File f = new File(Menu.class.getResource("../levels/").getPath());
+
         // /!\ Si on veut faire un executable, faudra voir le chemin qu'il faudra mettre /!\
 
         FileFilter ff = new FileFilter() {

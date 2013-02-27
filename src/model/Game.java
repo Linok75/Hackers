@@ -17,6 +17,7 @@ public final class Game {
     //L'utilisation du mot clé volatile permet, en Java version 5 et supérieur, d'éviter le cas où "Singleton.instance" est non-nul,
     // mais pas encore "réellement" instancié.
     private static volatile Game instance = null;
+    private static final Scanner sc = new Scanner(System.in);
     private boolean PLAY;
     //private ... time;
     private Player player;
@@ -33,7 +34,7 @@ public final class Game {
         return level;
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 
@@ -57,7 +58,6 @@ public final class Game {
         this.PLAY = true;
 
         // Test Console
-        Scanner sc = new Scanner(System.in);
         String request;
         while (this.PLAY) {
             request = sc.nextLine();
@@ -71,53 +71,12 @@ public final class Game {
             } else if (request.equals("map")) {
                 System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
             } else if (request.equals("phishing")) {
-
-                System.out.println("Quel 'node' voulez vous hacker ?");
-                System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-
-                int li = -1, co = -1;
-                while (!this.level.getMap().in0_LI(li)) {
-                    System.out.println("Veuillez saisir la ligne :");
-                    li = sc.nextInt();
-                }
-                while (!this.level.getMap().in0_CO(co)) {
-                    System.out.println("Veuillez saisir la colonne :");
-                    co = sc.nextInt();
-                }
-                try {
-                    this.player.attack("Phishing", this.level.getMap().getNode(li, co));
-                    System.out.println("Phishing OK !");
-                    System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-                    System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
-                } catch (NoSuffisantPA ex) {
-                    System.out.println("Phishing KO : Vous ne possedez pas suffisament de points d'action !");
-                }
-
-
-            } else if (request.equals("virus")){
-                System.out.println("Quel 'node' voulez vous hacker ?");
-                System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-
-                int li = -1, co = -1;
-                while (!this.level.getMap().in0_LI(li)) {
-                    System.out.println("Veuillez saisir la ligne :");
-                    li = sc.nextInt();
-                }
-                while (!this.level.getMap().in0_CO(co)) {
-                    System.out.println("Veuillez saisir la colonne :");
-                    co = sc.nextInt();
-                }
-                try {
-                    this.player.attack("Virus", this.level.getMap().getNode(li, co));
-                    System.out.println("Virus OK !");
-                    System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-                    System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
-                } catch (NoSuffisantPA ex) {
-                    System.out.println("Virus KO : Vous ne possedez pas suffisament de points d'action !");
-                }
+                makeAttack("Phishing");
+            } else if (request.equals("virus")) {
+                makeAttack("Virus");
             } else if (request.equals("ddos")) {
                 try {
-                    player.ddos(this.level.getMap().countAllNodesHack(), (Target)this.level.getTarget());
+                    player.ddos(this.level.getMap().countAllNodesHack(), (Target) this.level.getTarget());
 
                     if (this.level.getTarget().isHack()) {
                         System.out.println("Mission Accomplie !");
@@ -127,7 +86,7 @@ public final class Game {
                     }
                     //System.out.println("DDoS OK !");
                 } catch (NoSuffisantPA ex) {
-                    System.out.println("DDoS OK !");
+                    System.out.println("DDoS KO !");
                     //Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
             } else if (request.equals("help")) {
@@ -151,6 +110,29 @@ public final class Game {
 
         System.out.println("**************** END OF GAME ****************");
 
+    }
+
+    public void makeAttack(String nameOfAttack) {
+        System.out.println("Quel 'node' voulez vous hacker ?");
+        System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+
+        int li = -1, co = -1;
+        while (!this.level.getMap().in0_LI(li)) {
+            System.out.println("Veuillez saisir la ligne :");
+            li = sc.nextInt();
+        }
+        while (!this.level.getMap().in0_CO(co)) {
+            System.out.println("Veuillez saisir la colonne :");
+            co = sc.nextInt();
+        }
+        try {
+            this.player.attack(nameOfAttack, this.level.getMap().getNode(li, co));
+            System.out.println(nameOfAttack+" OK !");
+            System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+            System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
+        } catch (NoSuffisantPA ex) {
+            System.out.println(nameOfAttack+" KO : Vous ne possedez pas suffisament de points d'action !");
+        }
     }
 
     // Test Console
