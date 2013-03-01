@@ -125,8 +125,8 @@ Antoine : C'est bizarre moi je l'ai plus
                   Maintenant il faut instancier en Unicode (alors c'est trois ligne en plus donc la flemme pour l'instant
                   je le ferai plus tard^^)
 
-         Ludo : Ok, (Je me disais bien qu'il restait quelques problèmes de police), donc il ne reste plus qu'a gerer le systeme 
-                  de passage au niveaux suivants, les sauvegardes, et apres conception des niveaux.
+Ludo : Ok, (Je me disais bien qu'il restait quelques problèmes de police), donc il ne reste plus qu'a gerer le systeme 
+de passage au niveaux suivants, les sauvegardes, et apres conception des niveaux.
 
          Antoine : Il semblerait que tout spécialement MAC supporte mal les polices ttf (de slick) et après sur tout 
          les os quand tu dépasse 70-80 c'est mort.
