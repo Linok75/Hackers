@@ -133,3 +133,9 @@ de passage au niveaux suivants, les sauvegardes, et apres conception des niveaux
          Si vous mettez dans le modèle la sauvegarde et le passage au niveau suivant avant que je parte au ski 
          j'essayerai de l'ajouter à la vu avant de partir.
          Et quand je reviendrai du ski j'améliorai la vue dans sa dimension esthétique (avec mes maigres compétence)
+
+Ludo : Bon, prochain objectif : terminer le système de sauvegarde, chargement => Faire que le Modele soit completement 
+fonctionnel, et faire les derniers "schema" de la vue en cours de jeu pour voir quelles sont les informations que doit 
+voir l'utilisateur et ou les mettre. Apres, ce sera la creation de niveaux, de contenu (description personnage, histoire?,
+images, etc...) et la mise en place de la vue "final".
+Je vais donc essayer d'avancer un max pendant ces vacances pour qu'apres ca soit quasiment que de la finition.
