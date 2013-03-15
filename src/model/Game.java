@@ -7,6 +7,7 @@ package model;
 import exceptions.NoSuffisantPA;
 import java.util.Scanner;
 import model.maps.Target;
+import model.ressources.attacks.Attack;
 
 /**
  *
@@ -28,6 +29,10 @@ public final class Game {
         this.level = level;
 
         this.PLAY = false;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public Level getLevel() {
@@ -57,11 +62,22 @@ public final class Game {
     public void play() {
         this.PLAY = true;
 
+        System.out.println("Début de la partie !");
+        System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
+
         // Test Console
         String request;
         while (this.PLAY) {
             request = sc.nextLine();
             request = request.toLowerCase();
+
+            for (Attack attack : player.getAttackList()) {
+                if (!attack.getTitle().equalsIgnoreCase("ddos") && request.equalsIgnoreCase(attack.getTitle())) {
+                    makeAttack(request);
+                }
+            }
+
+
             if (request.equals("player")) {
                 System.out.println("\n**************** PLAYER ****************\n" + this.player + "************************************\n");
 
@@ -70,17 +86,23 @@ public final class Game {
 
             } else if (request.equals("map")) {
                 System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
-            } else if (request.equals("phishing")) {
-                makeAttack("Phishing");
-            } else if (request.equals("virus")) {
-                makeAttack("Virus");
-            } else if (request.equals("ddos")) {
+                /*
+                 * } else if (request.equals("phishing")) {
+                 * makeAttack("Phishing"); } else if (request.equals("virus")) {
+                 * makeAttack("Virus");
+                 */            } else if (request.equals("ddos")) {
                 try {
                     player.ddos(this.level.getMap().countAllNodesHack(), (Target) this.level.getTarget());
 
-                    if (this.level.getTarget().isHack()) {
+                    if (this.level.getTarget().isHack()) {//TODO
                         System.out.println("Mission Accomplie !");
-                        System.exit(0);
+
+                        // Vous avez terminé le jeu ...
+                        // Crédits ... (lol)
+                        // Retour au menu principal
+                        // Il peut toujours charger sa partie, mais cette fois ci, avoir accès au niveau qu'il désire
+
+                        //System.exit(0);
                     } else {
                         System.out.println("L'attaque DDoS n'a pas été suffisante pour faire tomber le serveur ...");
                     }
@@ -97,18 +119,24 @@ public final class Game {
                 System.out.println("Commande introuvable ... (taper 'help' pour afficher la liste des commandes)");
             }
 
+            // Ne pas mettre 10 en dur : TODO
             if (this.player.getPower() < 10) {
                 System.out.println("Vous ne disposez plus de suffisament de 'ressources' pour continuer :\n\n\tGAME OVER");
+
+                // Recommencer le niveau
+                // Retour au menu
+
                 System.exit(0);
             }
 
             if (this.level.completed()) {
                 System.out.println("Bravo ! Vous avez réussi le niveau");
-                System.exit(0);
+                this.PLAY = false;
+                //System.exit(0);
             }
         }
 
-        System.out.println("**************** END OF GAME ****************");
+        //System.out.println("**************** END OF GAME ****************");
 
     }
 
@@ -127,24 +155,33 @@ public final class Game {
         }
         try {
             this.player.attack(nameOfAttack, this.level.getMap().getNode(li, co));
-            System.out.println(nameOfAttack+" OK !");
+            System.out.println(nameOfAttack + " OK !");
             System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
             System.out.println("Total de noeuds dans votre botnet : " + this.level.getMap().countAllNodesHack());
         } catch (NoSuffisantPA ex) {
-            System.out.println(nameOfAttack+" KO : Vous ne possedez pas suffisament de points d'action !");
+            System.out.println(nameOfAttack + " KO : Vous ne possedez pas suffisament de points d'action !");
         }
     }
 
     // Test Console
     public void printCommands() {
-        System.out.println("Liste des commandes :\n\t"
+        String str = "Liste des commandes :\n\t"
                 + "- help\t\taffiche la liste des commandes\n\t"
                 + "- player\taffiche les caractéristiques du joueur\n\t"
-                + "- level\t\taffiche les caractéristiques de niveau\n\t"
-                + "- phishing\tlance une attaque 'phishing' sur un 'node'\n\t"
-                + "- virus\t\tlance une attaque 'virus' sur un 'node'\n\t"
-                + "- ddos\t\tlance une attaque DDoS sur le serveur cible\n\t"
+                + "- level\t\taffiche les caractéristiques de niveau\n\t";
+
+        for (Attack attack : player.getAttackList()) {
+            if (!attack.getTitle().equalsIgnoreCase("ddos")) {
+                str += "- " + attack.getTitle().toLowerCase() + "\tlance une attaque '" + attack.getTitle().toLowerCase() + "' sur un 'node'\n\t";
+            }
+        }
+
+//                + "- phishing\tlance une attaque 'phishing' sur un 'node'\n\t"
+//                + "- virus\t\tlance une attaque 'virus' sur un 'node'\n\t"
+        str += "- ddos\t\tlance une attaque DDoS sur le serveur cible\n\t"
                 + "- map\t\taffiche la map\n\t"
-                + "- exit\t\tpermet de quitter le jeu\n");
+                + "- exit\t\tpermet de quitter le jeu\n";
+
+        System.out.println(str);
     }
 }

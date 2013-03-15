@@ -68,6 +68,10 @@ public final class Player {
         this.attacks.add(attack);
     }
 
+    public void setPower(int power) {
+        this.power = power;
+    }
+
     public int getPower() {
         return power;
     }
@@ -80,7 +84,7 @@ public final class Player {
 
         for (Attack attack : attacks) {
             System.out.println("test1");
-            if (attack.getTitle().equals(nameOfAttack)) {
+            if (attack.getTitle().equalsIgnoreCase(nameOfAttack)) {
                 System.out.println("test2");
                 if (attack.getCost() > power) {
                     System.out.println("test3");

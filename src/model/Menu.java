@@ -21,9 +21,14 @@ public class Menu {
     private static float currentView = 0;
     private static final Scanner sc = new Scanner(System.in);
     private static Player player;
+    private static int idOfSave = -1;
     //private static ArrayList<Level> levels;
     private static ArrayList<Level> levels = new ArrayList<Level>();
     private static ArrayList<Player> players = new ArrayList<Player>();
+    //
+    private static int currentLevel;
+    //
+    private static boolean menu = true;
 
     //View :
     // 0 - Menu
@@ -36,18 +41,22 @@ public class Menu {
         loadPlayers();
 
         do {
-            if (currentView == 0) {
-                affichMenu();
-                saisieMenu();
-            } else if (currentView == 1) {
-                affichNouvellePartie();
-                saisieNouvellePartie();
-            } else if (currentView == 2) {
-                affichChargerPartie();
-                saisieChargerPartie();
-            } else if (currentView == 3) {
-                affichParametre();
-                saisieParametre();
+            if (menu) {
+                if (currentView == 0) {
+                    affichMenu();
+                    saisieMenu();
+                } else if (currentView == 1) {
+                    affichNouvellePartie();
+                    saisieNouvellePartie();
+                } else if (currentView == 2) {
+                    affichChargerPartie();
+                    saisieChargerPartie();
+                } else if (currentView == 3) {
+                    affichParametre();
+                    saisieParametre();
+                }
+            } else {
+                nextLevel();
             }
         } while (true);
     }
@@ -87,10 +96,12 @@ public class Menu {
         }
 
     }
+
     private static void loadPlayers() {
         XStreamer<Player> xsPlayers = new XStreamer<Player>();
         File f = new File(Menu.class.getResource("../saves/").getPath());
         FileFilter ff = new FileFilter() {
+
             @Override
             public boolean accept(File file) {
                 return file.getName().matches("player[0-9][0-9]*.xml");
@@ -120,6 +131,7 @@ public class Menu {
         System.out.println("\t3 - Param√®tres");
         System.out.println("\t4 - Quitter");
     }
+
     public static void saisieMenu() {
 
         String saisie = sc.nextLine();
@@ -144,6 +156,7 @@ public class Menu {
         System.out.println("\t0 - Retour");
         System.out.println("\tVeuillez saisir votre surnom :");
     }
+
     public static void saisieNouvellePartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -157,14 +170,19 @@ public class Menu {
             player.addAttack(new Phishing());
 
             // Chargement du premier niveau
-            Level level = levels.get(0);
+            currentLevel = 0;
+            Level level = levels.get(currentLevel);
+
+            savePlayer();
 
             System.out.println("D√©but de la partie.");
 
             // Lancement de la partie
             Game.makeInstance(player, level);
+            System.out.println("Lancement niveau 0");
             Game.getInstance().play();
 
+            menu = false;
             //throw new UnsupportedOperationException("Not implemented yet");
         }
     }
@@ -175,10 +193,12 @@ public class Menu {
         System.out.println("-----------------------");
         int i = 1;
         for (Player player : players) {
-            System.out.println("\t"+i+" - "+player.getName());
+            System.out.println("\t" + i + " - " + player.getName());
+            i++;
         }
         System.out.println("-----------------------");
     }
+
     public static void saisieChargerPartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -189,16 +209,27 @@ public class Menu {
                 if (num >= 1 && num <= players.size()) {
                     System.out.println("Chargement...");
 
-                    player = players.get(num-1);
+                    idOfSave = num; // - 1
+                    player = players.get(idOfSave - 1);
 
-                    if (player.getAdvanced() > levels.size()) {
-                        //System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
+                    // Choix du niveau ? ou seulement le dernier ?
+
+                    if (player.getAdvanced() >= levels.size()) {
+                        System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
+                        //TODO
+                        System.err.println("TODO");
+                        System.exit(0);
                     }
-                    Level level = levels.get(player.getAdvanced());
+
+                    currentLevel = player.getAdvanced();
+                    Level level = levels.get(currentLevel);
 
                     // Lancement de la partie
                     Game.makeInstance(player, level);
+
+                    System.out.println("Lancement niveau "+currentLevel);
                     Game.getInstance().play();
+                    menu = false;
                 } else {
                     System.out.println("Num√©ro de sauvegarde inexistant");
                 }
@@ -214,5 +245,50 @@ public class Menu {
 
     public static void saisieParametre() {
         currentView = 0;
+    }
+
+    public static void savePlayer() {
+
+        XStreamer<Player> saver = new XStreamer<Player>();
+        if (idOfSave == -1) {
+            idOfSave = (players.size()+1);
+        }
+        saver.save(player, Menu.class.getResource("../saves/").getPath()+"player"+idOfSave+".xml");
+
+    }
+
+    public static void nextLevel() { //TODOEND
+        System.out.println("NEXT LEVEL");
+
+        //TODO = trouver une place a la ligne suivante x)
+        player.setPower(100);
+
+        System.out.println(currentLevel+" -> "+(player.getAdvanced() + 1));
+
+        if (player.getAdvanced() <= currentLevel) {
+            player.setAdvanced(player.getAdvanced() + 1);
+        }
+
+        savePlayer();
+
+        if (player.getAdvanced() >= levels.size()) {
+            System.out.println("Vous avez terminer le jeu !");
+            System.out.println("Retour au menu !");
+            currentView = 0;
+            menu = true;
+            return;
+            //System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
+        }
+
+        currentLevel = player.getAdvanced();
+        System.out.println(currentLevel);
+        Level level = levels.get(currentLevel);
+
+        Game.getInstance().setLevel(level);
+
+        // Lancement de la partie
+        //Game.makeInstance(player, level);
+        Game.getInstance().play();
+
     }
 }
