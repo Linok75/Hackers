@@ -139,3 +139,6 @@ fonctionnel, et faire les derniers "schema" de la vue en cours de jeu pour voir 
 voir l'utilisateur et ou les mettre. Apres, ce sera la creation de niveaux, de contenu (description personnage, histoire?,
 images, etc...) et la mise en place de la vue "final".
 Je vais donc essayer d'avancer un max pendant ces vacances pour qu'apres ca soit quasiment que de la finition.
+
+
+Antoine : En ce qui concerne la vue je suis sur le coup !
