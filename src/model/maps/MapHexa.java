@@ -102,14 +102,14 @@ public final class MapHexa implements IMap {
         nodes.add(node);
         new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
     }
-    
+
     @Override
     public void effraction(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
         new DF_Hexa_Effraction(new Effraction(), this).start(nodes);
     }
-    
+
     public void exploitation(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -120,11 +120,11 @@ public final class MapHexa implements IMap {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
+
     @Override
     public void setNode(int li, int co, Node node) {
         // verifier li et co ...
-        if (li < LI && co < CO) {
+        if (li >= 0 && li < LI && co >= 0 && co < CO) {
             this.nodes[li][co] = node;
         }
     }
