@@ -77,14 +77,14 @@ public class Node implements Hackable {
          * defence+"\n"; } str += "\n"; str += "isHack : "+this.isHack+"\n";
          *
          */
-        
+
         if (isHack) {
             str = "X";
         } else if (this.behaviors != null) {
             if (this.behaviors.contains(Defence.Phishing)) str = "P";
             if (this.behaviors.contains(Defence.Virus)) str = "V";
             if (this.behaviors.contains(Defence.Trojan)) str = "T";
-            if (this.behaviors.contains(Defence.Effraction)) str = "V";
+            if (this.behaviors.contains(Defence.Effraction)) str = "E";
         } else {
             str = "O";
             //str = " ";

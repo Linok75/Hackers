@@ -126,6 +126,8 @@ public final class MapHexa implements IMap {
         // verifier li et co ...
         if (li >= 0 && li < LI && co >= 0 && co < CO) {
             this.nodes[li][co] = node;
+        } else {
+            throw new RuntimeException("Impossible d'ajouter des noeud en dehors de la map ;)");
         }
     }
 
