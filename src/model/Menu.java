@@ -54,6 +54,9 @@ public class Menu {
                 } else if (currentView == 3) {
                     affichParametre();
                     saisieParametre();
+                } else if (currentView == 4) {
+                    affichListOfLevels();
+                    saisieListOfLevels();
                 }
             } else {
                 nextLevel();
@@ -212,13 +215,10 @@ public class Menu {
                     idOfSave = num; // - 1
                     player = players.get(idOfSave - 1);
 
-                    // Choix du niveau ? ou seulement le dernier ?
-
                     if (player.getAdvanced() >= levels.size()) {
                         System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
-                        //TODO
-                        System.err.println("TODO");
-                        System.exit(0);
+                        currentView = 4;
+                        return;
                     }
 
                     currentLevel = player.getAdvanced();
@@ -232,6 +232,46 @@ public class Menu {
                     menu = false;
                 } else {
                     System.out.println("Num√©ro de sauvegarde inexistant");
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Erreur, veuillez saisir le num√©ro de la sauvegarde que vous voulez charger.");
+            }
+        }
+    }
+
+    public static void affichListOfLevels() {
+        System.out.println("Selection du niveau");
+        System.out.println("\t0 - Retour");
+        System.out.println("-----------------------");
+        int i = 1;
+        for (Level level : levels) {
+            System.out.println("\t" + i );
+            i++;
+        }
+        System.out.println("-----------------------");
+    }
+
+    public static void saisieListOfLevels() {
+        String saisie = sc.nextLine();
+        if (saisie.equals("0")) {
+            currentView = 0;
+        } else { //Verification saisie = num d'une sauvegarde
+            try {
+                int num = Integer.parseInt(saisie);
+                if (num >= 1 && num <= levels.size()) {
+                    System.out.println("Chargement...");
+
+                    currentLevel = num - 1;
+                    Level level = levels.get(currentLevel);
+
+                    // Lancement de la partie
+                    Game.makeInstance(player, level);
+
+                    System.out.println("Lancement niveau "+currentLevel);
+                    Game.getInstance().play();
+                    menu = false;
+                } else {
+                    System.out.println("Niveau inexistant");
                 }
             } catch (NumberFormatException nfe) {
                 System.out.println("Erreur, veuillez saisir le num√©ro de la sauvegarde que vous voulez charger.");
@@ -263,7 +303,7 @@ public class Menu {
         //TODO = trouver une place a la ligne suivante x)
         player.setPower(100);
 
-        System.out.println(currentLevel+" -> "+(player.getAdvanced() + 1));
+        //System.out.println(currentLevel+" -> "+(player.getAdvanced() + 1));
 
         if (player.getAdvanced() <= currentLevel) {
             player.setAdvanced(player.getAdvanced() + 1);
@@ -271,16 +311,15 @@ public class Menu {
 
         savePlayer();
 
-        if (player.getAdvanced() >= levels.size()) {
+        if (player.getAdvanced() >= levels.size() && currentLevel == levels.size() - 1) {
             System.out.println("Vous avez terminer le jeu !");
-            System.out.println("Retour au menu !");
+            System.out.println("Retour au menu ... ");
             currentView = 0;
             menu = true;
             return;
-            //System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
         }
 
-        currentLevel = player.getAdvanced();
+        currentLevel++;
         System.out.println(currentLevel);
         Level level = levels.get(currentLevel);
 

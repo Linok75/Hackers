@@ -134,7 +134,7 @@ public class GridHexa extends BasicGameState {
                 pair = false;
             } else {
                 x = 130;
-                maxCol = (int) this.gridDimension.getWidth() - 1;
+                maxCol = (int) this.gridDimension.getWidth() /*- 1*/;
                 pair = true;
             }
             for (int col = 0; col < maxCol; col++) {
