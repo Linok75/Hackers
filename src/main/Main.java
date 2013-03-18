@@ -101,13 +101,13 @@ public class Main {
         map.setNode(5, 4, new Node(defPhishing, test, test));
         map.setNode(1, 5, new Node(defPhishing, test, test));
         map.setNode(2, 5, new Node(defPhishing, test, test));
-        map.setNode(7, 6, new Node(defPhishing, test, test));
+        map.setNode(6, 6, new Node(defPhishing, test, test));
         map.setNode(3, 8, new Node(defPhishing, test, test));
         
 
-        map.setNode(5, 10, new Node(defVirus, test, test));
-        map.setNode(1, 10, new Node(defVirus, test, test));
-        map.setNode(7, 11, new Node(defVirus, test, test));
+        map.setNode(5, 3, new Node(defVirus, test, test));
+        map.setNode(4, 4, new Node(defVirus, test, test));
+        map.setNode(6, 1, new Node(defVirus, test, test));
 
 
         Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !");
