@@ -23,9 +23,9 @@ import tools.XStreamer;
 public class Main {
 
     public static void main(String args[]) {
-        Menu.run();
+        //Menu.run();
         //test();
-        //test2();
+        test2();
     }
 
     public static void test() {
@@ -83,8 +83,9 @@ public class Main {
         player.addAttack(new Phishing());
         player.addAttack(new Virus());
 
-        ArrayList<Defence> behavior = new ArrayList<Defence>();
-
+        ArrayList<Defence> defPhishing = new ArrayList<Defence>();
+        ArrayList<Defence> defVirus = new ArrayList<Defence>();
+        
         String test = "test";
 
         Target target = new Target(30, new ArrayList<Defence>(), test, test);
@@ -92,20 +93,24 @@ public class Main {
         IMap map = new MapHexa();
 
         // defense anti phishing
-        behavior.add(Defence.Phishing);
-
+        defPhishing.add(Defence.Phishing);
+        defVirus.add(Defence.Phishing);
+        defVirus.add(Defence.Virus);
+        
         // placement des cibles anti phishing sur la map
-        map.setNode(5, 4, new Node(behavior, test, test));
-        map.setNode(1, 5, new Node(behavior, test, test));
-        map.setNode(2, 5, new Node(behavior, test, test));
-        map.setNode(7, 6, new Node(behavior, test, test));
-        map.setNode(3, 8, new Node(behavior, test, test));
-        map.setNode(5, 10, new Node(behavior, test, test));
-        map.setNode(1, 10, new Node(behavior, test, test));
-        map.setNode(7, 11, new Node(behavior, test, test));
+        map.setNode(5, 4, new Node(defPhishing, test, test));
+        map.setNode(1, 5, new Node(defPhishing, test, test));
+        map.setNode(2, 5, new Node(defPhishing, test, test));
+        map.setNode(7, 6, new Node(defPhishing, test, test));
+        map.setNode(3, 8, new Node(defPhishing, test, test));
+        
+
+        map.setNode(5, 10, new Node(defVirus, test, test));
+        map.setNode(1, 10, new Node(defVirus, test, test));
+        map.setNode(7, 11, new Node(defVirus, test, test));
 
 
-        Mission mission = new Mission("Level_1", "Créez ton botnet et attaque la cible de la mission !");
+        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !");
 
         Level level = new Level(map, 30, target, mission);
 
