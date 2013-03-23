@@ -38,15 +38,14 @@ public class GridHexa extends BasicGameState {
     private Dimension gridDimension;
     private Illustration grid;
     private Illustration defaultNode;
+    private Image hexagone;
 
     public GridHexa(int stateID, Game gameInstance) throws SlickException {
         this.gameInstance = gameInstance;
         this.gridDimension = this.gameInstance.getLevel().getMap().getDimensionMap();
         this.nodeViewList = new ArrayList<>();
         this.assocColorAtk = new HashMap<>();
-
         this.setAssocColorDef();
-        this.setNodeViewList();
     }
 
     @Override
@@ -56,12 +55,15 @@ public class GridHexa extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.grid = new Illustration(new Image(getClass().getResource("../../ressources/tabHexa.png").getPath()), new Point(65, 282));
+        this.hexagone = new Image(getClass().getResource("../../ressources/hexagone.png").getPath());
+        this.grid = new Illustration(this.hexagone, new Point(65, 282));
         this.defaultNode = new Illustration(new Image(getClass().getResource("../../ressources/nodeDefault.png").getPath()), null);
+        this.setNodeViewList();
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+
         for (NodeView node : this.nodeViewList) {
             g.drawImage(this.defaultNode.getImage(), (int) node.getPos().getX(), (int) node.getPos().getY(), node.getColor());
         }
@@ -123,21 +125,36 @@ public class GridHexa extends BasicGameState {
         boolean pair;
         int x, y, maxCol;
         NodeView tmp = null;
+        Graphics g;
+        Image tmpImg;
+        float scale;
 
+        tmpImg = new Image((int) (this.gridDimension.getWidth() * this.hexagone.getWidth() + this.hexagone.getWidth() * 0.5), (int) this.gridDimension.getHeight() * this.hexagone.getHeight());
+        scale = (float) (1052 / (this.gridDimension.getWidth() * this.hexagone.getWidth() + this.hexagone.getWidth() * 0.5));
+        
+        this.defaultNode.setImage(this.defaultNode.getImage().getScaledCopy(scale));
+        
+        g = tmpImg.getGraphics();
+        g.scale(scale, scale);
+        g.setAntiAlias(true);
+
+        
         pair = true;
         y = 288;
+        maxCol = (int) this.gridDimension.getWidth();
 
         for (int row = 0; row < (int) this.gridDimension.getHeight(); row++) {
             if (pair) {
                 x = 70;
-                maxCol = (int) this.gridDimension.getWidth();
                 pair = false;
             } else {
-                x = 130;
-                maxCol = (int) this.gridDimension.getWidth() - 1;
+                x = (int) ((int) (70 + this.hexagone.getWidth() * 0.5) * scale);
                 pair = true;
             }
             for (int col = 0; col < maxCol; col++) {
+                g.drawImage(hexagone, x/scale - 78, y/scale - 307);
+//                hexagone.draw(x - 70, y - 288);
+
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Map.Entry<Attack, Color> assoc : this.assocColorAtk.entrySet()) {
                     if (assoc.getKey() != null) {
@@ -156,11 +173,13 @@ public class GridHexa extends BasicGameState {
                 }
                 this.nodeViewList.add(tmp);
                 tmp = null;
-                x += 117;
+                x += this.hexagone.getWidth()*scale-5;
             }
 //            System.out.println("");
-            y += 115;
+            y += this.hexagone.getWidth()*scale-5;
         }
+        g.flush();
+        this.grid.setImage(tmpImg);
     }
 
     public void contamination(NodeIllustration nodeActive, String atk) {
