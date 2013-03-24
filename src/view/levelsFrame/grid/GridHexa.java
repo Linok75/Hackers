@@ -88,32 +88,37 @@ public class GridHexa extends BasicGameState {
         for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
                 case Phishing:
-                    this.assocColorAtk.put(atk, new Color(108, 46, 46)); //marron
+                    this.assocColorAtk.put(atk, new Color(190, 256, 0)); //vert-jaune
+                    //this.assocColorAtk.put(atk, new Color(108, 46, 46)); //marron
                     break;
 
                 case BruteForcing:
-                    this.assocColorAtk.put(atk, new Color(193, 126, 39)); //marron-orange
+                    this.assocColorAtk.put(atk, new Color(240, 248, 0)); //jaune
+                    //this.assocColorAtk.put(atk, new Color(193, 126, 39)); //marron-orange
                     break;
 
                 case Effraction:
-                    this.assocColorAtk.put(atk, new Color(237, 140, 13)); //orange
-                    break;
-
-                case Virus:
                     this.assocColorAtk.put(atk, new Color(236, 203, 160)); //pêche
                     break;
 
+                case Virus:
+                    this.assocColorAtk.put(atk, new Color(237, 140, 13)); //orange
+                    break;
+
                 case Trojan:
-                    this.assocColorAtk.put(atk, new Color(39, 120, 54)); //vert
+                    this.assocColorAtk.put(atk, new Color(248, 99, 0)); //orange-rouge
+                    //this.assocColorAtk.put(atk, new Color(39, 120, 54)); //vert
                     break;
 
                 case Exploitation:
-                    this.assocColorAtk.put(atk, new Color(23, 194, 9)); //vert fluo
+                    this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
+                    //this.assocColorAtk.put(atk, new Color(23, 194, 9)); //vert fluo
                     break;
 
                 default:
-                    this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
-
+                    //this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
+                    //this.assocColorAtk.put(null, new Color(84, 177, 13)); //vert
+                    this.assocColorAtk.put(null, new Color(166, 238, 111)); //vert
 
             }
         }

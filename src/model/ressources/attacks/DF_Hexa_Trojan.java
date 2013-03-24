@@ -16,14 +16,19 @@ public class DF_Hexa_Trojan extends DiffusionMethod{
     public DF_Hexa_Trojan(Attack attack, MapHexa map){
         super(attack, map);
     }
-    
+
     @Override
     protected ArrayList<Node> getAllNodesAround(Node node) {
         MapHexa map = (MapHexa) this.map;
         ArrayList<Node> nodes = new ArrayList<Node>();
-        addNodeIfNotNull(nodes, map.getEst(map.getEst(node)));
-        addNodeIfNotNull(nodes, map.getOuest(map.getOuest(node)));
+
+        Node est = map.getEst(node);
+        Node ouest = map.getOuest(node);
+
+        if (est != null) addNodeIfNotNull(nodes, map.getEst(est));
+        if (ouest != null) addNodeIfNotNull(nodes, map.getOuest(ouest));
+        
         return nodes;
     }
-    
+
 }
