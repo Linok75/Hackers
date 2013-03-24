@@ -173,6 +173,8 @@ public final class MapHexa implements IMap {
 
     // **************************************************** AIDE ****************************************************
     public Node getNordOuest(Node node) {
+        if (node == null) return null;
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
@@ -185,6 +187,8 @@ public final class MapHexa implements IMap {
     }
 
     public Node getOuest(Node node) {
+        if (node == null) return null;
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
@@ -196,6 +200,8 @@ public final class MapHexa implements IMap {
     }
 
     public Node getSudOuest(Node node) {
+        if (node == null) return null;
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
@@ -207,6 +213,8 @@ public final class MapHexa implements IMap {
     }
 
     public Node getSudEst(Node node) {
+        if (node == null) return null;
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
@@ -218,6 +226,8 @@ public final class MapHexa implements IMap {
     }
 
     public Node getEst(Node node) {
+        if (node == null) return null;
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
@@ -229,6 +239,8 @@ public final class MapHexa implements IMap {
     }
 
     public Node getNordEst(Node node) {
+        if (node == null) return null;
+        
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
