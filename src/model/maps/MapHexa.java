@@ -17,17 +17,23 @@ public final class MapHexa implements IMap {
 
     public final static String NODEDEFAULTPATH = "../ressources/defaultPortrait.png";
     public final static String NODEDEFAULTDESC = "Description encore inconnue...";
-    private static final int LI = 7;
-    private static final int CO = 9;
+    private static /*final*/ int LI /* = 7*/;
+    private static /*final*/ int CO /* = 9*/;
     private Node nodes[][]; // [LI][CO]
 
-    public MapHexa() {
+    public MapHexa(int LI, int CO) {
+        this.LI = LI;
+        this.CO = CO;
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
                 this.nodes[li][co] = new Node(null, NODEDEFAULTDESC, NODEDEFAULTPATH);
             }
         }
+    }
+
+    public MapHexa() {
+        this(7,9); // default
     }
 
     public Node getNode(int li, int co) {
@@ -240,7 +246,7 @@ public final class MapHexa implements IMap {
 
     public Node getNordEst(Node node) {
         if (node == null) return null;
-        
+
         Point p = getPoint(node);
         int li = p.x;
         int co = p.y;
