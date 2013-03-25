@@ -26,3 +26,4 @@ build/*
 build.xml
 manifest.mf
 /dist/
+/Hackers/nbproject/private/
