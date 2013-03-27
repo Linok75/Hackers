@@ -179,8 +179,7 @@ public static void test5() {
         Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !");
 
         Level level = new Level(map, 20, target, mission);
-        //new XStreamer<Level>().save(level, "C:/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels/level3.xml");
-        new XStreamer<Level>().save(level, "C:/Users/Benjamin/Documents/NetBeansProjects/Hackers_Clone/src/levels/level5.xml");
+        //new XStreamer<Level>().save(level, "C:/Users/Benjamin/Documents/NetBeansProjects/Hackers_Clone/src/levels/level5.xml");
         Game.makeInstance(player, level);
         Game.getInstance().play();
     }
