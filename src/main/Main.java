@@ -26,7 +26,8 @@ public class Main {
     public static void main(String args[]) {
         //Menu.run();
         //test();
-        test2();
+        //test2();
+        test5();
     }
 
     public static void test() {
@@ -166,7 +167,7 @@ public static void test5() {
 
         map.setNode(5, 3, new Node(defVirus, test, test));
         map.setNode(4, 4, new Node(defVirus, test, test));
-        map.setNode(0, 1, new Node(defVirus, test, test));
+        map.setNode(2, 1, new Node(defVirus, test, test));
         map.setNode(4, 8, new Node(defVirus, test, test));
 
         map.setNode(6, 4, new Node(defTrojan,test,test));
