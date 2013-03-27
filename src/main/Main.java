@@ -129,4 +129,57 @@ public class Main {
         Game.makeInstance(player, level);
         Game.getInstance().play();
     }
+
+
+public static void test5() {
+        Player player = new Player();
+        player.addAttack(new DDoS());
+        player.addAttack(new Phishing());
+        player.addAttack(new Virus());
+        player.addAttack(new Trojan());
+
+        ArrayList<Defence> defPhishing = new ArrayList<Defence>();
+        ArrayList<Defence> defVirus = new ArrayList<Defence>();
+        ArrayList<Defence> defTrojan = new ArrayList<Defence>();
+        String test = "test";
+
+        Target target = new Target(30, new ArrayList<Defence>(), test, test);
+
+        IMap map = new MapHexa();
+
+        // defense anti phishing
+        defPhishing.add(Defence.Phishing);
+        defVirus.add(Defence.Phishing);
+        defVirus.add(Defence.Virus);
+        defTrojan.add(Defence.Phishing);
+        defTrojan.add(Defence.Virus);
+        defTrojan.add(Defence.Trojan);
+        
+        // placement des cibles anti phishing sur la map
+        map.setNode(5, 4, new Node(defPhishing, test, test));
+        map.setNode(1, 5, new Node(defPhishing, test, test));
+        map.setNode(2, 5, new Node(defPhishing, test, test));
+        map.setNode(6, 6, new Node(defPhishing, test, test));
+        map.setNode(3, 8, new Node(defPhishing, test, test));
+        
+
+        map.setNode(5, 3, new Node(defVirus, test, test));
+        map.setNode(4, 4, new Node(defVirus, test, test));
+        map.setNode(6, 1, new Node(defVirus, test, test));
+        map.setNode(0, 1, new Node(defVirus, test, test));
+        map.setNode(4, 8, new Node(defVirus, test, test));
+
+        map.setNode(6, 4, new Node(defTrojan,test,test));
+        map.setNode(0, 4, new Node(defTrojan,test,test));
+        map.setNode(3, 2, new Node(defTrojan,test,test));
+        map.setNode(5, 7, new Node(defTrojan,test,test));
+        map.setNode(1, 1, new Node(defTrojan,test,test));
+        
+        Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !");
+
+        Level level = new Level(map, 20, target, mission);
+        //new XStreamer<Level>().save(level, "C:/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels/level3.xml");
+        Game.makeInstance(player, level);
+        Game.getInstance().play();
+    }
 }
