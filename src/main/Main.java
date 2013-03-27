@@ -145,7 +145,7 @@ public static void test5() {
         ArrayList<Defence> defTrojan = new ArrayList<Defence>();
         String test = "test";
 
-        Target target = new Target(30, new ArrayList<Defence>(), test, test);
+        Target target = new Target(25, new ArrayList<Defence>(), test, test);
 
         IMap map = new MapHexa();
 
