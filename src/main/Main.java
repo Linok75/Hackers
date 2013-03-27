@@ -159,16 +159,14 @@ public static void test5() {
         
         // placement des cibles anti phishing sur la map
         map.setNode(5, 4, new Node(defPhishing, test, test));
-        map.setNode(1, 5, new Node(defPhishing, test, test));
         map.setNode(2, 5, new Node(defPhishing, test, test));
         map.setNode(3, 8, new Node(defPhishing, test, test));
         map.setNode(1, 7, new Node(defPhishing, test, test));
         
-
-        map.setNode(5, 3, new Node(defVirus, test, test));
         map.setNode(4, 4, new Node(defVirus, test, test));
         map.setNode(2, 1, new Node(defVirus, test, test));
         map.setNode(4, 8, new Node(defVirus, test, test));
+        map.setNode(1, 5, new Node(defVirus, test, test));
 
         map.setNode(6, 4, new Node(defTrojan,test,test));
         map.setNode(0, 4, new Node(defTrojan,test,test));
@@ -176,6 +174,7 @@ public static void test5() {
         map.setNode(5, 7, new Node(defTrojan,test,test));
         map.setNode(1, 1, new Node(defTrojan,test,test));
         map.setNode(6, 1, new Node(defTrojan,test,test));
+        map.setNode(5, 3, new Node(defTrojan, test, test));
         
         Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !");
 
