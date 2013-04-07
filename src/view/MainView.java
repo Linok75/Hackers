@@ -21,7 +21,7 @@ import model.ressources.attacks.Phishing;
  * @author ara
  */
 public class MainView {
-    
+
     public static void main(String arg[]) {
         //Construction Model...
         ViewLauncher viewLauncher = new ViewLauncher();
@@ -32,7 +32,7 @@ public class MainView {
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
         String test = "test";
-        
+
         Target target = new Target(30, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
 
         IMap map = new MapHexa();
@@ -56,14 +56,14 @@ public class MainView {
         Level level = new Level(map, 30, target, mission);
 
         Game.makeInstance(player, level);
-        
+
         //Construction Vue...
         View.makeInstance();
-        
+
         //Lancement vue...
         viewLauncher.start();
-        
+
         //Lancement jeu...
-        Game.getInstance().play();
+        //Game.getInstance().play();
     }
 }

@@ -4,16 +4,13 @@
  */
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Game;
-import org.newdawn.slick.GameContainer;
-
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
@@ -58,6 +55,9 @@ public class MainMenu extends BasicGameState implements ComponentListener{
         play = new MouseOverArea(container,new Image(getClass().getResource("ressources/newgame.png").getPath()), 350, 430, this);
         play.setNormalColor(new Color(0.7f,0.7f,0.7f,1f));
         play.setMouseOverColor(new Color(0.9f,0.9f,0.9f,1f));
+
+        Music music = new Music("soundtrack/Hacker.aiff");
+        music.loop();
 
     }
 
