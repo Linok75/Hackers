@@ -6,9 +6,6 @@ package model.maps;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.ArrayList;
-//import model.ressources.attacks.DF_Grille_Phishing;
-import model.ressources.attacks.Phishing;
 
 /**
  *
