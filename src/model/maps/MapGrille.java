@@ -47,7 +47,7 @@ public class MapGrille implements IMap {
         }
         return null;
     }
-    
+
     @Override
     public Dimension getDimensionMap(){
         return new Dimension(CO,LI);
@@ -125,6 +125,21 @@ public class MapGrille implements IMap {
     }
 
     public void trojan(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void effraction(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void exploitation(Node node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void bruteForcing(Node node) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
