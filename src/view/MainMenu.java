@@ -4,12 +4,6 @@
  */
 package view;
 
-<<<<<<< HEAD
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Game;
-=======
->>>>>>> 2997684cf1a4fc37fe502d06f57b6a5364f3a937
 import model.Menu;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;

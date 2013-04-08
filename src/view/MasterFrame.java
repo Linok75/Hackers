@@ -4,12 +4,12 @@
  */
 package view;
 
+import view.levelsFrame.Level;
 import model.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import view.levelsFrame.FinishLevel;
-import view.levelsFrame.Level;
 
 /**
  *
