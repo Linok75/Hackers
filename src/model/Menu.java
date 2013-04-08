@@ -18,8 +18,10 @@ import tools.XStreamer;
  */
 public class Menu {
 
-    private static float currentView = 0;
-    private static final Scanner sc = new Scanner(System.in);
+    public static int MODE_CONSOLE = 0;
+
+    private static float currentView = 0; //mode console
+    private static final Scanner sc = new Scanner(System.in); //mode console
     private static Player player;
     private static int idOfSave = -1;
     //private static ArrayList<Level> levels;
@@ -36,6 +38,8 @@ public class Menu {
     // 2 - Charger Partie
     // 3 - Param√®tres
     public static void run() {
+
+        Menu.MODE_CONSOLE = 1;
 
         loadLevels();
         loadPlayers();
@@ -298,10 +302,9 @@ public class Menu {
     }
 
     public static void nextLevel() { //TODOEND
-        System.out.println("NEXT LEVEL");
+        if (Menu.MODE_CONSOLE == 1) System.out.println("NEXT LEVEL");
 
-        //TODO = trouver une place a la ligne suivante x)
-        player.setPower(100);
+        player.reset();
 
         //System.out.println(currentLevel+" -> "+(player.getAdvanced() + 1));
 
@@ -312,22 +315,24 @@ public class Menu {
         savePlayer();
 
         if (player.getAdvanced() >= levels.size() && currentLevel == levels.size() - 1) {
-            System.out.println("Vous avez terminer le jeu !");
-            System.out.println("Retour au menu ... ");
+            if (Menu.MODE_CONSOLE == 1)System.out.println("Vous avez terminer le jeu !");
+            if (Menu.MODE_CONSOLE == 1)System.out.println("Retour au menu ... ");
             currentView = 0;
             menu = true;
             return;
         }
 
         currentLevel++;
-        System.out.println(currentLevel);
+        if (Menu.MODE_CONSOLE == 1)System.out.println(currentLevel);
         Level level = levels.get(currentLevel);
 
         Game.getInstance().setLevel(level);
 
         // Lancement de la partie
         //Game.makeInstance(player, level);
-        Game.getInstance().play();
+        //Game.getInstance().play();
 
     }
+
+
 }

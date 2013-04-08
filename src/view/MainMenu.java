@@ -4,9 +4,7 @@
  */
 package view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Game;
+import model.Menu;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -14,11 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.SelectTransition;
-import org.newdawn.slick.state.transition.Transition;
 /**
  *
  * @author Quentin

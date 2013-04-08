@@ -28,6 +28,7 @@ public final class Player {
     private Set<Attack> attacks;
     private ArrayList<Hardware> hardwares;
     private int power;
+    private static final int DEFAULT_POWER = 100;
 
     private int advanced; //(numero du niveau max que le joueur a atteint)
     //private Date dateOfLastGame; //(date de la dernière partie jouée (aide pour se retrouver lors des chargements))
@@ -36,7 +37,7 @@ public final class Player {
         this.money = 0;
         this.attacks = new HashSet<Attack>();
         this.hardwares = new ArrayList<Hardware>();
-        this.power = 100;
+        this.power = DEFAULT_POWER;
         this.name = "Unnamed";
         this.advanced = 0;
     }
@@ -143,6 +144,10 @@ public final class Player {
             throw new IllegalArgumentException("Impossible d'ajouter du 'power' négatif !");
         }
         this.power += nb;
+    }
+
+    public void reset() {
+        this.power = DEFAULT_POWER;
     }
 
     public String toString() {
