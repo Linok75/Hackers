@@ -70,7 +70,12 @@ public class Map extends BasicGameState{
         g.drawImage(this.background.getImage(), (int)this.background.getPos().getX(), (int)this.background.getPos().getY());
         
         for (NodeView nd : this.nodeViewList) {
-            g.drawImage(this.node, (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
+            if(!nd.isCorrupt()){
+                g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
+            }else{
+                g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY());
+                nd.refresh();
+            }
             g.drawImage(this.hexagone, (int) nd.getPos().getX()-5, (int) nd.getPos().getY()-5);
         }
     }
@@ -103,14 +108,14 @@ public class Map extends BasicGameState{
                             break;
                         }
                         if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col));
+                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col),this.node);
                         } else {
                             tmp.setColor(assoc.getValue());
                         }
                     }
                 }
                 if (tmp == null) {
-                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col));
+                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col),this.node);
                 }
                 this.nodeViewList.add(tmp);
                 tmp = null;
@@ -184,12 +189,12 @@ public class Map extends BasicGameState{
         return null;
     }
     
-    public void contamination(NodeIllustration nodeActive, String atk) {
+    public void contamination(NodeIllustration nodeActive, String atk) throws SlickException {
         try {
             this.instance.getPlayer().attack(atk, this.instance.getLevel().getMap().getNode(nodeActive.getLinkToNode().x, nodeActive.getLinkToNode().y));
             for (NodeView nd : this.nodeViewList) {
                 if (this.instance.getLevel().getMap().getNode(nd.getLinkToNode().x, nd.getLinkToNode().y).isHack()) {
-                    nd.corrupt();
+                    nd.corrupt(atk);
                 }
             }
         } catch (NoSuffisantPA ex) {
