@@ -19,7 +19,6 @@ import tools.XStreamer;
 public class Menu {
 
     public static int MODE_CONSOLE = 0;
-
     private static float currentView = 0; //mode console
     private static final Scanner sc = new Scanner(System.in); //mode console
     private static Player player;
@@ -68,7 +67,7 @@ public class Menu {
         } while (true);
     }
 
-    private static void loadLevels() {
+    public static void loadLevels() {
         XStreamer<Level> xsLevels = new XStreamer<Level>();
         //System.out.println(Menu.class.getResource("../levels/").getPath());
         //File f = new File("/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels");
@@ -104,7 +103,7 @@ public class Menu {
 
     }
 
-    private static void loadPlayers() {
+    public static void loadPlayers() {
         XStreamer<Player> xsPlayers = new XStreamer<Player>();
         File f = new File(Menu.class.getResource("../saves/").getPath());
         FileFilter ff = new FileFilter() {
@@ -131,7 +130,7 @@ public class Menu {
         }
     }
 
-    public static void affichMenu() {
+    private static void affichMenu() {
         System.out.println("Menu");
         System.out.println("\t1 - Nouvelle Partie");
         System.out.println("\t2 - Charger Partie");
@@ -139,7 +138,7 @@ public class Menu {
         System.out.println("\t4 - Quitter");
     }
 
-    public static void saisieMenu() {
+    private static void saisieMenu() {
 
         String saisie = sc.nextLine();
 
@@ -158,34 +157,20 @@ public class Menu {
 
     }
 
-    public static void affichNouvellePartie() {
+    private static void affichNouvellePartie() {
         System.out.println("Nouvelle Partie");
         System.out.println("\t0 - Retour");
         System.out.println("\tVeuillez saisir votre surnom :");
     }
 
-    public static void saisieNouvellePartie() {
+    private static void saisieNouvellePartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
             currentView = 0;
         } else {
             System.out.println("Chargement...");
 
-            // TO-DO : V√©rifier que le nom ne comporte pas des caract√®res invalides
-            player = new Player(saisie);
-            player.addAttack(new DDoS());
-            player.addAttack(new Phishing());
-
-            // Chargement du premier niveau
-            currentLevel = 0;
-            Level level = levels.get(currentLevel);
-
-            savePlayer();
-
-            System.out.println("D√©but de la partie.");
-
-            // Lancement de la partie
-            Game.makeInstance(player, level);
+            nouvellePartie(saisie);
             System.out.println("Lancement niveau 0");
             Game.getInstance().play();
 
@@ -194,7 +179,27 @@ public class Menu {
         }
     }
 
-    public static void affichChargerPartie() {
+    public static void nouvellePartie(String playerName) {
+        // TO-DO : V√©rifier que le nom ne comporte pas des caract√®res invalides
+        player = new Player(playerName);
+        player.addAttack(new DDoS());
+        player.addAttack(new Phishing());
+
+        // Chargement du premier niveau
+        currentLevel = 0;
+        Level level = levels.get(currentLevel);
+
+        savePlayer();
+
+        if (Menu.MODE_CONSOLE == 1) {
+            System.out.println("D√©but de la partie.");
+        }
+
+        // Lancement de la partie
+        Game.makeInstance(player, level);
+    }
+
+    private static void affichChargerPartie() {
         System.out.println("Charger Partie");
         System.out.println("\t0 - Retour");
         System.out.println("-----------------------");
@@ -206,103 +211,128 @@ public class Menu {
         System.out.println("-----------------------");
     }
 
-    public static void saisieChargerPartie() {
+    private static void saisieChargerPartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
             currentView = 0;
         } else { //Verification saisie = num d'une sauvegarde
             try {
                 int num = Integer.parseInt(saisie);
-                if (num >= 1 && num <= players.size()) {
-                    System.out.println("Chargement...");
-
-                    idOfSave = num; // - 1
-                    player = players.get(idOfSave - 1);
-
-                    if (player.getAdvanced() >= levels.size()) {
-                        System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
-                        currentView = 4;
-                        return;
-                    }
-
-                    currentLevel = player.getAdvanced();
-                    Level level = levels.get(currentLevel);
-
-                    // Lancement de la partie
-                    Game.makeInstance(player, level);
-
-                    System.out.println("Lancement niveau "+currentLevel);
-                    Game.getInstance().play();
-                    menu = false;
-                } else {
-                    System.out.println("Num√©ro de sauvegarde inexistant");
-                }
+                chargerPartie(num);
             } catch (NumberFormatException nfe) {
                 System.out.println("Erreur, veuillez saisir le num√©ro de la sauvegarde que vous voulez charger.");
             }
         }
     }
 
-    public static void affichListOfLevels() {
+    public static void chargerPartie(int idSave) {
+        if (idSave >= 1 && idSave <= players.size()) {
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Chargement...");
+            }
+
+            idOfSave = idSave; // - 1
+            player = players.get(idOfSave - 1);
+
+            if (player.getAdvanced() >= levels.size()) {
+                if (Menu.MODE_CONSOLE == 1) {
+                    System.out.println("Le joueur √† d√©j√† fini le jeu au moins une fois");
+                }
+                currentView = 4;
+                return;
+            }
+
+            currentLevel = player.getAdvanced();
+            Level level = levels.get(currentLevel);
+
+            Game.makeInstance(player, level);
+
+            if (Menu.MODE_CONSOLE == 1) {
+                // Lancement de la partie
+                Game.getInstance().play();
+                menu = false;
+                System.out.println("Lancement niveau " + currentLevel);
+            }
+
+        } else {
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Num√©ro de sauvegarde inexistant");
+            }
+        }
+    }
+
+    private static void affichListOfLevels() {
         System.out.println("Selection du niveau");
         System.out.println("\t0 - Retour");
         System.out.println("-----------------------");
         int i = 1;
         for (Level level : levels) {
-            System.out.println("\t" + i );
+            System.out.println("\t" + i);
             i++;
         }
         System.out.println("-----------------------");
     }
 
-    public static void saisieListOfLevels() {
+    private static void saisieListOfLevels() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
             currentView = 0;
         } else { //Verification saisie = num d'une sauvegarde
             try {
                 int num = Integer.parseInt(saisie);
-                if (num >= 1 && num <= levels.size()) {
-                    System.out.println("Chargement...");
-
-                    currentLevel = num - 1;
-                    Level level = levels.get(currentLevel);
-
-                    // Lancement de la partie
-                    Game.makeInstance(player, level);
-
-                    System.out.println("Lancement niveau "+currentLevel);
-                    Game.getInstance().play();
-                    menu = false;
-                } else {
-                    System.out.println("Niveau inexistant");
-                }
+                listOfLevels(idOfSave);
             } catch (NumberFormatException nfe) {
                 System.out.println("Erreur, veuillez saisir le num√©ro de la sauvegarde que vous voulez charger.");
             }
         }
     }
 
-    public static void affichParametre() {
+    public static void listOfLevels(int idLevel) {
+        if (idLevel >= 1 && idLevel <= levels.size()) {
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Chargement...");
+            }
+
+            currentLevel = idLevel - 1;
+            Level level = levels.get(currentLevel);
+
+            // Lancement de la partie
+            Game.makeInstance(player, level);
+
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Lancement niveau " + currentLevel);
+                Game.getInstance().play();
+                menu = false;
+            }
+        } else {
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Niveau inexistant");
+            }
+        }
+    }
+
+    private static void affichParametre() {
         System.out.println("Pas de param√®tres pour le moment ...");
     }
 
-    public static void saisieParametre() {
+    private static void saisieParametre() {
         currentView = 0;
     }
 
-    public static void savePlayer() {
+    private static void savePlayer() {
 
         XStreamer<Player> saver = new XStreamer<Player>();
         if (idOfSave == -1) {
-            idOfSave = (players.size()+1);
+            idOfSave = (players.size() + 1);
         }
-        saver.save(player, Menu.class.getResource("../saves/").getPath()+"player"+idOfSave+".xml");
+        saver.save(player, Menu.class.getResource("../saves/").getPath() + "player" + idOfSave + ".xml");
 
     }
 
     public static void nextLevel() { //TODOEND
-        if (Menu.MODE_CONSOLE == 1) System.out.println("NEXT LEVEL");
+        if (Menu.MODE_CONSOLE == 1) {
+            System.out.println("NEXT LEVEL");
+        }
 
         player.reset();
 
@@ -315,15 +345,21 @@ public class Menu {
         savePlayer();
 
         if (player.getAdvanced() >= levels.size() && currentLevel == levels.size() - 1) {
-            if (Menu.MODE_CONSOLE == 1)System.out.println("Vous avez terminer le jeu !");
-            if (Menu.MODE_CONSOLE == 1)System.out.println("Retour au menu ... ");
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Vous avez terminer le jeu !");
+            }
+            if (Menu.MODE_CONSOLE == 1) {
+                System.out.println("Retour au menu ... ");
+            }
             currentView = 0;
             menu = true;
             return;
         }
 
         currentLevel++;
-        if (Menu.MODE_CONSOLE == 1)System.out.println(currentLevel);
+        if (Menu.MODE_CONSOLE == 1) {
+            System.out.println(currentLevel);
+        }
         Level level = levels.get(currentLevel);
 
         Game.getInstance().setLevel(level);
@@ -333,6 +369,4 @@ public class Menu {
         //Game.getInstance().play();
 
     }
-
-
 }
