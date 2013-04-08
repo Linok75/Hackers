@@ -33,6 +33,17 @@ public class MasterFrame extends StateBasedGame {
     }
 
     @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        System.out.println(key+" = "+c);
+
+        // Gestion du son
+
+        // 65 = F7
+        // 68 = F10
+    }
+
+    @Override
     public void initStatesList(GameContainer container) throws SlickException {
         this.getState(MAINMENUSTATE).init(container, this);
         this.getState(LEVELSTATE).init(container, this);

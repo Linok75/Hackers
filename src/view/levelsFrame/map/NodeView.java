@@ -63,6 +63,7 @@ public class NodeView {
         if (atk.equals("Phishing")) {
             this.corBy = new Image(getClass().getResource("../../ressources/phishing.png").getPath());
         }
+<<<<<<< HEAD
         if (atk.equals("Trojan")) {
             this.corBy = new Image(getClass().getResource("../../ressources/cheval.png").getPath());
         }
@@ -80,9 +81,12 @@ public class NodeView {
         }
         
         
+=======
+
+>>>>>>> 2997684cf1a4fc37fe502d06f57b6a5364f3a937
         this.corBy = this.corBy.getScaledCopy((float)(this.corBy.getWidth()/(this.base.getWidth()*1.75)));
         this.refresh();
-        
+
     }
 
     public Point getPos() {
@@ -104,28 +108,28 @@ public class NodeView {
     public Rectangle getClickableArea() {
         return clickableArea;
     }
-    
+
     public void refresh() throws SlickException{
         Graphics g;
-        
+
         g = this.state.getGraphics();
-        
+
         g.drawImage(this.base, 0, 0, this.color);
         g.drawImage(this.base.getSubImage(0, 0, this.corPart, base.getHeight()), 0, 0, new Color(56, 118, 166));
         if(this.corPart>=this.state.getWidth() || this.corPart%2 == 0){
             this.corBy.drawCentered(this.state.getWidth()/2, this.state.getHeight()/2);
         }
         g.flush();
-        
+
         if(this.corPart<this.state.getWidth()){
             this.corPart++;
         }
     }
-    
+
     public Image getState(){
         return this.state;
     }
-    
+
     public boolean isCorrupt(){
         return this.corrupt;
     }
