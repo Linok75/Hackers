@@ -19,14 +19,16 @@ import view.tools.Illustration;
  *
  * @author Ara
  */
-public class InfosTarget extends BasicGameState {
+public class InfosGlobal extends BasicGameState {
     
     private int stateID;
     private Game gameInstance;
     private Illustration targetView;
     private Illustration ddosButton;
+    private Illustration targetBackground;
+    private Illustration playerBackground;
     
-    public InfosTarget(int stateID, Game gameInstance){
+    public InfosGlobal(int stateID, Game gameInstance){
         this.stateID=stateID;
         this.gameInstance=gameInstance;
     }
@@ -38,17 +40,22 @@ public class InfosTarget extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.targetView = new Illustration(new Image(getClass().getResource(this.gameInstance.getLevel().getTarget().getPath()).getPath()), new Point(1200,250));
-        this.ddosButton = new Illustration(new Image(getClass().getResource("../ressources/launchDdos.png").getPath()), new Point(this.targetView.getPos().x+15, this.targetView.getPos().y+this.targetView.getImage().getHeight()+220));
+        this.targetBackground = new Illustration(new Image(getClass().getResource("../ressources/infosTarget.png").getPath()), new Point(1077,-20));
+        this.playerBackground = new Illustration(new Image(getClass().getResource("../ressources/infosPlayer.png").getPath()), new Point(this.targetBackground.getPos().x+23,this.targetBackground.getPos().y+this.targetBackground.getImage().getHeight()-180));
+        this.targetView = new Illustration(new Image(getClass().getResource(this.gameInstance.getLevel().getTarget().getPath()).getPath()), new Point(this.targetBackground.getPos().x+120,this.targetBackground.getPos().y+150));
+        this.ddosButton = new Illustration(new Image(getClass().getResource("../ressources/buttonDDOS.png").getPath()), new Point(this.playerBackground.getPos().x+240, this.playerBackground.getPos().y+157));
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        g.drawImage(this.targetBackground.getImage(), this.targetBackground.getPos().x, this.targetBackground.getPos().y);
+        g.drawImage(this.playerBackground.getImage(), this.playerBackground.getPos().x, this.playerBackground.getPos().y);
         g.drawImage(this.targetView.getImage(), this.targetView.getPos().x, this.targetView.getPos().y);
         g.drawString(this.gameInstance.getLevel().getTarget().getDescription(), this.targetView.getPos().x+this.targetView.getImage().getWidth()+10, this.targetView.getPos().y+20);
-        g.fillRect(this.targetView.getPos().x-20, this.targetView.getPos().y+this.targetView.getImage().getHeight()+100, 356, 10);
-        g.drawString("Point d'action : "+this.gameInstance.getPlayer().getPower(), this.targetView.getPos().x, this.targetView.getPos().y+this.targetView.getImage().getHeight()+150);
+        g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
+        g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
         g.drawImage(this.ddosButton.getImage(), this.ddosButton.getPos().x, this.ddosButton.getPos().y);
+        g.drawString("Launch DDOS", this.ddosButton.getPos().x+33, this.ddosButton.getPos().y+30);
         
     }
 

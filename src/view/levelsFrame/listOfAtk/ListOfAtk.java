@@ -29,6 +29,7 @@ public class ListOfAtk extends BasicGameState {
     private Illustration nextButton;
     private Illustration preButton;
     private Illustration cadreList;
+    private Illustration background;
     private int scrolledPx, ligneMax;
     private Rectangle clipArea;
 
@@ -48,8 +49,9 @@ public class ListOfAtk extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.cadreList = new Illustration(new Image(getClass().getResource("../../ressources/cadreListElem.png").getPath()), new Point(1180, 735));
-        this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/button.png").getPath()), new Point(1480, 830));
+        this.background = new Illustration(new Image(getClass().getResource("../../ressources/atkList.png").getPath()), new Point(1100, 607));
+        this.cadreList = new Illustration(new Image(getClass().getResource("../../ressources/cadreAtk.png").getPath()), new Point(this.background.getPos().x+80, this.background.getPos().y+131));
+        this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/buttonScroll.png").getPath()), new Point(this.background.getPos().x+380, this.background.getPos().y+200));
         this.preButton = new Illustration(this.nextButton.getImage().getFlippedCopy(false, true), new Point(this.nextButton.getPos().x, this.nextButton.getPos().y + this.nextButton.getImage().getHeight() + 50));
         this.clipArea = new Rectangle(this.cadreList.getPos().x, this.cadreList.getPos().y, this.cadreList.getImage().getWidth(), this.cadreList.getImage().getHeight() * 5 - 10);
     }
@@ -58,6 +60,7 @@ public class ListOfAtk extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         int numLigne;
 
+        g.drawImage(this.background.getImage(), this.background.getPos().x, this.background.getPos().y);
         g.drawImage(this.nextButton.getImage(), this.nextButton.getPos().x, this.nextButton.getPos().y, this.nextButton.getFilter());
         g.drawImage(this.preButton.getImage(), this.preButton.getPos().x, this.preButton.getPos().y, this.preButton.getFilter());
 
