@@ -63,6 +63,22 @@ public class NodeView {
         if (atk.equals("Phishing")) {
             this.corBy = new Image(getClass().getResource("../../ressources/phishing.png").getPath());
         }
+        if (atk.equals("Trojan")) {
+            this.corBy = new Image(getClass().getResource("../../ressources/cheval.png").getPath());
+        }
+        if (atk.equals("Effraction")) {
+            this.corBy = new Image(getClass().getResource("../../ressources/effraction.png").getPath());
+        }
+        if (atk.equals("Virus")) {
+            this.corBy = new Image(getClass().getResource("../../ressources/virus.png").getPath());
+        }
+        if (atk.equals("Exploitation")) {
+            this.corBy = new Image(getClass().getResource("../../ressources/exploitation.png").getPath());
+        }
+        if (atk.equals("Brute Force")) {
+            this.corBy = new Image(getClass().getResource("../../ressources/bruteForce.png").getPath());
+        }
+        
         
         this.corBy = this.corBy.getScaledCopy((float)(this.corBy.getWidth()/(this.base.getWidth()*1.75)));
         this.refresh();

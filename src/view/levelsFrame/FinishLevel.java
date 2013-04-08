@@ -10,6 +10,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
 import model.Game;
+import model.Menu;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -67,7 +68,8 @@ public class FinishLevel extends BasicGameState{
         //nextLevel
         if(this.startUpdate){
             container.sleep(5000);
-            this.parentState.enterState(MasterFrame.MAINMENUSTATE);
+            this.parentState.initStatesList(container);
+            this.parentState.enterState(MasterFrame.LEVELSTATE);
         }
         this.startUpdate = true;
     }

@@ -7,6 +7,7 @@ package view;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
+import model.Menu;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
