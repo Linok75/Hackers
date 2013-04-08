@@ -133,7 +133,11 @@ public class Level extends BasicGameState {
         if (atk != null) {
             nodeIllustration = this.infosNode.launchContamination();
             if (nodeIllustration != null) {
-                this.map.contamination(nodeIllustration, atk);
+                try {
+                    this.map.contamination(nodeIllustration, atk);
+                } catch (SlickException ex) {
+                    Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
             }
         }
         
