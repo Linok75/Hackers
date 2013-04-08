@@ -66,5 +66,8 @@ public class MainView {
 
         //Lancement jeu...
         //Game.getInstance().play();
+        
+        Menu.loadLevels();
+        Menu.loadPlayers();
     }
 }

@@ -30,8 +30,7 @@ public class FinishLevel extends BasicGameState{
     private TrueTypeFont font;
     private boolean startUpdate;
     
-    public FinishLevel(int stateID, Game gameInstance){
-        this.gameInstance = gameInstance;
+    public FinishLevel(int stateID){
         this.stateID = stateID;
         this.startUpdate = false;
     }
@@ -44,6 +43,7 @@ public class FinishLevel extends BasicGameState{
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.parentState = game;
+        this.gameInstance = Game.getInstance();
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
@@ -68,6 +68,7 @@ public class FinishLevel extends BasicGameState{
         //nextLevel
         if(this.startUpdate){
             container.sleep(5000);
+            Menu.nextLevel();
             this.parentState.initStatesList(container);
             this.parentState.enterState(MasterFrame.LEVELSTATE);
         }

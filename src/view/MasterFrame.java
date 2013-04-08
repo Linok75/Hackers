@@ -24,11 +24,10 @@ public class MasterFrame extends StateBasedGame {
 
     public MasterFrame() throws SlickException {
         super("Hackers");
-        this.gameInstance = Game.getInstance();
 
         this.addState(new MainMenu(MAINMENUSTATE));
-        this.addState(new Level(LEVELSTATE, this.gameInstance));
-        this.addState(new FinishLevel(FINISHLEVELSTATE, this.gameInstance));
+        this.addState(new Level(LEVELSTATE));
+        this.addState(new FinishLevel(FINISHLEVELSTATE));
         this.enterState(MAINMENUSTATE);
     }
 

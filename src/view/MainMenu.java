@@ -4,11 +4,13 @@
  */
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Menu;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
+import model.Game;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
@@ -74,6 +76,13 @@ public class MainMenu extends BasicGameState implements ComponentListener{
             this.container.exit();
         }
         if (source == play) {
+            Game.destroyInstance();
+            Menu.nouvellePartie("Linok");
+            try {
+                this.game.initStatesList(container);
+            } catch (SlickException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
             game.enterState(MasterFrame.LEVELSTATE, new FadeOutTransition(), new FadeInTransition());
             //game.enterState(MasterFrame.LEVELSTATE);
         }

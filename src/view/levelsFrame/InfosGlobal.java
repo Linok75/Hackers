@@ -42,7 +42,7 @@ public class InfosGlobal extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.targetBackground = new Illustration(new Image(getClass().getResource("../ressources/infosTarget.png").getPath()), new Point(1077,-20));
         this.playerBackground = new Illustration(new Image(getClass().getResource("../ressources/infosPlayer.png").getPath()), new Point(this.targetBackground.getPos().x+23,this.targetBackground.getPos().y+this.targetBackground.getImage().getHeight()-180));
-        this.targetView = new Illustration(new Image(getClass().getResource(this.gameInstance.getLevel().getTarget().getPath()).getPath()), new Point(this.targetBackground.getPos().x+120,this.targetBackground.getPos().y+150));
+//        this.targetView = new Illustration(new Image(getClass().getResource(this.gameInstance.getLevel().getTarget().getPath()).getPath()), new Point(this.targetBackground.getPos().x+120,this.targetBackground.getPos().y+150));
         this.ddosButton = new Illustration(new Image(getClass().getResource("../ressources/buttonDDOS.png").getPath()), new Point(this.playerBackground.getPos().x+240, this.playerBackground.getPos().y+157));
     }
 
