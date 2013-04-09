@@ -53,8 +53,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
         play.setNormalColor(new Color(0.7f, 0.7f, 0.7f, 1f));
         play.setMouseOverColor(new Color(0.9f, 0.9f, 0.9f, 1f));
 
-        Music music = new Music("soundtrack/Hacker.aiff");
-        music.loop();
+        
 
     }
 
