@@ -24,12 +24,13 @@ import tools.XStreamer;
 public class Main {
 
     public static void main(String args[]) {
-        //Menu.run();
-        makeLevel1();
-        makeLevel2();
-        //makeLevel3();
-        //makeLevel4();
-        makeLevel5();
+        IMap m = new MapHexa();
+        Menu.run();
+        //makeLevel1();
+        //makeLevel2();
+        //makeLevel3(); // TODO
+        //makeLevel4(); // TODO
+        //makeLevel5();
     }
 
     public static void makeLevel1() {
@@ -40,11 +41,7 @@ public class Main {
 
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
-        String test = MapHexa.NODEDEFAULTPATH;
-        String test2 = MapHexa.NODEDEFAULTDESC;
-        String serveur = "Serveur Cible";
-
-        Target target = new Target(30, new ArrayList<Defence>(), serveur, test);
+        Target target = new Target(30, new ArrayList<Defence>(), "Serveur Cible", MapHexa.NODEDEFAULTPATH);
 
         IMap map = new MapHexa();
 
@@ -64,14 +61,14 @@ public class Main {
 //        map.setNode(1,10, new Node(behavior));
 //        map.setNode(7,11, new Node(behavior));
 
-        map.setNode(5, 4, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 5, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(2, 5, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(4, 6, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(3, 8, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(5, 2, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 7, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
-        map.setNode(6, 2, new model.maps.Node(behavior, test2, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 4, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 5, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(2, 5, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(4, 6, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(3, 8, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 2, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 7, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 2, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
 
 
         Mission mission = new Mission("Level_1", "Attack !");

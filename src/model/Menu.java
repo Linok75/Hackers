@@ -69,11 +69,7 @@ public class Menu {
 
     public static void loadLevels() {
         XStreamer<Level> xsLevels = new XStreamer<Level>();
-        //System.out.println(Menu.class.getResource("../levels/").getPath());
-        //File f = new File("/Users/Quentin/Documents/NetBeansProjects/hacking/Hackers/src/levels");
         File f = new File(Menu.class.getResource("../levels/").getPath());
-
-        // /!\ Si on veut faire un executable, faudra voir le chemin qu'il faudra mettre /!\
 
         FileFilter ff = new FileFilter() {
 
@@ -365,7 +361,7 @@ public class Menu {
         Game.getInstance().setLevel(level);
 
         // Lancement de la partie
-        //Game.makeInstance(player, level);
+        Game.makeInstance(player, level);
         //Game.getInstance().play();
 
     }
