@@ -361,7 +361,7 @@ public class Menu {
         Game.getInstance().setLevel(level);
 
         // Lancement de la partie
-        Game.makeInstance(player, level);
+        //Game.makeInstance(player, level);
         //Game.getInstance().play();
 
     }
