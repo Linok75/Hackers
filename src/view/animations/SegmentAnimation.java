@@ -49,6 +49,7 @@ public class SegmentAnimation {
                 phase = PHASE_INFINI;
             }
         } else if (phase == PHASE_INFINI) {
+
             if (cur.x == trg.x && cur.y == trg.y) {
                 cur = new Point(src.x, src.y);
             }

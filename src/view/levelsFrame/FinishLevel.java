@@ -29,12 +29,12 @@ public class FinishLevel extends BasicGameState{
     private StateBasedGame parentState;
     private TrueTypeFont font;
     private boolean startUpdate;
-    
+
     public FinishLevel(int stateID){
         this.stateID = stateID;
         this.startUpdate = false;
     }
-    
+
     @Override
     public int getID() {
         return this.stateID;

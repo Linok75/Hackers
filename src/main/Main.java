@@ -23,7 +23,7 @@ public class Main {
         IMap m = new MapHexa();
         //Menu.run();
         makeLevel1();
-        //makeLevel2();
+        makeLevel2();
         //makeLevel3(); // TODO
         //makeLevel4(); // TODO
         //makeLevel5();
@@ -122,7 +122,10 @@ public class Main {
         map.setNode(5, 7, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(1, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
 
-        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !");
+        Reward r = new Reward(0);
+        r.addAttack(new Trojan());
+
+        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !", r);
 
         Level level = new Level(map, 20, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());

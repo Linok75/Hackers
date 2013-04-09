@@ -6,6 +6,8 @@ package view.animations;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Game;
 import model.maps.Node;
 import model.ressources.attacks.Attack;
@@ -13,7 +15,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.levelsFrame.map.Map;
 import view.levelsFrame.map.NodeView;
@@ -33,8 +34,10 @@ public class CorruptionAnimation {
     //
     private ArrayList<SegmentAnimation> sas;
     //
-    private static final int TIME = 500;
+    private static final int TIME = 200;
     private int currentTime = 0;
+    //
+    private int state = 0;
 
     public CorruptionAnimation(Game game, Map map, Attack atk) {
         this.game = game;
@@ -42,7 +45,14 @@ public class CorruptionAnimation {
         ArrayList<ArrayList<Node>> nodes = atk.getNodesHack();
         this.nodeViews = new ArrayList<ArrayList<NodeView>>();
         this.source = getNodeViewOf(nodes.get(0).get(0)).getCenter();
-        nodes.remove(0);
+        this.atk = atk;
+
+        try {
+            getNodeViewOf(nodes.get(0).get(0)).corrupt(atk.getTitle());
+        } catch (SlickException ex) {
+            Logger.getLogger(CorruptionAnimation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         this.sas = new ArrayList<SegmentAnimation>();
         //
 
@@ -55,13 +65,14 @@ public class CorruptionAnimation {
             this.nodeViews.add(array);
         }
 
+        state++;
 
-        if (!this.nodeViews.isEmpty()) {
-            ArrayList<NodeView> array = this.nodeViews.get(0);
+        if (this.nodeViews.size() >= 2) {
+            ArrayList<NodeView> array = this.nodeViews.get(state);
             for (NodeView nodeView : array) {
                 this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
             }
-            this.nodeViews.remove(0);
+            //this.nodeViews.remove(0);
         }
     }
 
@@ -88,12 +99,25 @@ public class CorruptionAnimation {
     }
 
     private void nextState() {
-        if (!this.nodeViews.isEmpty()) {
-            ArrayList<NodeView> array = this.nodeViews.get(0);
-            for (NodeView nodeView : array) {
-                this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
+        //TOREMAKE
+        if (state < this.nodeViews.size()) {
+            for (NodeView nodeView : this.nodeViews.get(state)) {
+                try {
+                    //System.out.println(atk);
+                    //System.out.println(nodeView);
+                    nodeView.corrupt(atk.getTitle());
+                } catch (SlickException ex) {
+                    Logger.getLogger(CorruptionAnimation.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            this.nodeViews.remove(0);
+            state++;
+            if (state < this.nodeViews.size()) {
+                ArrayList<NodeView> array = this.nodeViews.get(state);
+                for (NodeView nodeView : array) {
+                    this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
+                }
+            }
+            //this.nodeViews.remove(0);
         } else {
             currentTime++;
         }
