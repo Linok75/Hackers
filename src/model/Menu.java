@@ -87,7 +87,7 @@ public class Menu {
         Level level;
         for (File file : f.listFiles(ff)) {
             try {
-                //System.out.println(file.getAbsolutePath());
+                System.out.println(file.getAbsolutePath());
                 level = xsLevels.load(file.getAbsolutePath());
                 levels.add(level);
             } catch (Exception e) {
