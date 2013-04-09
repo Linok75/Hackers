@@ -4,18 +4,7 @@
  */
 package view;
 
-import java.util.ArrayList;
-import model.Game;
-import model.Level;
 import model.Menu;
-import model.Mission;
-import model.Player;
-import model.maps.Defence;
-import model.maps.IMap;
-import model.maps.MapHexa;
-import model.maps.Target;
-import model.ressources.attacks.DDoS;
-import model.ressources.attacks.Phishing;
 
 /**
  *
@@ -26,7 +15,7 @@ public class MainView {
     public static void main(String arg[]) {
         //Construction Model...
         ViewLauncher viewLauncher = new ViewLauncher();
-        Player player = new Player();
+        /*Player player = new Player();
         player.addAttack(new DDoS());
         player.addAttack(new Phishing());
 
@@ -55,7 +44,7 @@ public class MainView {
         Mission mission = new Mission("Level_1", "Créez ton botnet et attaque la cible de la mission !");
 
         Level level = new Level(map, 30, target, mission);
-
+*/
 //        Game.makeInstance(player, level);
         Menu.loadLevels();
         Menu.loadPlayers();
@@ -67,6 +56,6 @@ public class MainView {
         //Lancement jeu...
         //Game.getInstance().play();
 
-        ;
+
     }
 }
