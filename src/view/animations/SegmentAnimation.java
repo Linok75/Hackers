@@ -4,10 +4,7 @@
  */
 package view.animations;
 
-import com.sun.media.jai.util.Rational;
 import java.awt.Point;
-import java.util.ArrayList;
-import javax.vecmath.Vector2d;
 import org.newdawn.slick.Graphics;
 import tools.DrawUtil;
 
@@ -73,8 +70,12 @@ public class SegmentAnimation {
 
     private Point goTo(Point src, Point trg) {
         Point[] points = DrawUtil.bresenham_line(src, trg);
-        if (points.length < 2) return trg;
-        else return points[1];
+        if (points.length < 2) {
+            return trg;
+        }
+        else {
+            return points[1];
+        }
     }
 
     public boolean continu() {
