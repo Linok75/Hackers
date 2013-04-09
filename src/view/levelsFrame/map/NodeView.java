@@ -18,7 +18,7 @@ import org.newdawn.slick.SlickException;
  */
 public class NodeView {
 
-    private final static Dimension SIZE = new Dimension(110, 140);
+    public final static Dimension SIZE = new Dimension(110, 140);
     private Rectangle clickableArea;
     private Point pos;
     private boolean corrupt;
@@ -64,7 +64,7 @@ public class NodeView {
             this.corBy = new Image(getClass().getResource("../../ressources/phishing.png").getPath());
         }
 
-        this.corBy = this.corBy.getScaledCopy((float)(this.corBy.getWidth()/(this.base.getWidth()*1.75)));
+        this.corBy = this.corBy.getScaledCopy((float) (this.corBy.getWidth() / (this.base.getWidth() * 1.75)));
         this.refresh();
 
     }
@@ -89,28 +89,32 @@ public class NodeView {
         return clickableArea;
     }
 
-    public void refresh() throws SlickException{
+    public void refresh() throws SlickException {
         Graphics g;
 
         g = this.state.getGraphics();
 
         g.drawImage(this.base, 0, 0, this.color);
         g.drawImage(this.base.getSubImage(0, 0, this.corPart, base.getHeight()), 0, 0, new Color(56, 118, 166));
-        if(this.corPart>=this.state.getWidth() || this.corPart%2 == 0){
-            this.corBy.drawCentered(this.state.getWidth()/2, this.state.getHeight()/2);
+        if (this.corPart >= this.state.getWidth() || this.corPart % 2 == 0) {
+            this.corBy.drawCentered(this.state.getWidth() / 2, this.state.getHeight() / 2);
         }
         g.flush();
 
-        if(this.corPart<this.state.getWidth()){
+        if (this.corPart < this.state.getWidth()) {
             this.corPart++;
         }
     }
 
-    public Image getState(){
+    public Image getState() {
         return this.state;
     }
 
-    public boolean isCorrupt(){
+    public boolean isCorrupt() {
         return this.corrupt;
+    }
+
+    public Point getCenter() {
+        return new Point(this.pos.x + (this.base.getWidth() / 2), this.pos.y + (this.base.getHeight() / 2));
     }
 }

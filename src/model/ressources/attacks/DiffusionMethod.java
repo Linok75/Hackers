@@ -17,7 +17,8 @@ public abstract class DiffusionMethod {
     protected Attack attack;
     protected IMap map;
     //protected int nbDiffusionMax; //Permet de limiter la propagation d'attaques "puissantes"
-
+    // SYSTEM FOR EASY VIEW
+    private ArrayList<ArrayList<Node>> nodesHack;
     protected ArrayList<Node> old_nodes; // Contient les nodes hackes lors des precedentes execution de la difusionMethod
 
     public DiffusionMethod(Attack attack, IMap map) {
@@ -25,14 +26,23 @@ public abstract class DiffusionMethod {
         this.map = map;
 
         this.old_nodes = new ArrayList<Node>();
+        this.nodesHack = new ArrayList<ArrayList<Node>>();
     }
 
-    public boolean start(ArrayList<Node> nodes) {
+    public boolean run(ArrayList<Node> nodes) {
+        this.resetNodesHack();
+        this.nodesHack.add(nodes);
+        return this.start(nodes);
+    }
+
+    protected boolean start(ArrayList<Node> nodes) {
         //System.out.println("DiffusionMethod : start !");
 
         if (!nodes.isEmpty()) {
             for (Node node : nodes) {
-                if (!node.isHackable(attack)) return false;
+                if (!node.isHackable(attack)) {
+                    return false;
+                }
             }
 
             old_nodes.addAll(nodes);
@@ -42,6 +52,7 @@ public abstract class DiffusionMethod {
             for (Node node : nodes) {
                 nextNodes.addAll(getAllNodesAround(node));
                 nextNodes.removeAll(old_nodes);
+
                 node.hack(attack);
             }
 
@@ -51,6 +62,9 @@ public abstract class DiffusionMethod {
                     return false;
                 }
             }
+
+            this.nodesHack.add(nextNodes);
+
             return start(nextNodes);
         } else {
             return false;
@@ -59,7 +73,9 @@ public abstract class DiffusionMethod {
 
     protected boolean AllNodesAroundAreHackable(Node node) {
         ArrayList<Node> nodes = getAllNodesAround(node);
-        if (nodes.isEmpty()) return false;
+        if (nodes.isEmpty()) {
+            return false;
+        }
         nodes.removeAll(old_nodes);
         for (Node node1 : nodes) {
             if (!node1.isHackable(attack)) {
@@ -76,4 +92,12 @@ public abstract class DiffusionMethod {
     }
 
     protected abstract ArrayList<Node> getAllNodesAround(Node node);
+
+    public ArrayList<ArrayList<Node>> getNodesHack() {
+        return nodesHack;
+    }
+
+    public void resetNodesHack() {
+        this.nodesHack.clear();
+    }
 }

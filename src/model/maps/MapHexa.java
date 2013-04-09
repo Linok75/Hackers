@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import model.ressources.attacks.*;
 
+
 /**
  *
  * @author bpetit
@@ -88,41 +89,49 @@ public final class MapHexa implements IMap {
     }
 
     @Override
-    public void phishing(Node node) {
+    public ArrayList<ArrayList<Node>> phishing(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        new DF_Hexa_Phishing(new Phishing(), this).start(nodes);
-        // DF_Hexa_Courbe(new Phishing(), this).start(nodes);
+        DiffusionMethod dm = new DF_Hexa_Phishing(new Phishing(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
+    }
+    @Override
+    public ArrayList<ArrayList<Node>> virus(Node node) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        DiffusionMethod dm = new DF_Hexa_Virus(new Virus(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
     }
 
     @Override
-    public void virus(Node node) {
+    public ArrayList<ArrayList<Node>> trojan(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        new DF_Hexa_Virus(new Virus(), this).start(nodes);
+        DiffusionMethod dm = new DF_Hexa_Trojan(new Trojan(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
     }
 
     @Override
-    public void trojan(Node node) {
+    public ArrayList<ArrayList<Node>> effraction(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        new DF_Hexa_Trojan(new Trojan(), this).start(nodes);
+        DiffusionMethod dm = new DF_Hexa_Effraction(new Effraction(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
     }
 
-    @Override
-    public void effraction(Node node) {
+    public ArrayList<ArrayList<Node>> exploitation(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
-        new DF_Hexa_Effraction(new Effraction(), this).start(nodes);
+        DiffusionMethod dm = new DF_Hexa_Exploitation(new Exploitation(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
     }
 
-    public void exploitation(Node node) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        nodes.add(node);
-        new DF_Hexa_Exploitation(new Exploitation(), this).start(nodes);
-    }
-
-    public void bruteForcing(Node node) {
+    public ArrayList<ArrayList<Node>> bruteForcing(Node node) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

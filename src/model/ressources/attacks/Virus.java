@@ -20,7 +20,7 @@ public class Virus extends Attack {
     }
 
     public void execute(Node node) {
-        Game.getInstance().getLevel().getMap().virus(node);
+        this.nodesHack = Game.getInstance().getLevel().getMap().virus(node);
     }
 
 }

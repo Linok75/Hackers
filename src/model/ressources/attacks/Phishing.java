@@ -20,7 +20,7 @@ public class Phishing extends Attack {
     }
 
     public void execute(Node node) {
-        Game.getInstance().getLevel().getMap().phishing(node);
+        this.nodesHack = Game.getInstance().getLevel().getMap().phishing(node);
     }
 
 }

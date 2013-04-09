@@ -6,6 +6,7 @@ package model.maps;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,19 +18,19 @@ public interface IMap {
     public Node getNode(int li, int co);
     public Point getPoint(Node node);
     public Dimension getDimensionMap();
-    
+
     public int countAllNodesHack();
 
-    public void phishing(Node node);
-    public void virus(Node node);
-    public void trojan(Node node);
-    public void effraction(Node node);
-    public void exploitation(Node node);
-    public void bruteForcing (Node node);
-    
+    public ArrayList<ArrayList<Node>> phishing(Node node);
+    public ArrayList<ArrayList<Node>> virus(Node node);
+    public ArrayList<ArrayList<Node>> trojan(Node node);
+    public ArrayList<ArrayList<Node>> effraction(Node node);
+    public ArrayList<ArrayList<Node>> exploitation(Node node);
+    public ArrayList<ArrayList<Node>> bruteForcing (Node node);
+
     public boolean in0_LI(int n);
     public boolean in0_CO(int n);
 
-    
+
 
 }

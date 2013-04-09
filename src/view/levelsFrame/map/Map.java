@@ -12,14 +12,11 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 import model.Game;
 import model.ressources.attacks.Attack;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import view.animations.CorruptionAnimation;
 import view.levelsFrame.Level;
 import view.levelsFrame.infosNode.NodeIllustration;
 import view.tools.Illustration;
@@ -28,7 +25,8 @@ import view.tools.Illustration;
  *
  * @author Ara
  */
-public class Map extends BasicGameState{
+public class Map extends BasicGameState {
+
     private Illustration background;
     private Image hexagone;
     private Image node;
@@ -39,8 +37,11 @@ public class Map extends BasicGameState{
     private ArrayList<NodeView> nodeViewList;
     private HashMap<Attack, Color> assocColorAtk;
     private Point gridPos;
-    
-    public Map(Game instance, int stateID) throws SlickException{
+    // Contamination Animation
+    private CorruptionAnimation animation = null;
+    //
+
+    public Map(Game instance, int stateID) throws SlickException {
         this.instance = instance;
         this.dim = this.instance.getLevel().getMap().getDimensionMap();
         this.stateID = stateID;
@@ -55,11 +56,11 @@ public class Map extends BasicGameState{
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(-50,180));
+        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(-50, 180));
         this.hexagone = new Image(getClass().getResource("../../ressources/hexagone.png").getPath());
         this.node = new Image(getClass().getResource("../../ressources/nodeMap.png").getPath());
-        
-                
+
+
         this.setGrid();
         this.setAssocColorDef();
         this.setNodeViewList();
@@ -67,37 +68,48 @@ public class Map extends BasicGameState{
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawImage(this.background.getImage(), (int)this.background.getPos().getX(), (int)this.background.getPos().getY());
-        
+        g.drawImage(this.background.getImage(), (int) this.background.getPos().getX(), (int) this.background.getPos().getY());
+
         for (NodeView nd : this.nodeViewList) {
-            if(!nd.isCorrupt()){
+            if (!nd.isCorrupt()) {
                 g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
-            }else{
+            } else {
                 g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY());
                 nd.refresh();
             }
-            g.drawImage(this.hexagone, (int) nd.getPos().getX()-5, (int) nd.getPos().getY()-5);
+            g.drawImage(this.hexagone, (int) nd.getPos().getX() - 5, (int) nd.getPos().getY() - 5);
         }
+
+        if (this.animation != null) {
+            this.animation.render(container, game, g);
+        }
+
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        if (this.animation != null) {
+            this.animation.update(container, game, delta);
+            if (this.animation.isEnded()) {
+                this.animation = null;
+            }
+        }
     }
-    
+
     private void setNodeViewList() throws SlickException {
         boolean pair;
         int x, y, maxCol;
         NodeView tmp = null;
 
         pair = true;
-        y = (int)this.gridPos.getY();
+        y = (int) this.gridPos.getY();
 
         for (int row = 0; row < (int) this.dim.getHeight(); row++) {
             if (pair) {
-                x = (int)this.gridPos.getX();
+                x = (int) this.gridPos.getX();
                 pair = false;
             } else {
-                x = (int)(this.gridPos.getX()+ this.hexagone.getWidth()/2);
+                x = (int) (this.gridPos.getX() + this.hexagone.getWidth() / 2);
                 pair = true;
             }
             for (int col = 0; col < (int) this.dim.getWidth(); col++) {
@@ -108,24 +120,24 @@ public class Map extends BasicGameState{
                             break;
                         }
                         if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col),this.node);
+                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
                         } else {
                             tmp.setColor(assoc.getValue());
                         }
                     }
                 }
                 if (tmp == null) {
-                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col),this.node);
+                    tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
                 }
                 this.nodeViewList.add(tmp);
                 tmp = null;
-                x += this.node.getWidth()+13;
+                x += this.node.getWidth() + 13;
             }
 //            System.out.println("");
-            y += this.node.getHeight()-17;
+            y += this.node.getHeight() - 17;
         }
     }
-    
+
     private void setAssocColorDef() {
         for (Attack atk : this.instance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
@@ -168,15 +180,15 @@ public class Map extends BasicGameState{
 
     private void setGrid() {
         double scale;
-        
-        this.gridDim = new Dimension((int)(this.hexagone.getWidth()*this.dim.getWidth()), (int)(this.hexagone.getHeight()*this.dim.getHeight()));
-        scale = this.gridDim.getWidth()/this.background.getImage().getWidth();
+
+        this.gridDim = new Dimension((int) (this.hexagone.getWidth() * this.dim.getWidth()), (int) (this.hexagone.getHeight() * this.dim.getHeight()));
+        scale = this.gridDim.getWidth() / this.background.getImage().getWidth();
         this.hexagone = this.hexagone.getScaledCopy((float) scale);
         this.node = this.node.getScaledCopy((float) scale);
-        this.gridDim.setSize(this.gridDim.getWidth()*scale, this.gridDim.getHeight()*scale);
-        this.gridPos = new Point((int)(this.background.getPos().getX()+((this.background.getImage().getWidth()-50)-this.gridDim.getWidth())/2), (int)(this.background.getPos().getY()+((this.background.getImage().getHeight()+200)-this.gridDim.getHeight())/2));
+        this.gridDim.setSize(this.gridDim.getWidth() * scale, this.gridDim.getHeight() * scale);
+        this.gridPos = new Point((int) (this.background.getPos().getX() + ((this.background.getImage().getWidth() - 50) - this.gridDim.getWidth()) / 2), (int) (this.background.getPos().getY() + ((this.background.getImage().getHeight() + 200) - this.gridDim.getHeight()) / 2));
     }
-    
+
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
         Rectangle scaleArea;
 
@@ -188,18 +200,24 @@ public class Map extends BasicGameState{
         }
         return null;
     }
-    
+
     public void contamination(NodeIllustration nodeActive, String atk) throws SlickException {
         try {
             this.instance.getPlayer().attack(atk, this.instance.getLevel().getMap().getNode(nodeActive.getLinkToNode().x, nodeActive.getLinkToNode().y));
-            for (NodeView nd : this.nodeViewList) {
-                if (this.instance.getLevel().getMap().getNode(nd.getLinkToNode().x, nd.getLinkToNode().y).isHack()) {
-                    nd.corrupt(atk);
-                }
+            this.animation = new CorruptionAnimation(this.instance, this, this.instance.getPlayer().getAttack(atk));
+            /*
+             * for (NodeView nd : this.nodeViewList) { if
+             * (this.instance.getLevel().getMap().getNode(nd.getLinkToNode().x,
+             * nd.getLinkToNode().y).isHack()) { nd.corrupt(atk); }
             }
+             */
         } catch (NoSuffisantPA ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<NodeView> getNodeViewList() {
+        return nodeViewList;
     }
 
     public int getNbCorrupt() {
