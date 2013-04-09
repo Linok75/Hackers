@@ -7,6 +7,7 @@ package view;
 import java.util.ArrayList;
 import model.Game;
 import model.Level;
+import model.Menu;
 import model.Mission;
 import model.Player;
 import model.maps.Defence;
@@ -29,7 +30,7 @@ public class MainView {
         player.addAttack(new DDoS());
         player.addAttack(new Phishing());
 
-        ArrayList<Defence> behavior = new ArrayList<Defence>();
+        ArrayList<Defence> behavior = new ArrayList<>();
 
         String test = "test";
 
@@ -55,15 +56,17 @@ public class MainView {
 
         Level level = new Level(map, 30, target, mission);
 
-        Game.makeInstance(player, level);
-
+//        Game.makeInstance(player, level);
+        Menu.loadLevels();
+        Menu.loadPlayers();
         //Construction Vue...
         View.makeInstance();
 
         //Lancement vue...
         viewLauncher.start();
-
         //Lancement jeu...
         //Game.getInstance().play();
+
+        ;
     }
 }

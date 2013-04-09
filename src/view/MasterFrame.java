@@ -1,15 +1,15 @@
-/*
+      /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package view;
 
-import view.levelsFrame.Level;
 import model.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import view.levelsFrame.FinishLevel;
+import view.levelsFrame.Level;
 
 /**
  *
@@ -24,11 +24,9 @@ public class MasterFrame extends StateBasedGame {
 
     public MasterFrame() throws SlickException {
         super("Hackers");
-        this.gameInstance = Game.getInstance();
 
         this.addState(new MainMenu(MAINMENUSTATE));
-        this.addState(new Level(LEVELSTATE, this.gameInstance));
-        this.addState(new FinishLevel(FINISHLEVELSTATE, this.gameInstance));
+        
         this.enterState(MAINMENUSTATE);
     }
 
@@ -45,9 +43,9 @@ public class MasterFrame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-        this.getState(MAINMENUSTATE).init(container, this);
-        this.getState(LEVELSTATE).init(container, this);
-        this.getState(FINISHLEVELSTATE).init(container, this);
+        for(int i=0;i<this.getStateCount();i++){
+            this.getState(i).init(container, this);
+        }
     }
 
 }

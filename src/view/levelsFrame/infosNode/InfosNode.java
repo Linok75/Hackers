@@ -49,6 +49,9 @@ public class InfosNode extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        this.nodeFocus = null;
+        this.nodeActive = null;
+        this.infosNodeVisible = false;
         this.infosNode = new Illustration(new Image(getClass().getResource("../../ressources/infosNode.png").getPath()), new Point(-27, -400));
         this.arrowHide = new Illustration(new Image(getClass().getResource("../../ressources/arrowHide.png").getPath()).getScaledCopy((float) 0.08), new Point((int)(this.infosNode.getImage().getWidth()+this.infosNode.getPos().getX()-130), (int)(this.infosNode.getImage().getHeight()+this.infosNode.getPos().getY()-190)));
     }

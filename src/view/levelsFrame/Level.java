@@ -47,14 +47,8 @@ public class Level extends BasicGameState {
     private ListOfAtk atkList;
     private InfosGlobal infosTarget;
 
-    public Level(int stateID, Game gameInstance) throws SlickException {
+    public Level(int stateID) throws SlickException {
         this.stateID = stateID;
-        this.gameInstance = gameInstance;
-
-        this.map = new Map(gameInstance, stateID);
-        this.infosNode = new InfosNode(stateID, gameInstance);
-        this.atkList = new ListOfAtk(stateID, gameInstance);
-        this.infosTarget = new InfosGlobal(stateID, gameInstance);
     }
 
     @Override
@@ -65,6 +59,12 @@ public class Level extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.parentState = game;
+        this.gameInstance = Game.getInstance();
+
+        this.map = new Map(gameInstance, stateID);
+        this.infosNode = new InfosNode(stateID, gameInstance);
+        this.atkList = new ListOfAtk(stateID, gameInstance);
+        this.infosTarget = new InfosGlobal(stateID, gameInstance);
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
