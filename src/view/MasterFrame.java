@@ -26,7 +26,7 @@ public class MasterFrame extends StateBasedGame {
         super("Hackers");
 
         this.addState(new MainMenu(MAINMENUSTATE));
-        
+
         this.enterState(MAINMENUSTATE);
     }
 

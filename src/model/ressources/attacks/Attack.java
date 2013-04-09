@@ -4,6 +4,7 @@
  */
 package model.ressources.attacks;
 
+import java.util.ArrayList;
 import model.maps.Defence;
 import model.maps.Node;
 import model.ressources.Ressource;
@@ -24,6 +25,8 @@ public abstract class Attack extends Ressource {
     //methdode de diffusion
     //private DiffusionMethod diffusion;
 
+    //SYSTEM FOR EASY VIEW
+    protected ArrayList<ArrayList<Node>> nodesHack;
 
     public Attack(String titre, String description, Defence defence, int cost) {
         super(titre, description);
@@ -41,5 +44,9 @@ public abstract class Attack extends Ressource {
     }
 
     public abstract void execute(Node node);
+
+    public ArrayList<ArrayList<Node>> getNodesHack() {
+        return nodesHack;
+    }
 
 }

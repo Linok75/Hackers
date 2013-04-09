@@ -18,6 +18,6 @@ public class BruteForcing extends Attack {
     }
 
     public void execute(Node node) {
-        Game.getInstance().getLevel().getMap().bruteForcing(node);
+        this.nodesHack = Game.getInstance().getLevel().getMap().bruteForcing(node);
     }
 }

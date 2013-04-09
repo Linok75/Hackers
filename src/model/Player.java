@@ -96,6 +96,15 @@ public final class Player {
 
     }
 
+    public Attack getAttack(String nameOfAttack) {
+        for (Attack attack : attacks) {
+            if (attack.getTitle().equalsIgnoreCase(nameOfAttack)) {
+                return attack;
+            }
+        }
+        return null;
+    }
+
     public void ddos(int power, Target target) throws NoSuffisantPA {
         for (Attack attack : attacks) {
             if (attack instanceof DDoS) {

@@ -18,6 +18,6 @@ public class Effraction extends Attack {
     }
 
     public void execute(Node node) {
-        Game.getInstance().getLevel().getMap().effraction(node);
+        this.nodesHack = Game.getInstance().getLevel().getMap().effraction(node);
     }
 }
