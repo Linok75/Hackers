@@ -5,11 +5,7 @@
 package main;
 
 import java.util.ArrayList;
-import model.Game;
-import model.Level;
-import model.Menu;
-import model.Mission;
-import model.Player;
+import model.*;
 import model.maps.*;
 import model.ressources.attacks.DDoS;
 import model.ressources.attacks.Phishing;
@@ -25,8 +21,8 @@ public class Main {
 
     public static void main(String args[]) {
         IMap m = new MapHexa();
-        Menu.run();
-        //makeLevel1();
+        //Menu.run();
+        makeLevel1();
         //makeLevel2();
         //makeLevel3(); // TODO
         //makeLevel4(); // TODO
@@ -70,8 +66,10 @@ public class Main {
         map.setNode(1, 7, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
         map.setNode(6, 2, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
 
+        Reward r = new Reward(0);
+        r.addAttack(new Virus());
 
-        Mission mission = new Mission("Level_1", "Attack !");
+        Mission mission = new Mission("Level_1", "Attack !", r);
 
         Level level = new Level(map, 30, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());

@@ -331,6 +331,8 @@ public class Menu {
         }
 
         player.reset();
+        Level level = levels.get(currentLevel);
+        level.reward(player);
 
         //System.out.println(currentLevel+" -> "+(player.getAdvanced() + 1));
 
@@ -356,7 +358,7 @@ public class Menu {
         if (Menu.MODE_CONSOLE == 1) {
             System.out.println(currentLevel);
         }
-        Level level = levels.get(currentLevel);
+        level = levels.get(currentLevel);
 
         Game.getInstance().setLevel(level);
 

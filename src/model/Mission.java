@@ -14,14 +14,18 @@ public final class Mission {
     private String title;
     private String description;
 
-    //private ... rewards
+    private Reward rewards;
     //private ... bonus
 
-    public Mission(String title, String description) {
+    public Mission(String title, String description, Reward rewards) {
         this.title = title;
         this.description = description;
+        this.rewards = rewards;
     }
 
+    public void reward(Player p) {
+        this.rewards.reward(p);
+    }
 
     @Override
     public String toString() {
