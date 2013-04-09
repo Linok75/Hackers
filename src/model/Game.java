@@ -184,8 +184,4 @@ public final class Game {
 
         System.out.println(str);
     }
-    
-    public static void destroyInstance(){
-        instance = null;
-    }
 }

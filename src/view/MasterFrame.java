@@ -26,8 +26,7 @@ public class MasterFrame extends StateBasedGame {
         super("Hackers");
 
         this.addState(new MainMenu(MAINMENUSTATE));
-        this.addState(new Level(LEVELSTATE));
-        this.addState(new FinishLevel(FINISHLEVELSTATE));
+        
         this.enterState(MAINMENUSTATE);
     }
 
@@ -44,9 +43,9 @@ public class MasterFrame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-        this.getState(MAINMENUSTATE).init(container, this);
-        this.getState(LEVELSTATE).init(container, this);
-        this.getState(FINISHLEVELSTATE).init(container, this);
+        for(int i=0;i<this.getStateCount();i++){
+            this.getState(i).init(container, this);
+        }
     }
 
 }
