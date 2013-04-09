@@ -6,6 +6,7 @@ package view;
 
 import model.Game;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import view.levelsFrame.FinishLevel;
@@ -26,8 +27,10 @@ public class MasterFrame extends StateBasedGame {
         super("Hackers");
 
         this.addState(new MainMenu(MAINMENUSTATE));
-
         this.enterState(MAINMENUSTATE);
+
+        Music music = new Music("soundtrack/Hacker.aiff");
+        music.loop();
     }
 
     @Override

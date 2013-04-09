@@ -55,11 +55,14 @@ public class CorruptionAnimation {
             this.nodeViews.add(array);
         }
 
-        ArrayList<NodeView> array = this.nodeViews.get(0);
-        for (NodeView nodeView : array) {
-            this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
+
+        if (!this.nodeViews.isEmpty()) {
+            ArrayList<NodeView> array = this.nodeViews.get(0);
+            for (NodeView nodeView : array) {
+                this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
+            }
+            this.nodeViews.remove(0);
         }
-        this.nodeViews.remove(0);
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
