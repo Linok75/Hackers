@@ -1,1 +1,364 @@
-<?xml version="1.0" ?><model.Level><map class="model.maps.MapHexa"><nodes><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors><model.maps.Defence>Phishing</model.maps.Defence><model.maps.Defence>Virus</model.maps.Defence></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors><model.maps.Defence>Phishing</model.maps.Defence></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node></model.maps.Node-array><model.maps.Node-array><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors><isHack>false</isHack><description>test</description><path>test</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node><model.maps.Node><isHack>false</isHack><description>Description encore inconnue...</description><path>../ressources/defaultPortrait.png</path></model.maps.Node></model.maps.Node-array></nodes></map><time>20</time><target><behaviors></behaviors><isHack>false</isHack><description>test</description><path>test</path><difficulty>30</difficulty></target><mission><title>Level_2</title><description>Créez ton botnet et attaque la cible de la mission !</description></mission><isCompleted>false</isCompleted></model.Level>
+<?xml version="1.0" ?>
+<model.Level>
+    <map class="model.maps.MapHexa">
+        <nodes>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors>
+                        <model.maps.Defence>Phishing</model.maps.Defence>
+                        <model.maps.Defence>Virus</model.maps.Defence>
+                    </behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors>
+                        <model.maps.Defence>Phishing</model.maps.Defence>
+                    </behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+            <model.maps.Node-array>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+            </model.maps.Node-array>
+        </nodes>
+    </map>
+    <time>20</time>
+    <target>
+        <behaviors></behaviors>
+        <isHack>false</isHack>
+        <description>test</description>
+        <path>../ressources/defaultPortrait.png</path>
+        <difficulty>30</difficulty>
+    </target>
+    <mission>
+        <title>Level_2</title>
+        <description>Créez ton botnet et attaque la cible de la mission !</description>
+    </mission>
+    <isCompleted>false</isCompleted>
+</model.Level>
