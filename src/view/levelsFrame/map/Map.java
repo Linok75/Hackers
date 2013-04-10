@@ -81,7 +81,7 @@ public class Map extends BasicGameState {
             g.drawImage(this.hexagone, (int) nd.getPos().getX() - 5, (int) nd.getPos().getY() - 5);
         }
 
-        for (CorruptionAnimation ca: corruptionAnimations) {
+        for (CorruptionAnimation ca : corruptionAnimations) {
             ca.render(container, game, g);
         }
 
@@ -117,14 +117,17 @@ public class Map extends BasicGameState {
             for (int col = 0; col < (int) this.dim.getWidth(); col++) {
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Attack atk : this.instance.getPlayer().getAttackList()) {
-                    if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(atk)) {
-                        if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(atk), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node); 
+                    if (!"ddos".equalsIgnoreCase(atk.getTitle())) {
+                        System.out.println(atk.getTitle());
+                        if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(atk)) {
+                            if (tmp == null) {
+                                tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(atk), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
+                            } else {
+                                tmp.setColor(this.assocColorAtk.get(atk));
+                            }
                         } else {
-                            tmp.setColor(this.assocColorAtk.get(atk));
+                            break;
                         }
-                    } else{
-                        break;
                     }
                 }
                 if (tmp == null) {
