@@ -26,7 +26,7 @@ public final class Player {
     private String name;
 
     private int money;
-    private Set<Attack> attacks;
+    private ArrayList<Attack> attacks;
     private ArrayList<Hardware> hardwares;
     private int power;
     private static final int DEFAULT_POWER = 100;
@@ -36,7 +36,7 @@ public final class Player {
 
     public Player() {
         this.money = 0;
-        this.attacks = new HashSet<Attack>();
+        this.attacks = new ArrayList<Attack>();
         this.hardwares = new ArrayList<Hardware>();
         this.power = DEFAULT_POWER;
         this.name = "Unnamed";
@@ -62,10 +62,9 @@ public final class Player {
     }
 
     public void addAttack(Attack attack) {
-        //Vérifier qu'il n'y a pas une attaque du même type (classe) ?
-
-        //if (!(class instanceof Attack)) ...
-        //if (attacks.contains(class)) ...
+        for (Attack attack1 : attacks) {
+            if (attack1.getTitle().equals(attack.getTitle())) return;
+        }
 
         this.attacks.add(attack);
     }
