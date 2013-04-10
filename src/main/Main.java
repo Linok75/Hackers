@@ -96,8 +96,10 @@ public class Main {
 
         // defense anti phishing
         defPhishing.add(Defence.Phishing);
+
         defVirus.add(Defence.Phishing);
         defVirus.add(Defence.Virus);
+
         defTrojan.add(Defence.Phishing);
         defTrojan.add(Defence.Virus);
         defTrojan.add(Defence.Trojan);
@@ -152,8 +154,10 @@ public class Main {
 
         // defense anti phishing
         defPhishing.add(Defence.Phishing);
+
         defVirus.add(Defence.Phishing);
         defVirus.add(Defence.Virus);
+
         defTrojan.add(Defence.Phishing);
         defTrojan.add(Defence.Virus);
         defTrojan.add(Defence.Trojan);
@@ -177,7 +181,9 @@ public class Main {
         map.setNode(6, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(5, 3, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
 
-        Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !");
+        Reward r = new Reward(0);
+
+        Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !", r);
 
         Level level = new Level(map, 20, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level5.xml").getPath());

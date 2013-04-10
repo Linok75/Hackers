@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Logger;
 import model.Game;
 import model.ressources.attacks.Attack;
@@ -38,7 +39,7 @@ public class Map extends BasicGameState {
     private HashMap<Attack, Color> assocColorAtk;
     private Point gridPos;
     // Contamination Animation
-    private CorruptionAnimation animation = null;
+    private ArrayList<CorruptionAnimation> corruptionAnimations = new ArrayList<CorruptionAnimation>();
     //
 
     public Map(Game instance, int stateID) throws SlickException {
@@ -80,18 +81,19 @@ public class Map extends BasicGameState {
             g.drawImage(this.hexagone, (int) nd.getPos().getX() - 5, (int) nd.getPos().getY() - 5);
         }
 
-        if (this.animation != null) {
-            this.animation.render(container, game, g);
+        for (CorruptionAnimation ca: corruptionAnimations) {
+            ca.render(container, game, g);
         }
 
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if (this.animation != null) {
-            this.animation.update(container, game, delta);
-            if (this.animation.isEnded()) {
-                this.animation = null;
+        for (Iterator<CorruptionAnimation> it = corruptionAnimations.iterator(); it.hasNext();) {
+            CorruptionAnimation ca = it.next();
+            ca.update(container, game, delta);
+            if (ca.isEnded()) {
+                it.remove();
             }
         }
     }
@@ -204,9 +206,11 @@ public class Map extends BasicGameState {
     }
 
     public void contamination(NodeIllustration nodeActive, String atk) throws SlickException {
+        //if (animation != null) return;
+
         try {
             this.instance.getPlayer().attack(atk, this.instance.getLevel().getMap().getNode(nodeActive.getLinkToNode().x, nodeActive.getLinkToNode().y));
-            this.animation = new CorruptionAnimation(this.instance, this, this.instance.getPlayer().getAttack(atk));
+            this.corruptionAnimations.add(new CorruptionAnimation(this.instance, this, this.instance.getPlayer().getAttack(atk)));
             /*
              * for (NodeView nd : this.nodeViewList) { if
              * (this.instance.getLevel().getMap().getNode(nd.getLinkToNode().x,

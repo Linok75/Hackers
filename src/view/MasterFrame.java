@@ -29,7 +29,7 @@ public class MasterFrame extends StateBasedGame {
         this.addState(new MainMenu(MAINMENUSTATE));
         this.enterState(MAINMENUSTATE);
 
-        Music music = new Music("soundtrack/Hacker.aiff");
+        Music music = new Music("soundtrack/Hacker1.aiff");
         music.loop();
     }
 
