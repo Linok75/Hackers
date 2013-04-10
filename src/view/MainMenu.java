@@ -17,6 +17,7 @@ import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import view.levelsFrame.FinishLevel;
+import view.levelsFrame.GameOver;
 
 /**
  *
@@ -79,6 +80,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
             try {
                 this.game.addState(new view.levelsFrame.Level(MasterFrame.LEVELSTATE));
                 this.game.addState(new FinishLevel(MasterFrame.FINISHLEVELSTATE));
+                this.game.addState(new GameOver(MasterFrame.GAMEOVERSTATE));
                 this.game.initStatesList(container);
             } catch (SlickException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
