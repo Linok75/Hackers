@@ -22,40 +22,25 @@ public class Main {
     public static void main(String args[]) {
         IMap m = new MapHexa();
         //Menu.run();
-        makeLevel1();
-        makeLevel2();
-        //makeLevel3(); // TODO
-        //makeLevel4(); // TODO
-        //makeLevel5();
+        makeLevels();
     }
 
+    public static void makeLevels() {
+        makeLevel1(); //Phishing
+        makeLevel2(); //BruteForcing
+        makeLevel3(); //Effraction
+        makeLevel4(); //Virus
+        makeLevel5(); //Trojan
+        makeLevel6(); //Exploitation
+    }
     public static void makeLevel1() {
-        Player player = new Player();
-        player.addAttack(new DDoS());
-        player.addAttack(new Phishing());
-        //System.out.println("Player :\n"+player);
-
         ArrayList<Defence> behavior = new ArrayList<>();
 
-        Target target = new Target(30, new ArrayList<Defence>(), "Serveur Cible", MapHexa.NODEDEFAULTPATH);
+        Target target = makeDefaultTarget(30);
 
         IMap map = new MapHexa();
 
         behavior.add(Defence.Phishing);
-
-        //map.setNode(5,1, new Node(behavior));
-        //map.setNode(1,2, new Node(behavior));
-        //map.setNode(7,0, new Node(behavior));
-
-        // Changement des placements en attendant que je face de la génération d'hexagone (la map était trop grande)
-//        map.setNode(5,4, new Node(behavior));
-//        map.setNode(1,5, new Node(behavior));
-//        map.setNode(2,5, new Node(behavior));
-//        map.setNode(7,6, new Node(behavior));
-//        map.setNode(3,8, new Node(behavior));
-//        map.setNode(5,10, new Node(behavior));
-//        map.setNode(1,10, new Node(behavior));
-//        map.setNode(7,11, new Node(behavior));
 
         map.setNode(5, 4, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
         map.setNode(1, 5, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
@@ -74,23 +59,15 @@ public class Main {
         Level level = new Level(map, 30, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
-        //Game.makeInstance(player, level);
-        //Game.getInstance().play();
     }
-
     public static void makeLevel2() {
-        Player player = new Player();
-        player.addAttack(new DDoS());
-        player.addAttack(new Phishing());
-        player.addAttack(new Virus());
-        player.addAttack(new Trojan());
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
         ArrayList<Defence> defVirus = new ArrayList<Defence>();
         ArrayList<Defence> defTrojan = new ArrayList<Defence>();
         String test = MapHexa.NODEDEFAULTPATH;
 
-        Target target = new Target(30, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
+        Target target = makeDefaultTarget(30);
 
         IMap map = new MapHexa();
 
@@ -134,21 +111,18 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
+    public static void makeLevel3() {
+    }
+    public static void makeLevel4() {
+    }
     public static void makeLevel5() {
-        // In Progress
-        Player player = new Player();
-        player.addAttack(new DDoS());
-        player.addAttack(new Phishing());
-        player.addAttack(new Virus());
-        player.addAttack(new Trojan());
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
         ArrayList<Defence> defVirus = new ArrayList<Defence>();
         ArrayList<Defence> defTrojan = new ArrayList<Defence>();
         String test = MapHexa.NODEDEFAULTPATH;
 
-        Target target = new Target(25, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
+        Target target = makeDefaultTarget(25);
 
         IMap map = new MapHexa();
 
@@ -190,4 +164,47 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
+    public static void makeLevel6() {
+    }
+
+    // TOOLS
+    public static void mapAddDefaultNode(IMap map, int x, int y, ArrayList<Defence> defs) {
+        map.setNode(x, y, new Node(defs, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+    }
+    public static Target makeDefaultTarget(int life) {
+        return new Target(life, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH);
+    }
+    // Ordre Croissant de force
+    public static ArrayList<Defence> getPhishing() {
+        ArrayList<Defence> defs = new ArrayList<Defence>();
+        defs.add(Defence.Phishing);
+        return defs;
+    }
+    public static ArrayList<Defence> getBruteForcing() {
+        ArrayList<Defence> defs = getPhishing();
+        defs.add(Defence.BruteForcing);
+        return defs;
+    }
+    public static ArrayList<Defence> getEffraction() {
+        ArrayList<Defence> defs = getBruteForcing();
+        defs.add(Defence.Effraction);
+        return defs;
+    }
+    public static ArrayList<Defence> getVirus() {
+        ArrayList<Defence> defs = getEffraction();
+        defs.add(Defence.Virus);
+        return defs;
+    }
+    public static ArrayList<Defence> getTrojan() {
+        ArrayList<Defence> defs = getVirus();
+        defs.add(Defence.Trojan);
+        return defs;
+    }
+    public static ArrayList<Defence> getExploitation() {
+        ArrayList<Defence> defs = getTrojan();
+        defs.add(Defence.Exploitation);
+        return defs;
+    }
+
+
 }
