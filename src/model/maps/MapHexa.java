@@ -6,7 +6,13 @@ package model.maps;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import main.Main;
 import model.ressources.attacks.*;
 
 
@@ -22,19 +28,65 @@ public final class MapHexa implements IMap {
     private static /*final*/ int CO /* = 9*/;
     private Node nodes[][]; // [LI][CO]
 
+    private static int idOfFirstNameForNode = 1;
+    private static int idOfLastNameForNode = 1;
+    private static File firstNames = new File(Main.class.getResource("../ressources/namesSource/namesFirst.txt").getPath());
+    private static File lastNames = new File(Main.class.getResource("../ressources/namesSource/namesLast.txt").getPath());
+
     public MapHexa(int LI, int CO) {
         this.LI = LI;
         this.CO = CO;
         this.nodes = new Node[LI][CO];
         for (int li = 0; li < LI; li++) {
             for (int co = 0; co < CO; co++) {
-                this.nodes[li][co] = new Node(null, NODEDEFAULTDESC, NODEDEFAULTPATH);
+                String description = getNextNameOfNode();
+                this.nodes[li][co] = new Node(null, description, NODEDEFAULTPATH);
             }
         }
     }
-    
+
     public MapHexa() {
         this(7,9); // default
+    }
+
+    public static String getNextNameOfNode() {
+        return getNextFirstNameOfNode() + " " + getNextLastNameOfNode() + "\n" + NODEDEFAULTDESC;
+    }
+
+    private static String getNextFirstNameOfNode() {
+        String s = null;
+        try {
+            FileReader fr = new FileReader(firstNames);
+            BufferedReader br = new BufferedReader(fr);
+            int i = 0;
+            while (i<=idOfFirstNameForNode && (s = br.readLine()) != null) {
+                i++;
+                //System.out.println(s.split(" ")[0]);
+            }
+            fr.close();
+            idOfFirstNameForNode++;
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        return s.split(" ")[0];
+    }
+
+    private static String getNextLastNameOfNode() {
+        String s = null;
+        try {
+            FileReader fr = new FileReader(lastNames);
+            BufferedReader br = new BufferedReader(fr);
+            int i = 0;
+            while (i<=idOfLastNameForNode && (s = br.readLine()) != null) {
+                i++;
+                //System.out.println(s.split(" ")[0]);
+            }
+            fr.close();
+            idOfLastNameForNode++;
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        return s.split(" ")[0];
     }
 
     public Node getNode(int li, int co) {

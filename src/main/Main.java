@@ -4,10 +4,9 @@
  */
 package main;
 
-import exceptions.ImpossibleLoadOfXML;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.logging.Logger;
 import model.*;
 import model.maps.*;
 import model.ressources.attacks.*;
@@ -33,6 +32,7 @@ public class Main {
         makeLevel5(); //Trojan
         makeLevel6(); //Exploitation
     }
+
     public static void makeLevel1() {
         ArrayList<Defence> behavior = new ArrayList<Defence>();
 
@@ -52,15 +52,20 @@ public class Main {
         //Reward reward = new Reward(0);
         //reward.addAttack(new Virus());
 
-        String descriptionMission = "";
-        String levelName = "";
+        String descriptionMission = "Bonjour,\n"
+                + "Nous sommes une société spécialiste de la distribution dans le domaine agroalimentaire.\n"
+                + "Nous faisons appel à vos service dans le but de faire tomber le site Web d'un de "
+                + "nos concurrents qui commence à prendre beaucoup trop d'ampleur sur le marché...\n"
+                + "Vous avez jusqu'à demain pour tomber leur site Web par tout les moyens possible, un retard sera synonyme d'échec...";
+        String levelName = "MISSION 1 : On est tous passé par là... quoi que...";
 
-        Mission mission = new Mission("Level_1", "Attack !", makeRewardNewAttack("Virus"));
+        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Virus"));
 
         Level level = new Level(map, 30, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
+
     public static void makeLevel2() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -112,6 +117,7 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
+
     public static void makeLevel3() {
         // In Progress
         Player player = new Player();
@@ -164,6 +170,7 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
+
     public static void makeLevel4() {
         // In Progress
         Player player = new Player();
@@ -215,6 +222,7 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
+
     public static void makeLevel5() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -264,12 +272,13 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
+
     public static void makeLevel6() {
     }
-
     // TOOLS
     public static void mapAddDefaultNode(IMap map, int x, int y, ArrayList<Defence> defs) {
-        map.setNode(x, y, new Node(defs, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        String description = MapHexa.getNextNameOfNode();
+        map.setNode(x, y,new Node(defs, description, MapHexa.NODEDEFAULTPATH));
     }
     public static Target makeDefaultTarget(int life) {
         return new Target(life, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH);
@@ -314,7 +323,9 @@ public class Main {
     // Atk
     public static Attack getAttack(String nameAtk) {
         for (Attack attack : getAllAttacks()) {
-            if (attack.getTitle().equalsIgnoreCase(nameAtk)) return attack;
+            if (attack.getTitle().equalsIgnoreCase(nameAtk)) {
+                return attack;
+            }
         }
         throw new IllegalArgumentException();
     }

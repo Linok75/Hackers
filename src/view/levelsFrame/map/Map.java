@@ -122,7 +122,12 @@ public class Map extends BasicGameState {
                     if (!"ddos".equalsIgnoreCase(atk.getTitle())) {
                         if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(atk)) {
                             if (tmp == null) {
-                                tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(atk), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
+                                tmp = new NodeView(new Point(x, y),
+                                        this.assocColorAtk.get(atk),
+                                        this.instance.getLevel().getMap().getNode(row, col).getPath(),
+                                        this.instance.getLevel().getMap().getNode(row, col).getDescription(),
+                                        new Point(row, col),
+                                        this.node);
                             } else {
                                 tmp.setColor(this.assocColorAtk.get(atk));
                             }
