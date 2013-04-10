@@ -32,7 +32,7 @@ public final class MapHexa implements IMap {
             }
         }
     }
-
+    
     public MapHexa() {
         this(7,9); // default
     }
