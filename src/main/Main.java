@@ -6,6 +6,8 @@ package main;
 
 import exceptions.ImpossibleLoadOfXML;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import model.*;
 import model.maps.*;
 import model.ressources.attacks.*;
