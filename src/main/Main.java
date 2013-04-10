@@ -35,6 +35,14 @@ public class Main {
         makeLevel6(); //Exploitation
     }
 
+    public static void makeLevels() {
+        makeLevel1(); //Phishing
+        makeLevel2(); //BruteForcing
+        makeLevel3(); //Effraction
+        makeLevel4(); //Virus
+        makeLevel5(); //Trojan
+        makeLevel6(); //Exploitation
+    }
     public static void makeLevel1() {
         ArrayList<Defence> behavior = new ArrayList<>();
 
@@ -62,7 +70,6 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
-
     public static void makeLevel2() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -134,6 +141,7 @@ public class Main {
 
         // defense anti phishing
         defPhishing.add(Defence.Phishing);
+
         defVirus.add(Defence.Phishing);
         defVirus.add(Defence.Virus);
         defTrojan.add(Defence.Phishing);
