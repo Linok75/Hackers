@@ -58,7 +58,7 @@ class EndGame extends BasicGameState implements ComponentListener {
 
         try {
             Font fontStart;
-            fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
+            fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("ressources/AgencyFB.ttf")));
             Font fontBase = fontStart.deriveFont(Font.PLAIN, 70);
             this.font = new TrueTypeFont(fontBase, true);
         } catch (FontFormatException | IOException ex) {
@@ -87,7 +87,7 @@ class EndGame extends BasicGameState implements ComponentListener {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     @Override

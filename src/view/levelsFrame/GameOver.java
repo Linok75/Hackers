@@ -65,7 +65,9 @@ public class GameOver extends BasicGameState implements ComponentListener{
         this.parentState = game;
         this.gameInstance = Game.getInstance();
         this.container = container;
-        if (!this.citations.isEmpty()) this.citation=this.citations.get((int)(Math.random()*this.citations.size()));
+        if (!this.citations.isEmpty()) {
+            this.citation=this.citations.get((int)(Math.random()*this.citations.size()));
+        }
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
@@ -110,13 +112,11 @@ public class GameOver extends BasicGameState implements ComponentListener{
         if (source == recommencer) {
             try {
                 Menu.replay();
-                this.parentState.addState(new view.levelsFrame.Level(MasterFrame.LEVELSTATE));
-                this.parentState.addState(new FinishLevel(MasterFrame.FINISHLEVELSTATE));
                 this.parentState.initStatesList(container);
+                parentState.enterState(MasterFrame.LEVELSTATE, new FadeOutTransition(), new FadeInTransition());
             } catch (SlickException ex) {
                 
-            }
-            parentState.enterState(MasterFrame.LEVELSTATE, new FadeOutTransition(), new FadeInTransition());
+            }    
             //game.enterState(MasterFrame.LEVELSTATE);
         }
     }
