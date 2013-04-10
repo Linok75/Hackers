@@ -61,7 +61,7 @@ public class Level extends BasicGameState {
         this.parentState = game;
         this.gameInstance = Game.getInstance();
 
-        this.map = new Map(gameInstance, stateID);
+        this.map = new Map(gameInstance, stateID,this.parentState);
         this.infosNode = new InfosNode(stateID, gameInstance);
         this.atkList = new ListOfAtk(stateID, gameInstance);
         this.infosTarget = new InfosGlobal(stateID, gameInstance);
@@ -70,7 +70,9 @@ public class Level extends BasicGameState {
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
             Font fontBase = fontStart.deriveFont(Font.PLAIN, 40);
             this.font = new TrueTypeFont(fontBase, true);
-        } catch (FontFormatException | IOException ex) {
+        } catch (FontFormatException ex) { 
+            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }catch (IOException ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
@@ -148,7 +150,7 @@ public class Level extends BasicGameState {
                     this.parentState.enterState(MasterFrame.FINISHLEVELSTATE);
                 }
             } catch (NoSuffisantPA ex) {
-                Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
             }
         }
     }
