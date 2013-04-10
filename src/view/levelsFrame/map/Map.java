@@ -114,19 +114,15 @@ public class Map extends BasicGameState {
             }
             for (int col = 0; col < (int) this.dim.getWidth(); col++) {
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
-                for (java.util.Map.Entry<Attack, Color> assoc : this.assocColorAtk.entrySet()) {
-                    if (assoc.getKey() != null) {
-                        if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(assoc.getKey())) {
-                            if (tmp == null) {
-                                tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
-                            } else {
-                                tmp.setColor(assoc.getValue());
-                            }
-
+                for (Attack atk : this.instance.getPlayer().getAttackList()) {
+                    if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(atk)) {
+                        if (tmp == null) {
+                            tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(atk), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
                             break;
+                        } else {
+                            tmp.setColor(this.assocColorAtk.get(atk));
                         }
-
-                    }
+                    } 
                 }
                 if (tmp == null) {
                     tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(null), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
@@ -144,7 +140,7 @@ public class Map extends BasicGameState {
         for (Attack atk : this.instance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
                 case Exploitation:
-                    this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
+                    this.assocColorAtk.put(atk, new Color(192, 38, 38)); //rouge
                     //this.assocColorAtk.put(atk, new Color(23, 194, 9)); //vert fluo
                     break;
 
