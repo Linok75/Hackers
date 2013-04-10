@@ -34,15 +34,6 @@ public class Main {
         makeLevel5(); //Trojan
         makeLevel6(); //Exploitation
     }
-
-    public static void makeLevels() {
-        makeLevel1(); //Phishing
-        makeLevel2(); //BruteForcing
-        makeLevel3(); //Effraction
-        makeLevel4(); //Virus
-        makeLevel5(); //Trojan
-        makeLevel6(); //Exploitation
-    }
     public static void makeLevel1() {
         ArrayList<Defence> behavior = new ArrayList<>();
 
