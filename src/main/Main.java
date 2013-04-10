@@ -4,6 +4,7 @@
  */
 package main;
 
+import exceptions.ImpossibleLoadOfXML;
 import java.util.ArrayList;
 import model.*;
 import model.maps.*;
@@ -24,8 +25,8 @@ public class Main {
         //Menu.run();
         makeLevel1();
         makeLevel2();
-        //makeLevel3(); // TODO
-        //makeLevel4(); // TODO
+        makeLevel3(); // TODO
+        makeLevel4(); // TODO
         //makeLevel5();
     }
 
@@ -133,6 +134,117 @@ public class Main {
         //Game.getInstance().play();
     }
 
+    public static void makeLevel3() {
+        try {
+            Level l = new XStreamer<Level>().load(Main.class.getResource("../levels/level3.xml").getPath());
+            System.out.println(l.getMap().toString());
+        } catch (ImpossibleLoadOfXML i) {
+            
+        }
+        // In Progress
+        Player player = new Player();
+        player.addAttack(new DDoS());
+        player.addAttack(new Phishing());
+        player.addAttack(new Virus());
+        player.addAttack(new Trojan());
+
+        ArrayList<Defence> defPhishing = new ArrayList<Defence>();
+        ArrayList<Defence> defVirus = new ArrayList<Defence>();
+        ArrayList<Defence> defTrojan = new ArrayList<Defence>();
+        String test = MapHexa.NODEDEFAULTPATH;
+
+        Target target = new Target(25, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
+
+        IMap map = new MapHexa();
+
+        // defense anti phishing
+        defPhishing.add(Defence.Phishing);
+        defVirus.add(Defence.Phishing);
+        defVirus.add(Defence.Virus);
+        defTrojan.add(Defence.Phishing);
+        defTrojan.add(Defence.Virus);
+        defTrojan.add(Defence.Trojan);
+
+        // placement des cibles anti phishing sur la map
+        map.setNode(1, 5, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(2, 5, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(3, 8, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 4, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 6, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+
+        map.setNode(0, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(4, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 3, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(4, 8, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+
+        map.setNode(0, 4, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(3, 2, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 7, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 4, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+
+        Mission mission = new Mission("Level_3", "Créez ton botnet et attaque la cible de la mission !", null);
+
+        Level level = new Level(map, 20, target, mission);
+        new XStreamer<Level>().save(level, Main.class.getResource("../levels/level3.xml").getPath());
+        //Game.makeInstance(player, level);
+        //Game.getInstance().play();
+        System.out.println(level.getMap().toString());
+    }
+    
+    public static void makeLevel4() {
+        // In Progress
+        Player player = new Player();
+        player.addAttack(new DDoS());
+        player.addAttack(new Phishing());
+        player.addAttack(new Virus());
+        player.addAttack(new Trojan());
+
+        ArrayList<Defence> defPhishing = new ArrayList<Defence>();
+        ArrayList<Defence> defVirus = new ArrayList<Defence>();
+        ArrayList<Defence> defTrojan = new ArrayList<Defence>();
+        String test = MapHexa.NODEDEFAULTPATH;
+
+        Target target = new Target(25, new ArrayList<Defence>(), test, MapHexa.NODEDEFAULTPATH);
+
+        IMap map = new MapHexa();
+
+        // defense anti phishing
+        defPhishing.add(Defence.Phishing);
+        defVirus.add(Defence.Phishing);
+        defVirus.add(Defence.Virus);
+        defTrojan.add(Defence.Phishing);
+        defTrojan.add(Defence.Virus);
+        defTrojan.add(Defence.Trojan);
+
+        // placement des cibles anti phishing sur la map
+        map.setNode(5, 4, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(2, 5, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(3, 8, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 7, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+
+        map.setNode(4, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(2, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(4, 8, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 5, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(0, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+
+        map.setNode(3, 2, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 7, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(1, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(6, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+        map.setNode(5, 3, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+
+        Mission mission = new Mission("Level_4", "Créez ton botnet et attaque la cible de la mission !", null);
+
+        Level level = new Level(map, 20, target, mission);
+        new XStreamer<Level>().save(level, Main.class.getResource("../levels/level4.xml").getPath());
+        //Game.makeInstance(player, level);
+        //Game.getInstance().play();
+    }
+
     public static void makeLevel5() {
         // In Progress
         Player player = new Player();
@@ -177,7 +289,7 @@ public class Main {
         map.setNode(6, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(5, 3, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
 
-        Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !");
+        Mission mission = new Mission("Level_5", "Créez ton botnet et attaque la cible de la mission !", null);
 
         Level level = new Level(map, 20, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level5.xml").getPath());
