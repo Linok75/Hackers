@@ -34,9 +34,6 @@ public class Main {
     }
 
     public static void makeLevel1() {
-        ArrayList<Defence> behavior = new ArrayList<Defence>();
-
-        Target target = makeDefaultTarget(30);
 
         IMap map = new MapHexa();
 
@@ -44,13 +41,10 @@ public class Main {
         mapAddDefaultNode(map, 1, 5, getPhishing());
         mapAddDefaultNode(map, 2, 5, getPhishing());
         mapAddDefaultNode(map, 4, 6, getPhishing());
-        mapAddDefaultNode(map, 3, 8, getPhishing());
+        mapAddDefaultNode(map, 3, 2, getPhishing());
         mapAddDefaultNode(map, 5, 2, getPhishing());
         mapAddDefaultNode(map, 1, 7, getPhishing());
         mapAddDefaultNode(map, 6, 2, getPhishing());
-
-        //Reward reward = new Reward(0);
-        //reward.addAttack(new Virus());
 
         String descriptionMission = "Bonjour,\n"
                 + "Nous sommes une société spécialiste de la distribution dans le domaine agroalimentaire.\n"
@@ -88,12 +82,13 @@ public class Main {
         defTrojan.add(Defence.Trojan);
 
         // placement des cibles anti phishing sur la map
-        map.setNode(5, 4, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 5, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(2, 5, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(6, 6, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(3, 8, new Node(defPhishing, test, MapHexa.NODEDEFAULTPATH));
+        mapAddDefaultNode(map, 5, 4, getPhishing());
+        mapAddDefaultNode(map, 1, 5, getPhishing());
+        mapAddDefaultNode(map, 2, 5, getPhishing());
+        mapAddDefaultNode(map, 6, 6, getPhishing());
+        mapAddDefaultNode(map, 3, 8, getPhishing());
 
+        mapAddDefaultNode(map, 5, 3, getVirus());
 
         map.setNode(5, 3, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(4, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));

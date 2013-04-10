@@ -16,7 +16,7 @@ import model.maps.Node;
 public class Virus extends Attack {
 
     public Virus() {
-        super("Virus", "...", Defence.Virus, 10);
+        super("Virus", "...", Defence.Virus, 20);
     }
 
     public void execute(Node node) {

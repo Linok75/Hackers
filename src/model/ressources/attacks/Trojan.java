@@ -14,7 +14,7 @@ import model.maps.Node;
  */
 public class Trojan extends Attack {
     public Trojan() {
-        super("Trojan", "...", Defence.Trojan, 15);
+        super("Trojan", "...", Defence.Trojan, 25);
     }
 
     public void execute(Node node) {

@@ -14,7 +14,7 @@ import model.maps.Node;
  */
 public class BruteForcing extends Attack {
     public BruteForcing() {
-        super("Brute Force", "...", Defence.BruteForcing, 15);
+        super("Brute Force", "...", Defence.BruteForcing, 10);
     }
 
     public void execute(Node node) {
