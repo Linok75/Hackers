@@ -24,8 +24,8 @@ public final class MapHexa implements IMap {
 
     public final static String NODEDEFAULTPATH = "../ressources/defaultPortrait.png";
     public final static String NODEDEFAULTDESC = "Description non disponible...";
-    private static /*final*/ int LI /* = 7*/;
-    private static /*final*/ int CO /* = 9*/;
+    private static int LI;
+    private static int CO;
     private Node nodes[][]; // [LI][CO]
 
     private static int idOfFirstNameForNode = 1;

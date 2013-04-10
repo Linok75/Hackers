@@ -108,7 +108,7 @@ public class Map extends BasicGameState {
         pair = true;
         y = (int) this.gridPos.getY();
 
-        for (int row = 0; row < (int) this.dim.getHeight(); row++) {
+        for (int row = 0; row < this.dim.height; row++) {
             if (pair) {
                 x = (int) this.gridPos.getX();
                 pair = false;
@@ -116,7 +116,9 @@ public class Map extends BasicGameState {
                 x = (int) (this.gridPos.getX() + this.hexagone.getWidth() / 2);
                 pair = true;
             }
-            for (int col = 0; col < (int) this.dim.getWidth(); col++) {
+            for (int col = 0; col < this.dim.width; col++) {
+                System.out.println(this.dim.width + " : " + this.dim.height);
+                System.out.println(col + " : " + row + "\n");
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Attack atk : this.instance.getPlayer().getAttackList()) {
                     if (!"ddos".equalsIgnoreCase(atk.getTitle())) {

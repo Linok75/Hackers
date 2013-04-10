@@ -57,7 +57,7 @@ public final class Game {
 
     public static Game getInstance() {
         if (instance == null) {
-            //throw new RuntimeException("La classe 'Game' n'a pas encore été instanciée !");
+//            throw new RuntimeException("La classe 'Game' n'a pas encore été instanciée !");
             return null;
         } else {
             return instance;
