@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <model.Level>
     <map class="model.maps.MapHexa">
         <nodes>
@@ -9,12 +9,8 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors>
-                        <model.maps.Defence>Phishing</model.maps.Defence>
-                        <model.maps.Defence>Virus</model.maps.Defence>
-                    </behaviors>
                     <isHack>false</isHack>
-                    <description>test</description>
+                    <description>Description encore inconnue...</description>
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
@@ -88,6 +84,7 @@
                 <model.maps.Node>
                     <behaviors>
                         <model.maps.Defence>Phishing</model.maps.Defence>
+                        <model.maps.Defence>Virus</model.maps.Defence>
                     </behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
@@ -99,8 +96,11 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
+                    <behaviors>
+                        <model.maps.Defence>Phishing</model.maps.Defence>
+                    </behaviors>
                     <isHack>false</isHack>
-                    <description>Description encore inconnue...</description>
+                    <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
@@ -116,27 +116,28 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <isHack>false</isHack>
-                    <description>Description encore inconnue...</description>
-                    <path>../ressources/defaultPortrait.png</path>
-                </model.maps.Node>
-                <model.maps.Node>
-                    <isHack>false</isHack>
-                    <description>Description encore inconnue...</description>
-                    <path>../ressources/defaultPortrait.png</path>
-                </model.maps.Node>
-                <model.maps.Node>
-                    <isHack>false</isHack>
-                    <description>Description encore inconnue...</description>
-                    <path>../ressources/defaultPortrait.png</path>
-                </model.maps.Node>
-                <model.maps.Node>
-                    <isHack>false</isHack>
-                    <description>Description encore inconnue...</description>
-                    <path>../ressources/defaultPortrait.png</path>
-                </model.maps.Node>
-                <model.maps.Node>
                     <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <isHack>false</isHack>
+                    <description>test</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <isHack>false</isHack>
+                    <description>Description encore inconnue...</description>
+                    <path>../ressources/defaultPortrait.png</path>
+                </model.maps.Node>
+                <model.maps.Node>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[8]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -200,7 +201,7 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[8]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -228,7 +229,7 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -249,7 +250,7 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -272,13 +273,13 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[5]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[8]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -312,7 +313,7 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[2]/behaviors"></behaviors>
+                    <behaviors reference="../../../model.maps.Node-array/model.maps.Node[5]/behaviors"></behaviors>
                     <isHack>false</isHack>
                     <description>test</description>
                     <path>../ressources/defaultPortrait.png</path>
@@ -339,9 +340,8 @@
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
-                    <behaviors reference="../../../model.maps.Node-array[2]/model.maps.Node[6]/behaviors"></behaviors>
                     <isHack>false</isHack>
-                    <description>test</description>
+                    <description>Description encore inconnue...</description>
                     <path>../ressources/defaultPortrait.png</path>
                 </model.maps.Node>
                 <model.maps.Node>
@@ -363,10 +363,10 @@
         <isHack>false</isHack>
         <description>test</description>
         <path>../ressources/defaultPortrait.png</path>
-        <difficulty>30</difficulty>
+        <difficulty>25</difficulty>
     </target>
     <mission>
-        <title>Level_2</title>
+        <title>Level_5</title>
         <description>Créez ton botnet et attaque la cible de la mission !</description>
     </mission>
     <isCompleted>false</isCompleted>

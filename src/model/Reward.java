@@ -30,6 +30,10 @@ public class Reward {
         this.newAttacks = new ArrayList<Attack>();
     }
 
+    public Reward() {
+        this(0);
+    }
+
     public ArrayList<Hardware> getHardware() {
         return hardware;
     }

@@ -8,6 +8,7 @@ import exceptions.NoSuffisantMoney;
 import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 import model.maps.Node;
