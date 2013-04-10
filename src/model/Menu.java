@@ -31,7 +31,7 @@ public class Menu {
     private static int currentLevel;
     //
     private static boolean menu = true;
-    
+
     //View :
     // 0 - Menu
     // 1 - Nouvelle Partie

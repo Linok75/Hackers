@@ -19,7 +19,7 @@ import tools.XStreamer;
 public class Main {
 
     public static void main(String args[]) {
-        IMap m = new MapHexa();
+        //IMap m = new MapHexa();
         //Menu.run();
         makeLevels();
     }
@@ -35,7 +35,7 @@ public class Main {
 
     public static void makeLevel1() {
 
-        IMap map = new MapHexa();
+        IMap map = new MapHexa(10,10);
 
         mapAddDefaultNode(map, 5, 4, getPhishing());
         mapAddDefaultNode(map, 1, 5, getPhishing());

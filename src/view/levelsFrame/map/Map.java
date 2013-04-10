@@ -117,8 +117,8 @@ public class Map extends BasicGameState {
                 pair = true;
             }
             for (int col = 0; col < this.dim.width; col++) {
-                System.out.println(this.dim.width + " : " + this.dim.height);
-                System.out.println(col + " : " + row + "\n");
+                //System.out.println(this.dim.width + " : " + this.dim.height);
+                //System.out.println(col + " : " + row + "\n");
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Attack atk : this.instance.getPlayer().getAttackList()) {
                     if (!"ddos".equalsIgnoreCase(atk.getTitle())) {
