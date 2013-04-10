@@ -67,6 +67,7 @@ public class FinishLevel extends BasicGameState{
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         //nextLevel
         if(this.startUpdate){
+            this.startUpdate = false;
             container.sleep(5000);
             Menu.nextLevel();
             this.parentState.initStatesList(container);
