@@ -26,8 +26,8 @@ public class Reward {
 
     public Reward(int money) {
         this.money = money;
-        this.hardware = new ArrayList<Hardware>();
-        this.newAttacks = new ArrayList<Attack>();
+        this.hardware = new ArrayList<>();
+        this.newAttacks = new ArrayList<>();
     }
 
     public ArrayList<Hardware> getHardware() {

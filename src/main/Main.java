@@ -35,7 +35,7 @@ public class Main {
         player.addAttack(new Phishing());
         //System.out.println("Player :\n"+player);
 
-        ArrayList<Defence> behavior = new ArrayList<Defence>();
+        ArrayList<Defence> behavior = new ArrayList<>();
 
         Target target = new Target(30, new ArrayList<Defence>(), "Serveur Cible", MapHexa.NODEDEFAULTPATH);
 

@@ -4,17 +4,9 @@
  */
 package view;
 
-import java.util.ArrayList;
-import model.Level;
 import model.Menu;
-import model.Mission;
-import model.Player;
-import model.maps.Defence;
 import model.maps.IMap;
 import model.maps.MapHexa;
-import model.maps.Target;
-import model.ressources.attacks.DDoS;
-import model.ressources.attacks.Phishing;
 
 /**
  *
