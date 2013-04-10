@@ -5,19 +5,16 @@
 package view.levelsFrame;
 
 import exceptions.NoSuffisantPA;
-import java.awt.Font;
-import java.awt.FontFormatException;
+import java.awt.Color;
 import java.awt.Point;
-import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.util.logging.Logger;
 import model.Game;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.MasterFrame;
@@ -37,7 +34,7 @@ public class Level extends BasicGameState {
     private int stateID;
     private Game gameInstance;
     private StateBasedGame parentState;
-    private TrueTypeFont font;
+    private UnicodeFont font;
     private Color fontColor = new Color(19, 180, 7);
     private Illustration background;
     private float scaleX;
@@ -61,20 +58,16 @@ public class Level extends BasicGameState {
         this.parentState = game;
         this.gameInstance = Game.getInstance();
 
-        this.map = new Map(gameInstance, stateID,this.parentState);
+        this.map = new Map(gameInstance, stateID, this.parentState);
         this.infosNode = new InfosNode(stateID, gameInstance);
         this.atkList = new ListOfAtk(stateID, gameInstance);
         this.infosTarget = new InfosGlobal(stateID, gameInstance);
-        try {
-            Font fontStart;
-            fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
-            Font fontBase = fontStart.deriveFont(Font.PLAIN, 40);
-            this.font = new TrueTypeFont(fontBase, true);
-        } catch (FontFormatException ex) { 
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }catch (IOException ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+
+        this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
+        this.font.addAsciiGlyphs();
+        this.font.addGlyphs(400, 600);
+        this.font.getEffects().add(new ColorEffect(this.fontColor));
+        this.font.loadGlyphs();
 
 
 
@@ -96,7 +89,6 @@ public class Level extends BasicGameState {
         container.sleep(20);
         g.setAntiAlias(true);
         g.scale(this.scaleX, this.scaleY);
-        g.setColor(this.fontColor);
         g.setFont(this.font);
 
         g.drawImage(this.background.getImage(), this.background.getPos().x, this.background.getPos().y);
@@ -142,19 +134,19 @@ public class Level extends BasicGameState {
                 }
             }
         }
-        
-        if(this.infosTarget.launchDdos(x, y, scaleX, scaleY)){
+
+        if (this.infosTarget.launchDdos(x, y, scaleX, scaleY)) {
             try {
                 this.gameInstance.getPlayer().ddos(this.map.getNbCorrupt(), this.gameInstance.getLevel().getTarget());
-                if(this.gameInstance.getLevel().completed()){
+                if (this.gameInstance.getLevel().completed()) {
                     this.parentState.enterState(MasterFrame.FINISHLEVELSTATE);
                 }
             } catch (NoSuffisantPA ex) {
                 this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
             }
         }
-        
-        if (this.gameInstance.getPlayer().getPower()<10) {
+
+        if (this.gameInstance.getPlayer().getPower() < 10) {
             this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
         }
     }

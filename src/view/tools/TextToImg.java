@@ -8,7 +8,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.UnicodeFont;
 
 /**
  *
@@ -16,14 +16,14 @@ import org.newdawn.slick.TrueTypeFont;
  */
 public class TextToImg {
 
-    public static Image convertTextToImg(String text, TrueTypeFont font) throws SlickException {
+    public static Image convertTextToImg(String text, UnicodeFont font) throws SlickException {
         Image img;
         
         img = imageFromText(text, font);
         return img;
     }
 
-    private static Image imageFromText(String text, TrueTypeFont font) throws SlickException {
+    private static Image imageFromText(String text, UnicodeFont font) throws SlickException {
         Graphics graph;
         Image buff = new Image(font.getWidth(text), font.getHeight(text));
 

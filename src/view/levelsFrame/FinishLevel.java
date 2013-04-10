@@ -5,17 +5,14 @@
 package view.levelsFrame;
 
 import exceptions.EndOfGame;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.util.logging.Logger;
+import java.awt.Color;
 import model.Game;
 import model.Menu;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.MasterFrame;
@@ -28,8 +25,9 @@ public class FinishLevel extends BasicGameState{
     private Game gameInstance;
     private int stateID;
     private StateBasedGame parentState;
-    private TrueTypeFont font;
+    private UnicodeFont font;
     private boolean startUpdate;
+    private Color fontColor = new Color(19, 180, 7);
 
     public FinishLevel(int stateID){
         this.stateID = stateID;
@@ -45,16 +43,11 @@ public class FinishLevel extends BasicGameState{
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.parentState = game;
         this.gameInstance = Game.getInstance();
-        try {
-            Font fontStart;
-            fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
-            Font fontBase = fontStart.deriveFont(Font.PLAIN, 70);
-            this.font = new TrueTypeFont(fontBase, true);
-        } catch (FontFormatException ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }catch (IOException ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
+        this.font.addAsciiGlyphs();
+        this.font.addGlyphs(400, 600);
+        this.font.getEffects().add(new ColorEffect(this.fontColor));
+        this.font.loadGlyphs();
     }
 
     @Override
