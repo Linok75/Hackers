@@ -6,8 +6,8 @@ package view.levelsFrame;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.io.BufferedInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import model.Game;
 import model.Menu;
@@ -30,13 +30,29 @@ public class GameOver extends BasicGameState implements ComponentListener{
     private int stateID;
     private StateBasedGame parentState;
     private TrueTypeFont font;
+    private TrueTypeFont fontCitation;
     private GameContainer container;
     private MouseOverArea quit;
     private MouseOverArea recommencer;
+    private ArrayList<String> citations;
+    private String citation;
 
     public GameOver(int stateID){
         this.stateID = stateID;
-
+        this.citations=new ArrayList<String>();
+        
+        try{
+            InputStream ips=new FileInputStream(getClass().getResource("../ressources/citation.txt").getPath()); 
+            InputStreamReader ipsr=new InputStreamReader(ips);
+            BufferedReader br=new BufferedReader(ipsr);
+            String ligne;
+            while ((ligne=br.readLine())!=null){
+		this.citations.add(ligne);
+            }
+	br.close(); 
+        }catch (Exception e){
+            System.out.println("Erreur sur le fichier à lire");
+	}
     }
 
     @Override
@@ -49,12 +65,14 @@ public class GameOver extends BasicGameState implements ComponentListener{
         this.parentState = game;
         this.gameInstance = Game.getInstance();
         this.container = container;
-        Menu.replay();
+        if (!this.citations.isEmpty()) this.citation=this.citations.get((int)(Math.random()*this.citations.size()));
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
             Font fontBase = fontStart.deriveFont(Font.PLAIN, 70);
+            Font fontBaseCitation = fontStart.deriveFont(Font.ITALIC,30);
             this.font = new TrueTypeFont(fontBase, true);
+            this.fontCitation = new TrueTypeFont(fontBaseCitation, true);
         } catch (FontFormatException ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }catch (IOException ex) {
@@ -67,6 +85,7 @@ public class GameOver extends BasicGameState implements ComponentListener{
         recommencer = new MouseOverArea(container, new Image(getClass().getResource("../ressources/recommencer.png").getPath()), 350, 430, this);
         recommencer.setNormalColor(new Color(0.7f, 0.7f, 0.7f, 1f));
         recommencer.setMouseOverColor(new Color(0.9f, 0.9f, 0.9f, 1f));
+       
     }
 
     @Override
@@ -75,6 +94,8 @@ public class GameOver extends BasicGameState implements ComponentListener{
         recommencer.render(container, g);
         g.setFont(font);
         g.drawString("GAME OVER",100,100);
+        g.setFont(fontCitation);
+        g.drawString(this.citation, 100, 200);
     }
 
     @Override
@@ -88,6 +109,7 @@ public class GameOver extends BasicGameState implements ComponentListener{
         }
         if (source == recommencer) {
             try {
+                Menu.replay();
                 this.parentState.addState(new view.levelsFrame.Level(MasterFrame.LEVELSTATE));
                 this.parentState.addState(new FinishLevel(MasterFrame.FINISHLEVELSTATE));
                 this.parentState.initStatesList(container);
