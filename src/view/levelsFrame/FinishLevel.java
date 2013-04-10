@@ -4,6 +4,7 @@
  */
 package view.levelsFrame;
 
+import exceptions.EndOfGame;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.BufferedInputStream;
@@ -67,11 +68,16 @@ public class FinishLevel extends BasicGameState{
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         //nextLevel
         if(this.startUpdate){
-            this.startUpdate = false;
-            container.sleep(5000);
-            Menu.nextLevel();
-            this.parentState.initStatesList(container);
-            this.parentState.enterState(MasterFrame.LEVELSTATE);
+            try {
+                this.startUpdate = false;
+                container.sleep(5000);
+                Menu.nextLevel();
+                this.parentState.initStatesList(container);
+                this.parentState.enterState(MasterFrame.LEVELSTATE);
+            } catch (EndOfGame ex) {
+                this.parentState.initStatesList(container);
+                this.parentState.enterState(MasterFrame.ENDGAME);
+            }
         }else{
             this.startUpdate = true;
         }

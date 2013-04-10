@@ -22,6 +22,7 @@ public class MasterFrame extends StateBasedGame {
     public static final int LEVELSTATE = 1;
     public static final int FINISHLEVELSTATE = 2;
     public static final int GAMEOVERSTATE = 3;
+    public static final int ENDGAME = 4;
     private Game gameInstance;
 
     public MasterFrame() throws SlickException {

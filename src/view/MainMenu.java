@@ -81,6 +81,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
                 this.game.addState(new view.levelsFrame.Level(MasterFrame.LEVELSTATE));
                 this.game.addState(new FinishLevel(MasterFrame.FINISHLEVELSTATE));
                 this.game.addState(new GameOver(MasterFrame.GAMEOVERSTATE));
+                this.game.addState(new EndGame(MasterFrame.ENDGAME));
                 this.game.initStatesList(container);
             } catch (SlickException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
