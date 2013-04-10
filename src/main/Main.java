@@ -135,12 +135,6 @@ public class Main {
     }
 
     public static void makeLevel3() {
-        try {
-            Level l = new XStreamer<Level>().load(Main.class.getResource("../levels/level3.xml").getPath());
-            System.out.println(l.getMap().toString());
-        } catch (ImpossibleLoadOfXML i) {
-            
-        }
         // In Progress
         Player player = new Player();
         player.addAttack(new DDoS());
@@ -190,7 +184,6 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level3.xml").getPath());
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
-        System.out.println(level.getMap().toString());
     }
     
     public static void makeLevel4() {
