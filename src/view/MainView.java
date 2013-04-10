@@ -65,7 +65,5 @@ public class MainView {
         viewLauncher.start();
         //Lancement jeu...
         //Game.getInstance().play();
-
-
     }
 }
