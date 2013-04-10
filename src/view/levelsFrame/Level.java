@@ -153,5 +153,9 @@ public class Level extends BasicGameState {
                 this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
             }
         }
+        
+        if (this.gameInstance.getPlayer().getPower()<10) {
+            this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
+        }
     }
 }

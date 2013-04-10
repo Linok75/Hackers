@@ -49,7 +49,7 @@ public class GameOver extends BasicGameState implements ComponentListener{
         this.parentState = game;
         this.gameInstance = Game.getInstance();
         this.container = container;
-        
+        Menu.replay();
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
@@ -60,7 +60,7 @@ public class GameOver extends BasicGameState implements ComponentListener{
         }catch (IOException ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-         quit = new MouseOverArea(container, new Image(getClass().getResource("../ressources/quit.png").getPath()), 350, 485, this);
+        quit = new MouseOverArea(container, new Image(getClass().getResource("../ressources/quit.png").getPath()), 350, 485, this);
         quit.setNormalColor(new Color(0.7f, 0.7f, 0.7f, 1f));
         quit.setMouseOverColor(new Color(0.9f, 0.9f, 0.9f, 1f));
 

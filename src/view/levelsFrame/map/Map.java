@@ -120,7 +120,6 @@ public class Map extends BasicGameState {
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (Attack atk : this.instance.getPlayer().getAttackList()) {
                     if (!"ddos".equalsIgnoreCase(atk.getTitle())) {
-                        //System.out.println(atk.getTitle());
                         if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(atk)) {
                             if (tmp == null) {
                                 tmp = new NodeView(new Point(x, y), this.assocColorAtk.get(atk), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
@@ -220,7 +219,7 @@ public class Map extends BasicGameState {
              }
              */
         } catch (NoSuffisantPA ex) {
-            this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
+            //this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
         }
     }
 
