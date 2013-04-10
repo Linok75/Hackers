@@ -24,7 +24,7 @@ public final class Mission {
     }
 
     public void reward(Player p) {
-        this.rewards.reward(p);
+        if (this.rewards != null) this.rewards.reward(p);
     }
 
     @Override
