@@ -325,6 +325,11 @@ public class Menu {
 
     }
 
+    public static void replay() {
+        player.reset();
+        Game.getInstance().setLevel(levels.get(currentLevel));
+    }
+
     public static void nextLevel() { //TODOEND
         if (Menu.MODE_CONSOLE == 1) {
             System.out.println("NEXT LEVEL");

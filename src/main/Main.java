@@ -32,6 +32,10 @@ public class Main {
         makeLevel6(); //Exploitation
     }
     public static void makeLevel1() {
+        ArrayList<Defence> behavior = new ArrayList<Defence>();
+
+        Target target = makeDefaultTarget(30);
+
         IMap map = new MapHexa();
 
         mapAddDefaultNode(map, 5, 4, getPhishing());

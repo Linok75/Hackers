@@ -46,8 +46,8 @@ public class Map extends BasicGameState {
         this.instance = instance;
         this.dim = this.instance.getLevel().getMap().getDimensionMap();
         this.stateID = stateID;
-        this.nodeViewList = new ArrayList<>();
-        this.assocColorAtk = new HashMap<>();
+        this.nodeViewList = new ArrayList<NodeView>();
+        this.assocColorAtk = new HashMap<Attack,Color>();
     }
 
     @Override
