@@ -49,7 +49,7 @@ public class GameOver extends BasicGameState implements ComponentListener{
         this.parentState = game;
         this.gameInstance = Game.getInstance();
         this.container = container;
-        
+        Menu.replay();
         try {
             Font fontStart;
             fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
