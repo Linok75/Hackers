@@ -106,7 +106,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel3() {
         // In Progress
         Player player = new Player();
@@ -159,7 +158,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel4() {
         // In Progress
         Player player = new Player();
@@ -211,7 +209,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel5() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -261,7 +258,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel6() {
     }
 
@@ -269,45 +265,61 @@ public class Main {
     public static void mapAddDefaultNode(IMap map, int x, int y, ArrayList<Defence> defs) {
         map.setNode(x, y, new Node(defs, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
     }
-
     public static Target makeDefaultTarget(int life) {
         return new Target(life, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH);
     }
     // Ordre Croissant de force
-
     public static ArrayList<Defence> getPhishing() {
         ArrayList<Defence> defs = new ArrayList<Defence>();
         defs.add(Defence.Phishing);
         return defs;
     }
-
     public static ArrayList<Defence> getBruteForcing() {
         ArrayList<Defence> defs = getPhishing();
         defs.add(Defence.BruteForcing);
         return defs;
     }
-
     public static ArrayList<Defence> getEffraction() {
         ArrayList<Defence> defs = getBruteForcing();
         defs.add(Defence.Effraction);
         return defs;
     }
-
     public static ArrayList<Defence> getVirus() {
         ArrayList<Defence> defs = getEffraction();
         defs.add(Defence.Virus);
         return defs;
     }
-
     public static ArrayList<Defence> getTrojan() {
         ArrayList<Defence> defs = getVirus();
         defs.add(Defence.Trojan);
         return defs;
     }
-
     public static ArrayList<Defence> getExploitation() {
         ArrayList<Defence> defs = getTrojan();
         defs.add(Defence.Exploitation);
         return defs;
+    }
+    //Reward
+    public static Reward makeRewardNewAttack(String nameAtk) {
+        Reward reward = new Reward();
+        reward.addAttack(getAttack(nameAtk));
+        return reward;
+    }
+    // Atk
+    public static Attack getAttack(String nameAtk) {
+        for (Attack attack : getAllAttacks()) {
+            if (attack.getTitle().equalsIgnoreCase(nameAtk)) return attack;
+        }
+        throw new IllegalArgumentException();
+    }
+    public static ArrayList<Attack> getAllAttacks() {
+        ArrayList<Attack> attacks = new ArrayList<Attack>();
+        attacks.add(new Phishing());
+        attacks.add(new BruteForcing());
+        attacks.add(new Effraction());
+        attacks.add(new Virus());
+        attacks.add(new Trojan());
+        attacks.add(new Exploitation());
+        return attacks;
     }
 }
