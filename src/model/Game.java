@@ -35,6 +35,10 @@ public final class Game {
         this.level = level;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public Level getLevel() {
         return level;
     }
