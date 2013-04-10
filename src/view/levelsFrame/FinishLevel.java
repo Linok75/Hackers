@@ -72,8 +72,10 @@ public class FinishLevel extends BasicGameState{
             Menu.nextLevel();
             this.parentState.initStatesList(container);
             this.parentState.enterState(MasterFrame.LEVELSTATE);
+        }else{
+            this.startUpdate = true;
         }
-        this.startUpdate = true;
+        
     }
 
 }
