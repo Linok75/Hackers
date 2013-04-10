@@ -8,6 +8,7 @@ import exceptions.NoSuffisantMoney;
 import exceptions.NoSuffisantPA;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 import model.maps.Node;
@@ -35,7 +36,7 @@ public final class Player {
 
     public Player() {
         this.money = 0;
-        this.attacks = new HashSet<Attack>();
+        this.attacks = new EnumSet<Attack>();
         this.hardwares = new ArrayList<Hardware>();
         this.power = DEFAULT_POWER;
         this.name = "Unnamed";
