@@ -17,6 +17,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import view.MasterFrame;
 import view.animations.CorruptionAnimation;
 import view.levelsFrame.Level;
 import view.levelsFrame.infosNode.NodeIllustration;
@@ -27,7 +28,7 @@ import view.tools.Illustration;
  * @author Ara
  */
 public class Map extends BasicGameState {
-
+    private StateBasedGame parentState;
     private Illustration background;
     private Image hexagone;
     private Image node;
@@ -42,8 +43,9 @@ public class Map extends BasicGameState {
     private ArrayList<CorruptionAnimation> corruptionAnimations = new ArrayList<CorruptionAnimation>();
     //
 
-    public Map(Game instance, int stateID) throws SlickException {
+    public Map(Game instance, int stateID, StateBasedGame game) throws SlickException {
         this.instance = instance;
+        this.parentState=game;
         this.dim = this.instance.getLevel().getMap().getDimensionMap();
         this.stateID = stateID;
         this.nodeViewList = new ArrayList<NodeView>();
@@ -215,7 +217,7 @@ public class Map extends BasicGameState {
              }
              */
         } catch (NoSuffisantPA ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
         }
     }
 
