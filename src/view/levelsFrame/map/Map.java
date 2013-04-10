@@ -116,14 +116,16 @@ public class Map extends BasicGameState {
 //                System.out.print(this.gameInstance.getLevel().getMap().getNode(row, col));
                 for (java.util.Map.Entry<Attack, Color> assoc : this.assocColorAtk.entrySet()) {
                     if (assoc.getKey() != null) {
-                        if (this.instance.getLevel().getMap().getNode(row, col).isHackable(assoc.getKey())) {
+                        if (!this.instance.getLevel().getMap().getNode(row, col).isHackable(assoc.getKey())) {
+                            if (tmp == null) {
+                                tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
+                            } else {
+                                tmp.setColor(assoc.getValue());
+                            }
+
                             break;
                         }
-                        if (tmp == null) {
-                            tmp = new NodeView(new Point(x, y), assoc.getValue(), this.instance.getLevel().getMap().getNode(row, col).getPath(), this.instance.getLevel().getMap().getNode(row, col).getDescription(), new Point(row, col), this.node);
-                        } else {
-                            tmp.setColor(assoc.getValue());
-                        }
+
                     }
                 }
                 if (tmp == null) {
@@ -141,22 +143,9 @@ public class Map extends BasicGameState {
     private void setAssocColorDef() {
         for (Attack atk : this.instance.getPlayer().getAttackList()) {
             switch (atk.getDefence()) {
-                case Phishing:
-                    this.assocColorAtk.put(atk, new Color(190, 256, 0)); //vert-jaune
-                    //this.assocColorAtk.put(atk, new Color(108, 46, 46)); //marron
-                    break;
-
-                case BruteForcing:
-                    this.assocColorAtk.put(atk, new Color(240, 248, 0)); //jaune
-                    //this.assocColorAtk.put(atk, new Color(193, 126, 39)); //marron-orange
-                    break;
-
-                case Effraction:
-                    this.assocColorAtk.put(atk, new Color(236, 203, 160)); //pÃªche
-                    break;
-
-                case Virus:
-                    this.assocColorAtk.put(atk, new Color(237, 140, 13)); //orange
+                case Exploitation:
+                    this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
+                    //this.assocColorAtk.put(atk, new Color(23, 194, 9)); //vert fluo
                     break;
 
                 case Trojan:
@@ -164,9 +153,22 @@ public class Map extends BasicGameState {
                     //this.assocColorAtk.put(atk, new Color(39, 120, 54)); //vert
                     break;
 
-                case Exploitation:
-                    this.assocColorAtk.put(null, new Color(192, 38, 38)); //rouge
-                    //this.assocColorAtk.put(atk, new Color(23, 194, 9)); //vert fluo
+                case Virus:
+                    this.assocColorAtk.put(atk, new Color(237, 140, 13)); //orange
+                    break;
+
+                case Effraction:
+                    this.assocColorAtk.put(atk, new Color(236, 203, 160)); //pÃªche
+                    break;
+
+                case BruteForcing:
+                    this.assocColorAtk.put(atk, new Color(240, 248, 0)); //jaune
+                    //this.assocColorAtk.put(atk, new Color(193, 126, 39)); //marron-orange
+                    break;
+
+                case Phishing:
+                    this.assocColorAtk.put(atk, new Color(190, 256, 0)); //vert-jaune
+                    //this.assocColorAtk.put(atk, new Color(108, 46, 46)); //marron
                     break;
 
                 default:
@@ -209,7 +211,7 @@ public class Map extends BasicGameState {
              * for (NodeView nd : this.nodeViewList) { if
              * (this.instance.getLevel().getMap().getNode(nd.getLinkToNode().x,
              * nd.getLinkToNode().y).isHack()) { nd.corrupt(atk); }
-            }
+             }
              */
         } catch (NoSuffisantPA ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
