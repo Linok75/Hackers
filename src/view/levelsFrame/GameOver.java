@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import model.Game;
 import model.Menu;
 import org.newdawn.slick.*;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
@@ -29,13 +30,14 @@ public class GameOver extends BasicGameState implements ComponentListener{
     private Game gameInstance;
     private int stateID;
     private StateBasedGame parentState;
-    private TrueTypeFont font;
-    private TrueTypeFont fontCitation;
+    private UnicodeFont font;
+    private UnicodeFont fontCitation;
     private GameContainer container;
     private MouseOverArea quit;
     private MouseOverArea recommencer;
     private ArrayList<String> citations;
     private String citation;
+    private java.awt.Color fontColor = new java.awt.Color(19, 180, 7);
 
     public GameOver(int stateID){
         this.stateID = stateID;
@@ -68,18 +70,11 @@ public class GameOver extends BasicGameState implements ComponentListener{
         if (!this.citations.isEmpty()) {
             this.citation=this.citations.get((int)(Math.random()*this.citations.size()));
         }
-        try {
-            Font fontStart;
-            fontStart = Font.createFont(Font.TRUETYPE_FONT, new BufferedInputStream(getClass().getResourceAsStream("../ressources/AgencyFB.ttf")));
-            Font fontBase = fontStart.deriveFont(Font.PLAIN, 70);
-            Font fontBaseCitation = fontStart.deriveFont(Font.ITALIC,30);
-            this.font = new TrueTypeFont(fontBase, true);
-            this.fontCitation = new TrueTypeFont(fontBaseCitation, true);
-        } catch (FontFormatException ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }catch (IOException ex) {
-            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
+        this.font.addAsciiGlyphs();
+        this.font.addGlyphs(400, 600);
+        this.font.getEffects().add(new ColorEffect(this.fontColor));
+        this.font.loadGlyphs();
         quit = new MouseOverArea(container, new Image(getClass().getResource("../ressources/quit.png").getPath()), 350, 485, this);
         quit.setNormalColor(new Color(0.7f, 0.7f, 0.7f, 1f));
         quit.setMouseOverColor(new Color(0.9f, 0.9f, 0.9f, 1f));
