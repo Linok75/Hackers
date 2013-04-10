@@ -61,7 +61,7 @@ public class Level extends BasicGameState {
         this.parentState = game;
         this.gameInstance = Game.getInstance();
 
-        this.map = new Map(gameInstance, stateID);
+        this.map = new Map(gameInstance, stateID,this.parentState);
         this.infosNode = new InfosNode(stateID, gameInstance);
         this.atkList = new ListOfAtk(stateID, gameInstance);
         this.infosTarget = new InfosGlobal(stateID, gameInstance);
