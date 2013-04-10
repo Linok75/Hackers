@@ -7,10 +7,7 @@ package main;
 import java.util.ArrayList;
 import model.*;
 import model.maps.*;
-import model.ressources.attacks.DDoS;
-import model.ressources.attacks.Phishing;
-import model.ressources.attacks.Trojan;
-import model.ressources.attacks.Virus;
+import model.ressources.attacks.*;
 import tools.XStreamer;
 
 /**
@@ -34,29 +31,26 @@ public class Main {
         makeLevel6(); //Exploitation
     }
     public static void makeLevel1() {
-        ArrayList<Defence> behavior = new ArrayList<>();
-
-        Target target = makeDefaultTarget(30);
-
         IMap map = new MapHexa();
 
-        behavior.add(Defence.Phishing);
+        mapAddDefaultNode(map, 5, 4, getPhishing());
+        mapAddDefaultNode(map, 1, 5, getPhishing());
+        mapAddDefaultNode(map, 2, 5, getPhishing());
+        mapAddDefaultNode(map, 4, 6, getPhishing());
+        mapAddDefaultNode(map, 3, 8, getPhishing());
+        mapAddDefaultNode(map, 5, 2, getPhishing());
+        mapAddDefaultNode(map, 1, 7, getPhishing());
+        mapAddDefaultNode(map, 6, 2, getPhishing());
 
-        map.setNode(5, 4, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 5, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(2, 5, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(4, 6, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(3, 8, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(5, 2, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 7, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
-        map.setNode(6, 2, new model.maps.Node(behavior, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH));
+        //Reward reward = new Reward(0);
+        //reward.addAttack(new Virus());
 
-        Reward r = new Reward(0);
-        r.addAttack(new Virus());
+        String descriptionMission = "";
+        String levelName = "";
 
-        Mission mission = new Mission("Level_1", "Attack !", r);
+        Mission mission = new Mission("Level_1", "Attack !", makeRewardNewAttack("Virus"));
 
-        Level level = new Level(map, 30, target, mission);
+        Level level = new Level(map, 30, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
@@ -205,6 +199,27 @@ public class Main {
         defs.add(Defence.Exploitation);
         return defs;
     }
-
-
+    //Reward
+    public static Reward makeRewardNewAttack(String nameAtk) {
+        Reward reward = new Reward();
+        reward.addAttack(getAttack(nameAtk));
+        return reward;
+    }
+    // Atk
+    public static Attack getAttack(String nameAtk) {
+        for (Attack attack : getAllAttacks()) {
+            if (attack.getTitle().equalsIgnoreCase(nameAtk)) return attack;
+        }
+        throw new IllegalArgumentException();
+    }
+    public static ArrayList<Attack> getAllAttacks() {
+        ArrayList<Attack> attacks = new ArrayList<Attack>();
+        attacks.add(new Phishing());
+        attacks.add(new BruteForcing());
+        attacks.add(new Effraction());
+        attacks.add(new Virus());
+        attacks.add(new Trojan());
+        attacks.add(new Exploitation());
+        return attacks;
+    }
 }

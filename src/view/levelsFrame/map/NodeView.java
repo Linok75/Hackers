@@ -7,6 +7,7 @@ package view.levelsFrame.map;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import model.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -58,6 +59,7 @@ public class NodeView {
     }
 
     public void corrupt(String atk) throws SlickException {
+        if (!Game.getInstance().getLevel().getMap().getNode(this.linkToNode.x, this.linkToNode.y).isHack()) return;
         this.corrupt = true;
 
         if (atk.equals("Phishing")) {
