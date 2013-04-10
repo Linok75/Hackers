@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.util.ArrayList;
 import model.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Music;
@@ -24,6 +25,10 @@ public class MasterFrame extends StateBasedGame {
     public static final int GAMEOVERSTATE = 3;
     public static final int ENDGAME = 4;
     private Game gameInstance;
+    //Music
+    private ArrayList<Music> musics = new ArrayList<Music>();
+    private int idOfMusic = 0;
+    private boolean music = true;
 
     public MasterFrame() throws SlickException {
         super("Hackers");
@@ -31,26 +36,50 @@ public class MasterFrame extends StateBasedGame {
         this.addState(new MainMenu(MAINMENUSTATE));
         this.enterState(MAINMENUSTATE);
 
-        Music music = new Music("soundtrack/Hacker1.aiff");
-        music.loop();
+        this.musics.add(new Music("soundtrack/Hacker1.aiff"));
+        this.musics.add(new Music("soundtrack/Hacker.aiff"));
+        this.musics.get(idOfMusic).loop();
     }
+    private static final int F7 = 65;
+    private static final int F8 = 66;
+    private static final int F9 = 67;
 
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        System.out.println(key+" = "+c);
 
         // Gestion du son
+        if (key >= F7 && key <= F9) {
+            if (key == F7) { // BACK
+                idOfMusic--;
+                music = true;
+            } else if (key == F8) { // PLAY|PAUSE
+                music = !music;
+            } else if (key == F9) { // NEXT
+                idOfMusic++;
+                music = true;
+            }
 
-        // 65 = F7
-        // 68 = F10
+            if (idOfMusic < 0) {
+                idOfMusic = musics.size() - 1;
+            } else if (idOfMusic >= musics.size()) {
+                idOfMusic = 0;
+            }
+
+            if (music) {
+                musics.get(idOfMusic).loop();
+            } else {
+                musics.get(idOfMusic).pause();
+            }
+
+        }
+
     }
 
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-        for(int i=0;i<this.getStateCount();i++){
+        for (int i = 0; i < this.getStateCount(); i++) {
             this.getState(i).init(container, this);
         }
     }
-
 }

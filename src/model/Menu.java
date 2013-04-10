@@ -193,7 +193,12 @@ public class Menu {
         }
 
         // Lancement de la partie
-        Game.makeInstance(player, level);
+        if (Game.getInstance() == null) {
+            Game.makeInstance(player, level);
+        } else {
+            Game.getInstance().setPlayer(player);
+            Game.getInstance().setLevel(level);
+        }
     }
 
     private static void affichChargerPartie() {
@@ -242,7 +247,12 @@ public class Menu {
             currentLevel = player.getAdvanced();
             Level level = levels.get(currentLevel);
 
-            Game.makeInstance(player, level);
+            if (Game.getInstance() == null) {
+                Game.makeInstance(player, level);
+            } else {
+                Game.getInstance().setPlayer(player);
+                Game.getInstance().setLevel(level);
+            }
 
             if (Menu.MODE_CONSOLE == 1) {
                 // Lancement de la partie
@@ -352,10 +362,10 @@ public class Menu {
             if (Menu.MODE_CONSOLE == 1) {
                 System.out.println("Vous avez terminer le jeu !");
                 System.out.println("Retour au menu ... ");
-            }else{
+            } else {
                 throw new EndOfGame();
             }
-            
+
             currentView = 0;
             menu = true;
             return;
