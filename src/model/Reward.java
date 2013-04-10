@@ -47,13 +47,13 @@ public class Reward {
     }
 
     public void addAttack(Attack attack) {
-        if (attack != null && this.newAttacks.isEmpty()) {
+        if (attack != null) {
             this.newAttacks.add(attack);
         }
     }
 
     public void addHardware(Hardware hardware) {
-        if (hardware != null && this.newAttacks.isEmpty()) {
+        if (hardware != null) {
             this.hardware.add(hardware);
         }
     }
@@ -62,15 +62,11 @@ public class Reward {
         if (money > 0) {
             player.receiveMoney(money);
         }
-        if (this.hardware != null && !this.hardware.isEmpty()) {
-            for (Hardware hardware1 : hardware) {
-                player.addHardware(hardware1);
-            }
+        for (Hardware hardware1 : hardware) {
+            player.addHardware(hardware1);
         }
-        if (this.newAttacks != null && !this.newAttacks.isEmpty()) {
-            for (int i = 0; i < this.newAttacks.size(); i++) {
-                player.addAttack(this.newAttacks.get(i));
-            }
+        for (Attack atk : newAttacks) {
+            player.addAttack(atk);
         }
     }
 }

@@ -65,7 +65,6 @@ public final class Player {
         for (Attack attack1 : attacks) {
             if (attack1.getTitle().equals(attack.getTitle())) return;
         }
-
         this.attacks.add(attack);
     }
 
