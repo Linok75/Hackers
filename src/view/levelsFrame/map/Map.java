@@ -220,7 +220,7 @@ public class Map extends BasicGameState {
              }
              */
         } catch (NoSuffisantPA ex) {
-            this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
+            //this.parentState.enterState(MasterFrame.GAMEOVERSTATE);
         }
     }
 
