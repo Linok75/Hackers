@@ -128,7 +128,8 @@ public class ListOfAtk extends BasicGameState {
                 if (scaleArea.contains(x, y)) {
                     return atk.getTitle();
                 }
-            }
+                numLigne++;
+            }       
         }
         return null;
     }
