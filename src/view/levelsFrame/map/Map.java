@@ -15,6 +15,7 @@ import model.Game;
 import model.ressources.attacks.Attack;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.MasterFrame;
@@ -194,24 +195,58 @@ public class Map extends BasicGameState {
     }
 
     private void setGrid() {
-        double scale;
+        //Dimension du cadre
+        Vector2f dimCadrePX = new Vector2f(this.background.getImage().getWidth(), this.background.getImage().getHeight());
+        System.out.println("Dimension du cadre : "+dimCadrePX);
+        //Dimension de la map (nb hexa)
+        Vector2f dimMapHX = new Vector2f(this.dim.width, this.dim.height);
+        System.out.println("Dimension de la map (nbHexa) : "+dimMapHX);
+        //Dimension d'un hexagone
+        Vector2f dimHexaPX = new Vector2f(this.hexagone.getWidth(), this.hexagone.getHeight());
+        System.out.println("Dimension d'un hexagone : "+dimHexaPX);
+        //Dimension de la map (pixel)
+        Vector2f dimMapPX = new Vector2f(dimHexaPX.x * dimMapHX.x, dimHexaPX.y * dimMapHX.y);
+        System.out.println("Dimension de la map (pixel) : "+dimMapPX);
 
-        this.gridDim = new Dimension((int) (this.hexagone.getWidth() * this.dim.getWidth()), (int) (this.hexagone.getHeight() * this.dim.getHeight()));
-        System.out.println(this.hexagone.getWidth() + " : " + this.hexagone.getHeight());
-        System.out.println(this.gridDim.getWidth() + " : " + this.gridDim.getHeight());
-        scale = (this.gridDim.getWidth() / this.background.getImage().getWidth())*this.globalScaleX;
-        System.out.println(this.gridDim.getWidth()+ " / " + this.background.getImage().getWidth());
-        System.out.println(scale);
+        float scale;
+        if (dimMapPX.x > dimMapPX.y) {
+            scale = dimCadrePX.x / dimMapPX.x;
+        } else {
+            scale = dimCadrePX.y / dimMapPX.y;
+        }
 
-        Dimension newDim = new Dimension(this.gridDim.width * (int)scale, this.gridDim.height * (int)scale);
-        System.out.println(newDim);
+        Vector2f newDimMapPx = new Vector2f(dimMapPX.x * scale, dimMapPX.y * scale);
+        System.out.println("Nouvelle dimension de la map (pixel) : "+newDimMapPx);
 
-        double realScale = ((double)newDim.width) / ((double)this.dim.width);
+        while (newDimMapPx.x > dimCadrePX.x || newDimMapPx.y > dimCadrePX.y) {
+            if (newDimMapPx.x > dimCadrePX.x) {
+                newDimMapPx.x = newDimMapPx.x*0.99f;
+            } else if (newDimMapPx.y > dimCadrePX.y) {
+                newDimMapPx.y = newDimMapPx.y*0.99f;
+            }
+        }
 
-        this.hexagone = this.hexagone.getScaledCopy((float)(realScale/((double)this.hexagone.getWidth())));
-        this.node = this.node.getScaledCopy(((float)(realScale/((double)this.hexagone.getWidth()))));
-        this.gridDim.setSize((int) (this.hexagone.getWidth() * this.dim.getWidth()), (int) (this.hexagone.getHeight() * this.dim.getHeight()));
-        this.gridPos = new Point((int) (this.background.getPos().getX() + (((this.background.getImage().getWidth()) - this.gridDim.getWidth())) / 2), (int) (this.background.getPos().getY() + (this.gridDim.getHeight() - this.background.getImage().getHeight()) / 2));
+        System.out.println("Nouvelle dimension de la map (pixel) : "+newDimMapPx);
+
+        //this.gridDim = new Dimension((int)newDimMapPx.x, (int)newDimMapPx.y);
+
+        float widthForHexa = newDimMapPx.x/dimMapHX.x;
+        float scaleForHexa = widthForHexa/dimHexaPX.x;
+
+        float heightForHexa = newDimMapPx.y/dimMapHX.y;
+        float scaleForHexa2 = heightForHexa/dimHexaPX.y;
+
+        System.out.println(scaleForHexa);
+        System.out.println(scaleForHexa2);
+
+        this.hexagone = this.hexagone.getScaledCopy(scaleForHexa);
+        this.node = this.node.getScaledCopy(scaleForHexa);
+        this.gridDim = new Dimension((int)(this.hexagone.getWidth()*dimMapHX.x), (int)(this.hexagone.getHeight()*dimMapHX.y));
+
+        System.out.println("WIDTH : "+this.hexagone.getWidth()*dimMapHX.x);
+        System.out.println("HEIGHT : "+this.hexagone.getHeight()*dimMapHX.y);
+
+        this.gridPos = new Point((int) (this.background.getPos().getX() + (((this.background.getImage().getWidth()) - this.gridDim.getWidth())) / 2), (int) (this.background.getPos().getY() + (this.background.getImage().getHeight() - this.gridDim.height)/2));
     }
 
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
