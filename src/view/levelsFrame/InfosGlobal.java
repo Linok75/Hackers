@@ -5,7 +5,10 @@
 package view.levelsFrame;
 
 import java.awt.Point;
+import javax.swing.JProgressBar;
+import javax.swing.plaf.ProgressBarUI;
 import model.Game;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -27,7 +30,7 @@ public class InfosGlobal extends BasicGameState {
     private Illustration ddosButton;
     private Illustration targetBackground;
     private Illustration playerBackground;
-    
+
     public InfosGlobal(int stateID, Game gameInstance){
         this.stateID=stateID;
         this.gameInstance=gameInstance;
@@ -52,7 +55,9 @@ public class InfosGlobal extends BasicGameState {
         g.drawImage(this.playerBackground.getImage(), this.playerBackground.getPos().x, this.playerBackground.getPos().y);
         g.drawImage(this.targetView.getImage(), this.targetView.getPos().x, this.targetView.getPos().y);
         g.drawString(this.gameInstance.getLevel().getTarget().getDescription(), this.targetView.getPos().x+this.targetView.getImage().getWidth()+10, this.targetView.getPos().y+20);
-        g.drawString("Vie du serveur : "+this.gameInstance.getLevel().getTarget().getLife(), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
+        g.drawString("Vie du serveur : ", this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+400);
+        
+        g.fillRect(this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450, this.gameInstance.getLevel().getTarget().getLife()*10, 20);
         g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
         g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
         g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
