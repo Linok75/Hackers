@@ -43,4 +43,8 @@ public final class Target extends Node {
             return false;
         }
     }
+
+    public int getDifficulty() {
+        return this.difficulty;
+    }
 }
