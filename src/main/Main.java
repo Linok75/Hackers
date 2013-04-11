@@ -53,7 +53,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("BruteForcing"));
 
-        Level level = new Level(map, 30, makeDefaultTarget(30), mission);
+        Target target = new Target(50, 25, "Serveur Web", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 30, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
@@ -116,7 +118,7 @@ public class Main {
         mapAddDefaultNode(map, 7, 6, getPhishing());
         mapAddDefaultNode(map, 9, 1, getEffraction());
         mapAddDefaultNode(map, 1, 4, getPhishing());
-        
+
         mapAddDefaultNode(map, 0, 8, getBruteForcing());
         mapAddDefaultNode(map, 4, 7, getPhishing());
         mapAddDefaultNode(map, 4, 9, getEffraction());
@@ -160,7 +162,7 @@ public class Main {
         mapAddDefaultNode(map, 7, 6, getPhishing());
         mapAddDefaultNode(map, 9, 1, getEffraction());
         mapAddDefaultNode(map, 1, 4, getPhishing());
-        
+
         mapAddDefaultNode(map, 0, 8, getBruteForcing());
         mapAddDefaultNode(map, 4, 7, getPhishing());
         mapAddDefaultNode(map, 4, 9, getEffraction());
@@ -169,7 +171,7 @@ public class Main {
         mapAddDefaultNode(map, 6, 1, getBruteForcing());
         mapAddDefaultNode(map, 6, 9, getVirus());
         mapAddDefaultNode(map, 7, 0, getEffraction());
-        
+
         mapAddDefaultNode(map, 0, 10, getBruteForcing());
         mapAddDefaultNode(map, 4, 11, getVirus());
         mapAddDefaultNode(map, 4, 12, getEffraction());
@@ -214,7 +216,7 @@ public class Main {
         mapAddDefaultNode(map, 7, 6, getPhishing());
         mapAddDefaultNode(map, 9, 1, getEffraction());
         mapAddDefaultNode(map, 1, 4, getPhishing());
-        
+
         mapAddDefaultNode(map, 0, 8, getBruteForcing());
         mapAddDefaultNode(map, 4, 7, getTrojan());
         mapAddDefaultNode(map, 4, 9, getEffraction());
@@ -223,7 +225,7 @@ public class Main {
         mapAddDefaultNode(map, 6, 1, getBruteForcing());
         mapAddDefaultNode(map, 6, 9, getTrojan());
         mapAddDefaultNode(map, 7, 0, getTrojan());
-        
+
         mapAddDefaultNode(map, 0, 10, getTrojan());
         mapAddDefaultNode(map, 4, 11, getTrojan());
         mapAddDefaultNode(map, 4, 12, getTrojan());
@@ -232,7 +234,7 @@ public class Main {
         mapAddDefaultNode(map, 6, 12, getBruteForcing());
         mapAddDefaultNode(map, 6, 10, getTrojan());
         mapAddDefaultNode(map, 7, 12, getVirus());
-        
+
         mapAddDefaultNode(map, 10, 10, getBruteForcing());
         mapAddDefaultNode(map, 11, 1, getVirus());
         mapAddDefaultNode(map, 12, 6, getEffraction());
@@ -270,7 +272,7 @@ public class Main {
         mapAddDefaultNode(map, 0, 12, getExploitation());
         mapAddDefaultNode(map, 0, 13, getTrojan());
         mapAddDefaultNode(map, 0, 14, getEffraction());
-        
+
         mapAddDefaultNode(map, 1, 0, getExploitation());
         mapAddDefaultNode(map, 1, 1, getExploitation());
         mapAddDefaultNode(map, 1, 2, getExploitation());
@@ -286,7 +288,7 @@ public class Main {
         mapAddDefaultNode(map, 1, 12, getTrojan());
         mapAddDefaultNode(map, 1, 13, getTrojan());
         mapAddDefaultNode(map, 1, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 2, 0, getExploitation());
         mapAddDefaultNode(map, 2, 1, getTrojan());
         mapAddDefaultNode(map, 2, 2, getTrojan());
@@ -302,7 +304,7 @@ public class Main {
         mapAddDefaultNode(map, 2, 12, getExploitation());
         mapAddDefaultNode(map, 2, 13, getExploitation());
         mapAddDefaultNode(map, 2, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 3, 0, getExploitation());
         mapAddDefaultNode(map, 3, 1, getTrojan());
         mapAddDefaultNode(map, 3, 2, getTrojan());
@@ -318,7 +320,7 @@ public class Main {
         mapAddDefaultNode(map, 3, 12, getExploitation());
         mapAddDefaultNode(map, 3, 13, getExploitation());
         mapAddDefaultNode(map, 3, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 4, 0, getEffraction());
         mapAddDefaultNode(map, 4, 1, getTrojan());
         mapAddDefaultNode(map, 4, 2, getExploitation());
@@ -334,7 +336,7 @@ public class Main {
         mapAddDefaultNode(map, 4, 12, getExploitation());
         mapAddDefaultNode(map, 4, 13, getTrojan());
         mapAddDefaultNode(map, 4, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 5, 0, getExploitation());
         mapAddDefaultNode(map, 5, 1, getTrojan());
         mapAddDefaultNode(map, 5, 2, getTrojan());
@@ -350,7 +352,7 @@ public class Main {
         mapAddDefaultNode(map, 5, 12, getTrojan());
         mapAddDefaultNode(map, 5, 13, getTrojan());
         mapAddDefaultNode(map, 5, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 6, 0, getExploitation());
         mapAddDefaultNode(map, 6, 1, getExploitation());
         mapAddDefaultNode(map, 6, 2, getExploitation());
@@ -366,7 +368,7 @@ public class Main {
         mapAddDefaultNode(map, 6, 12, getExploitation());
         mapAddDefaultNode(map, 6, 13, getExploitation());
         mapAddDefaultNode(map, 6, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 7, 0, getTrojan());
         mapAddDefaultNode(map, 7, 1, getTrojan());
         mapAddDefaultNode(map, 7, 2, getExploitation());
@@ -382,7 +384,7 @@ public class Main {
         mapAddDefaultNode(map, 7, 12, getExploitation());
         mapAddDefaultNode(map, 7, 13, getTrojan());
         mapAddDefaultNode(map, 7, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 8, 0, getTrojan());
         mapAddDefaultNode(map, 8, 1, getExploitation());
         mapAddDefaultNode(map, 8, 2, getTrojan());
@@ -398,7 +400,7 @@ public class Main {
         mapAddDefaultNode(map, 8, 12, getExploitation());
         mapAddDefaultNode(map, 8, 13, getTrojan());
         mapAddDefaultNode(map, 8, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 9, 0, getTrojan());
         mapAddDefaultNode(map, 9, 1, getExploitation());
         mapAddDefaultNode(map, 9, 2, getTrojan());
@@ -414,7 +416,7 @@ public class Main {
         mapAddDefaultNode(map, 9, 12, getExploitation());
         mapAddDefaultNode(map, 9, 13, getTrojan());
         mapAddDefaultNode(map, 9, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 10, 0, getExploitation());
         mapAddDefaultNode(map, 10, 1, getTrojan());
         mapAddDefaultNode(map, 10, 2, getEffraction());
@@ -430,7 +432,7 @@ public class Main {
         mapAddDefaultNode(map, 10, 12, getTrojan());
         mapAddDefaultNode(map, 10, 13, getTrojan());
         mapAddDefaultNode(map, 10, 14, getTrojan());
-        
+
         mapAddDefaultNode(map, 11, 0, getExploitation());
         mapAddDefaultNode(map, 11, 1, getTrojan());
         mapAddDefaultNode(map, 11, 2, getExploitation());
@@ -446,7 +448,7 @@ public class Main {
         mapAddDefaultNode(map, 11, 12, getTrojan());
         mapAddDefaultNode(map, 11, 13, getExploitation());
         mapAddDefaultNode(map, 11, 14, getVirus());
-        
+
         mapAddDefaultNode(map, 12, 0, getExploitation());
         mapAddDefaultNode(map, 12, 1, getTrojan());
         mapAddDefaultNode(map, 12, 2, getTrojan());
@@ -462,7 +464,7 @@ public class Main {
         mapAddDefaultNode(map, 12, 12, getTrojan());
         mapAddDefaultNode(map, 12, 13, getTrojan());
         mapAddDefaultNode(map, 12, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 13, 0, getTrojan());
         mapAddDefaultNode(map, 13, 1, getEffraction());
         mapAddDefaultNode(map, 13, 2, getTrojan());
@@ -478,7 +480,7 @@ public class Main {
         mapAddDefaultNode(map, 13, 12, getTrojan());
         mapAddDefaultNode(map, 13, 13, getTrojan());
         mapAddDefaultNode(map, 13, 14, getExploitation());
-        
+
         mapAddDefaultNode(map, 14, 0, getTrojan());
         mapAddDefaultNode(map, 14, 1, getExploitation());
         mapAddDefaultNode(map, 14, 2, getTrojan());
@@ -494,8 +496,8 @@ public class Main {
         mapAddDefaultNode(map, 14, 12, getExploitation());
         mapAddDefaultNode(map, 14, 13, getVirus());
         mapAddDefaultNode(map, 14, 14, getExploitation());
-        
-        
+
+
 
 
         String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
