@@ -22,7 +22,7 @@ public class DF_Hexa_BruteForcing extends DiffusionMethod {
 
     @Override
     protected ArrayList<Node> getAllNodesAround(Node node) {
-        return null;
+        return new ArrayList<Node>();
     }
 
 }

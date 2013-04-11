@@ -47,10 +47,10 @@ public final class Target extends Node {
             System.out.println("Target HACKED !");
 
             return true;
-        } else {
+        } else if (power > 0) {
             this.life -= power;
-            return false;
         }
+        return false;
     }
 
     public int getLife() {

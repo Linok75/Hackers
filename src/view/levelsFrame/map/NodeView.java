@@ -77,7 +77,7 @@ public class NodeView {
         if (atk.equals("Exploitation")) {
             this.corBy = new Image(getClass().getResource("../../ressources/exploitation.png").getPath());
         }
-        if (atk.equals("Brute Force")) {
+        if (atk.equals("BruteForcing")) {
             this.corBy = new Image(getClass().getResource("../../ressources/bruteForce.png").getPath());
         }
 

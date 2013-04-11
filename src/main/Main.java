@@ -33,7 +33,7 @@ public class Main {
     }
     public static void makeLevel1() {
 
-        IMap map = new MapHexa(10,10);
+        IMap map = new MapHexa(20,20);
 
         mapAddDefaultNode(map, 5, 4, getPhishing());
         mapAddDefaultNode(map, 1, 5, getPhishing());
@@ -51,7 +51,7 @@ public class Main {
                 + "Vous avez jusqu'à demain pour tomber leur site par tous les moyens possibles, un retard sera synonyme d'échec...";
         String levelName = "MISSION 1 : On est tous passés par là... quoi que...";
 
-        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Virus"));
+        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("BruteForcing"));
 
         Level level = new Level(map, 30, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
@@ -62,32 +62,35 @@ public class Main {
         IMap map = new MapHexa(8,10);
 
         // placement des cibles anti phishing sur la map
-        mapAddDefaultNode(map, 5, 4, getPhishing());
-        mapAddDefaultNode(map, 1, 5, getPhishing());
-        mapAddDefaultNode(map, 2, 5, getPhishing());
-        mapAddDefaultNode(map, 6, 6, getPhishing());
-        mapAddDefaultNode(map, 3, 8, getPhishing());
+        mapAddDefaultNode(map, 0, 3, getPhishing());
+        mapAddDefaultNode(map, 1, 1, getPhishing());
+        mapAddDefaultNode(map, 1, 7, getPhishing());
+        mapAddDefaultNode(map, 1, 8, getBruteForcing());
+        mapAddDefaultNode(map, 2, 2, getBruteForcing());
+        mapAddDefaultNode(map, 2, 4, getPhishing());
+        mapAddDefaultNode(map, 2, 6, getPhishing());
+        mapAddDefaultNode(map, 2, 8, getPhishing());
+        mapAddDefaultNode(map, 3, 2, getPhishing());
+        mapAddDefaultNode(map, 3, 4, getPhishing());
+        mapAddDefaultNode(map, 3, 5, getBruteForcing());
+        mapAddDefaultNode(map, 4, 3, getPhishing());
+        mapAddDefaultNode(map, 4, 5, getPhishing());
+        mapAddDefaultNode(map, 5, 1, getPhishing());
+        mapAddDefaultNode(map, 5, 7, getPhishing());
+        mapAddDefaultNode(map, 6, 4, getPhishing());
+        mapAddDefaultNode(map, 6, 5, getBruteForcing());
+        mapAddDefaultNode(map, 7, 2, getPhishing());
+        mapAddDefaultNode(map, 7, 6, getPhishing());
 
-        mapAddDefaultNode(map, 5, 3, getVirus());
-        /*
-        map.setNode(5, 3, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(4, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(6, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(0, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(4, 8, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
+        String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
+        String levelName = "MISSION 2";
 
-        map.setNode(6, 4, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(0, 4, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(3, 2, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(5, 7, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
-        map.setNode(1, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
-*/
-        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !", makeRewardNewAttack("Trojan"));
+        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Trojan"));
+
+        Target t = new Target(30, 15, "Test", MapHexa.NODEDEFAULTPATH);
 
         Level level = new Level(map, 20, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());
-        //Game.makeInstance(player, level);
-        //Game.getInstance().play();
     }
     public static void makeLevel3() {
         // In Progress
@@ -249,7 +252,7 @@ public class Main {
         map.setNode(x, y,new Node(defs, description, MapHexa.NODEDEFAULTPATH));
     }
     public static Target makeDefaultTarget(int life) {
-        return new Target(life, MapHexa.NODEDEFAULTDESC, MapHexa.NODEDEFAULTPATH);
+        return new Target(life, "Test", MapHexa.NODEDEFAULTPATH);
     }
     // Ordre Croissant de force
     public static ArrayList<Defence> getPhishing() {
