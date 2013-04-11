@@ -52,8 +52,8 @@ public class InfosGlobal extends BasicGameState {
         g.drawImage(this.playerBackground.getImage(), this.playerBackground.getPos().x, this.playerBackground.getPos().y);
         g.drawImage(this.targetView.getImage(), this.targetView.getPos().x, this.targetView.getPos().y);
         g.drawString(this.gameInstance.getLevel().getTarget().getDescription(), this.targetView.getPos().x+this.targetView.getImage().getWidth()+10, this.targetView.getPos().y+20);
-        g.drawString("Difficulté : "+this.gameInstance.getLevel().getTarget().getDifficulty(), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
-        g.drawString("Taille du botnet : "+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
+        g.drawString("Vie du serveur : "+this.gameInstance.getLevel().getTarget().getLife(), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
+        g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
         g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
         g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
         g.drawImage(this.ddosButton.getImage(), this.ddosButton.getPos().x, this.ddosButton.getPos().y);
