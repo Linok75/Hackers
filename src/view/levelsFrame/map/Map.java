@@ -88,6 +88,15 @@ public class Map extends BasicGameState {
             ca.render(container, game, g);
         }
 
+        /*g.drawLine((int)this.background.getPos().getX(),
+                (int)this.background.getPos().getY(),
+                (int) this.background.getPos().getX() + this.background.getImage().getWidth(),
+                (int) this.background.getPos().getY() + this.background.getImage().getHeight());*/
+        /*g.drawLine((int)this.background.getPos().getX(),
+                (int)this.background.getPos().getY(),
+                (int) this.background.getPos().getX() + this.gridDim.width,
+                (int) this.background.getPos().getY() + this.gridDim.height);*/
+
     }
 
     @Override
@@ -144,10 +153,10 @@ public class Map extends BasicGameState {
                 }
                 this.nodeViewList.add(tmp);
                 tmp = null;
-                x += this.node.getWidth() + 13;
+                x += (int)((float)this.node.getWidth()*1.15f);
             }
 //            System.out.println("");
-            y += this.node.getHeight() - 17;
+            y += (int)((float)this.node.getHeight()*0.875f);
         }
     }
 
@@ -193,17 +202,18 @@ public class Map extends BasicGameState {
 
     private void setGrid() {
 
+        /*
         //Dimension du cadre
         Vector2f dimCadrePX = new Vector2f(this.background.getImage().getWidth(), this.background.getImage().getHeight());
         System.out.println("Dimension du cadre : "+dimCadrePX);
         //Dimension de la map (nb hexa)
-        Vector2f dimMapHX = new Vector2f(this.dim.width, this.dim.height);
+        Vector2f dimMapHX = new Vector2f(this.dim.width + 0.5f, this.dim.height);
         System.out.println("Dimension de la map (nbHexa) : "+dimMapHX);
         //Dimension d'un hexagone
         Vector2f dimHexaPX = new Vector2f(this.hexagone.getWidth(), this.hexagone.getHeight());
         System.out.println("Dimension d'un hexagone : "+dimHexaPX);
         //Dimension de la map (pixel)
-        Vector2f dimMapPX = new Vector2f(dimHexaPX.x * (dimMapHX.x + 0.5f), dimHexaPX.y * dimMapHX.y);
+        Vector2f dimMapPX = new Vector2f(dimHexaPX.x * dimMapHX.x, dimHexaPX.y * dimMapHX.y);
         System.out.println("Dimension de la map (pixel) : "+dimMapPX);
 
         float scale;
@@ -245,18 +255,41 @@ public class Map extends BasicGameState {
         System.out.println("WIDTH : "+this.hexagone.getWidth()*dimMapHX.x);
         System.out.println("HEIGHT : "+this.hexagone.getHeight()*dimMapHX.y);
 
-        int posX = this.background.getPos().x + ((this.background.getImage().getWidth() - this.gridDim.width)/2);
+        int posX = this.background.getPos().x;// + ((this.background.getImage().getWidth() - this.gridDim.width)/2);
         System.out.println("posX : "+posX);
-        int posY = this.background.getPos().y + ((this.background.getImage().getHeight() - this.gridDim.height));
+        int posY = this.background.getPos().y;// + ((this.background.getImage().getHeight() - this.gridDim.height));
         System.out.println("posY : "+posY);
         this.gridPos = new Point(posX, posY);
+        *
+        */
+
+        float precision = 0.0001f;
+
+        scale = 1;
+        while (this.hexagone.getScaledCopy(scale).getWidth()*(this.dim.width + 0.5) > this.background.getImage().getWidth()) {
+            scale -= precision;
+        }
+        while (this.hexagone.getScaledCopy(scale).getHeight()*this.dim.height > this.background.getImage().getHeight()) {
+            scale -= precision;
+        }
+
+        this.hexagone = this.hexagone.getScaledCopy(scale);
+        this.node = this.node.getScaledCopy(scale);
+
+        int widthDIV2 = (int)((this.background.getImage().getWidth() - this.hexagone.getWidth()*(this.dim.width + 0.5))/2);
+        //int heightDIV2 = (int)((this.background.getImage().getHeight() - this.hexagone.getHeight()*this.dim.height)/2);
+
+        this.gridPos = new Point(this.background.getPos().x + widthDIV2 - this.hexagone.getWidth()/10, this.background.getPos().y + 100);
+
     }
+
+    private float scale;
 
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
         Rectangle scaleArea;
 
         for (NodeView nd : this.nodeViewList) {
-            scaleArea = new Rectangle(nd.getPos().x * scaleX, nd.getPos().y * scaleY, nd.getClickableArea().width * scaleX, nd.getClickableArea().height * scaleY);
+            scaleArea = new Rectangle(nd.getPos().x * scaleX, nd.getPos().y * scaleY, (nd.getClickableArea().width * scaleX) * scale, (nd.getClickableArea().height * scaleY) * scale);
             if (scaleArea.contains(x, y)) {
                 return nd;
             }
