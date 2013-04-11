@@ -136,58 +136,47 @@ public class Main {
     }
     public static void makeLevel4() {
         // In Progress
-        IMap map = new MapHexa(20,15);
+        IMap map = new MapHexa(10,10);
 
         // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getBruteForcing());
-        mapAddDefaultNode(map, 1, 1, getVirus());
+        mapAddDefaultNode(map, 1, 1, getPhishing());
         mapAddDefaultNode(map, 1, 7, getPhishing());
         mapAddDefaultNode(map, 1, 8, getBruteForcing());
-        mapAddDefaultNode(map, 2, 2, getVirus());
+        mapAddDefaultNode(map, 2, 2, getBruteForcing());
         mapAddDefaultNode(map, 2, 4, getPhishing());
-        mapAddDefaultNode(map, 2, 6, getVirus());
+        mapAddDefaultNode(map, 2, 6, getEffraction());
         mapAddDefaultNode(map, 2, 8, getPhishing());
         mapAddDefaultNode(map, 3, 2, getBruteForcing());
         mapAddDefaultNode(map, 3, 4, getPhishing());
         mapAddDefaultNode(map, 3, 5, getBruteForcing());
         mapAddDefaultNode(map, 4, 3, getPhishing());
-        mapAddDefaultNode(map, 4, 5, getVirus());
+        mapAddDefaultNode(map, 4, 5, getPhishing());
         mapAddDefaultNode(map, 5, 1, getEffraction());
         mapAddDefaultNode(map, 5, 7, getPhishing());
-        mapAddDefaultNode(map, 6, 4, getVirus());
+        mapAddDefaultNode(map, 6, 4, getPhishing());
         mapAddDefaultNode(map, 6, 5, getBruteForcing());
-        mapAddDefaultNode(map, 7, 2, getVirus());
+        mapAddDefaultNode(map, 7, 2, getPhishing());
         mapAddDefaultNode(map, 7, 6, getPhishing());
-        mapAddDefaultNode(map, 9, 1, getVirus());
+        mapAddDefaultNode(map, 9, 1, getEffraction());
         mapAddDefaultNode(map, 1, 4, getPhishing());
-        mapAddDefaultNode(map, 10, 12, getBruteForcing());
-        mapAddDefaultNode(map, 11, 2, getPhishing());
-        mapAddDefaultNode(map, 10, 5, getEffraction());
-        mapAddDefaultNode(map, 14, 1, getVirus());
-        mapAddDefaultNode(map, 0, 5, getPhishing());
-        mapAddDefaultNode(map, 10, 1, getVirus());
-        mapAddDefaultNode(map, 10, 10, getPhishing());
-        mapAddDefaultNode(map, 14, 12, getEffraction());
         
-        mapAddDefaultNode(map, 15, 6, getPhishing());
-        mapAddDefaultNode(map, 18, 1, getEffraction());
-        mapAddDefaultNode(map, 19, 4, getVirus());
-        mapAddDefaultNode(map, 14, 12, getBruteForcing());
-        mapAddDefaultNode(map, 10, 2, getPhishing());
-        mapAddDefaultNode(map, 15, 5, getEffraction());
-        mapAddDefaultNode(map, 14, 1, getVirus());
-        mapAddDefaultNode(map, 16, 5, getPhishing());
-        mapAddDefaultNode(map, 17, 1, getBruteForcing());
-        mapAddDefaultNode(map, 19, 10, getPhishing());
-        mapAddDefaultNode(map, 18, 12, getVirus());
+        mapAddDefaultNode(map, 0, 8, getBruteForcing());
+        mapAddDefaultNode(map, 4, 7, getPhishing());
+        mapAddDefaultNode(map, 4, 9, getEffraction());
+        mapAddDefaultNode(map, 5, 3, getBruteForcing());
+        mapAddDefaultNode(map, 5, 5, getPhishing());
+        mapAddDefaultNode(map, 6, 1, getBruteForcing());
+        mapAddDefaultNode(map, 6, 9, getPhishing());
+        mapAddDefaultNode(map, 7, 0, getEffraction());
 
         String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
-        String levelName = "MISSION 4";
+        String levelName = "MISSION 3";
 
-        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Trojan"));
+        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Virus"));
 
         Level level = new Level(map, 20, makeDefaultTarget(30), mission);
-        new XStreamer<Level>().save(level, Main.class.getResource("../levels/level4.xml").getPath());
+        new XStreamer<Level>().save(level, Main.class.getResource("../levels/level3.xml").getPath());
     }
     public static void makeLevel5() {
 
