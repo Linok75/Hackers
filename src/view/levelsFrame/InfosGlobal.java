@@ -30,6 +30,7 @@ public class InfosGlobal extends BasicGameState {
     private Illustration ddosButton;
     private Illustration targetBackground;
     private Illustration playerBackground;
+    private Image progressBar;
 
     public InfosGlobal(int stateID, Game gameInstance){
         this.stateID=stateID;
@@ -47,6 +48,7 @@ public class InfosGlobal extends BasicGameState {
         this.playerBackground = new Illustration(new Image(getClass().getResource("../ressources/infosPlayer.png").getPath()), new Point(this.targetBackground.getPos().x+23,this.targetBackground.getPos().y+this.targetBackground.getImage().getHeight()-180));
         this.targetView = new Illustration(new Image(getClass().getResource(this.gameInstance.getLevel().getTarget().getPath()).getPath()), new Point(this.targetBackground.getPos().x+120,this.targetBackground.getPos().y+150));
         this.ddosButton = new Illustration(new Image(getClass().getResource("../ressources/buttonDDOS.png").getPath()), new Point(this.playerBackground.getPos().x+240, this.playerBackground.getPos().y+157));
+        this.progressBar = new Image(getClass().getResource("../ressources/progressBar.png").getPath());
     }
 
     @Override
@@ -57,7 +59,9 @@ public class InfosGlobal extends BasicGameState {
         g.drawString(this.gameInstance.getLevel().getTarget().getDescription(), this.targetView.getPos().x+this.targetView.getImage().getWidth()+10, this.targetView.getPos().y+20);
         g.drawString("Vie du serveur : ", this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+400);
         
-        g.fillRect(this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450, this.gameInstance.getLevel().getTarget().getLife()*10, 20);
+        
+        g.drawImage(progressBar.getSubImage(0, 0,this.gameInstance.getLevel().getTarget().getLife()*10 ,25), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
+        //g.fillRect(this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450, this.gameInstance.getLevel().getTarget().getLife()*10, 20);
         g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
         g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
         g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
