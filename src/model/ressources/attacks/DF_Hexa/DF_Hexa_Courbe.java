@@ -2,11 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.ressources.attacks;
+package model.ressources.attacks.DF_Hexa;
 
 import java.util.ArrayList;
 import model.maps.MapHexa;
 import model.maps.Node;
+import model.ressources.attacks.Attack;
+import model.ressources.attacks.DiffusionMethod;
 
 /**
  *

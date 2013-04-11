@@ -2,11 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.ressources.attacks;
+package model.ressources.attacks.DF_Hexa;
 
 import java.util.ArrayList;
 import model.maps.MapHexa;
 import model.maps.Node;
+import model.ressources.attacks.Attack;
+import model.ressources.attacks.DiffusionMethod;
 
 /**
  *
@@ -14,7 +16,7 @@ import model.maps.Node;
  */
 public class DF_Hexa_Effraction extends DiffusionMethod{
     private int radius;
-    
+
     public DF_Hexa_Effraction(Attack attack, MapHexa map){
         super(attack, map);
         this.radius = 1;
@@ -25,7 +27,7 @@ public class DF_Hexa_Effraction extends DiffusionMethod{
         MapHexa map = (MapHexa) this.map;
         ArrayList<Node> nodes = new ArrayList<Node>();
         Node tmpEst=node, tmpOuest=node, tmpSudEst=node, tmpSudOuest=node, tmpNordEst=node, tmpNordOuest=node;
-        
+
         for(int i=0;i<this.radius;i++){
             tmpEst=map.getEst(tmpEst);
             tmpOuest=map.getEst(tmpOuest);
@@ -40,9 +42,9 @@ public class DF_Hexa_Effraction extends DiffusionMethod{
         addNodeIfNotNull(nodes, tmpSudOuest);
         addNodeIfNotNull(nodes, tmpNordEst);
         addNodeIfNotNull(nodes, tmpNordOuest);
-        
+
         this.radius++;
-        
+
         return nodes;
     }
 }

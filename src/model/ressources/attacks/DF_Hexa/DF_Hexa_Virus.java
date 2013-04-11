@@ -2,27 +2,32 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.ressources.attacks;
+package model.ressources.attacks.DF_Hexa;
 
 import java.util.ArrayList;
 import model.maps.MapHexa;
 import model.maps.Node;
+import model.ressources.attacks.Attack;
+import model.ressources.attacks.DiffusionMethod;
 
 /**
  *
  * @author Ara
  */
-public class DF_Hexa_Exploitation extends DiffusionMethod{
-    public DF_Hexa_Exploitation(Attack attack, MapHexa map){
+public class DF_Hexa_Virus extends DiffusionMethod{
+    public DF_Hexa_Virus(Attack attack, MapHexa map){
         super(attack, map);
     }
-    
+
     @Override
     protected ArrayList<Node> getAllNodesAround(Node node) {
         MapHexa map = (MapHexa) this.map;
         ArrayList<Node> nodes = new ArrayList<Node>();
+        addNodeIfNotNull(nodes, map.getNordOuest(node));
         addNodeIfNotNull(nodes, map.getSudOuest(node));
+        addNodeIfNotNull(nodes, map.getNordEst(node));
         addNodeIfNotNull(nodes, map.getSudEst(node));
         return nodes;
     }
+
 }
