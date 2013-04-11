@@ -58,11 +58,7 @@ public class Level extends BasicGameState {
         this.parentState = game;
         this.gameInstance = Game.getInstance();
 
-        this.map = new Map(gameInstance, stateID, this.parentState);
-        this.infosNode = new InfosNode(stateID, gameInstance);
-        this.atkList = new ListOfAtk(stateID, gameInstance);
-        this.infosTarget = new InfosGlobal(stateID, gameInstance);
-
+        
         this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
         this.font.addAsciiGlyphs();
         this.font.addGlyphs(400, 600);
@@ -75,6 +71,12 @@ public class Level extends BasicGameState {
         this.background = new Illustration(new Image(getClass().getResource("../ressources/background.png").getPath()), new Point(0, 0));
         this.scaleX = (float) container.getWidth() / this.background.getImage().getWidth();
         this.scaleY = (float) container.getHeight() / this.background.getImage().getHeight();
+        
+        this.map = new Map(gameInstance, stateID, this.parentState, this.scaleX);
+        this.infosNode = new InfosNode(stateID, gameInstance);
+        this.atkList = new ListOfAtk(stateID, gameInstance);
+        this.infosTarget = new InfosGlobal(stateID, gameInstance);
+
 
         this.map.init(container, game);
         this.infosNode.init(container, game);
