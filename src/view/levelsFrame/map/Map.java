@@ -72,8 +72,8 @@ public class Map extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawImage(this.background.getImage(), (int) this.background.getPos().getX(), (int) this.background.getPos().getY());
-        
+        g.drawImage(this.background.getImage(), (int) this.background.getPos().getX(), (int)this.background.getPos().getY());
+
         for (NodeView nd : this.nodeViewList) {
             if (!nd.isCorrupt()) {
                 g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
@@ -203,7 +203,7 @@ public class Map extends BasicGameState {
         Vector2f dimHexaPX = new Vector2f(this.hexagone.getWidth(), this.hexagone.getHeight());
         System.out.println("Dimension d'un hexagone : "+dimHexaPX);
         //Dimension de la map (pixel)
-        Vector2f dimMapPX = new Vector2f(dimHexaPX.x * dimMapHX.x, dimHexaPX.y * dimMapHX.y);
+        Vector2f dimMapPX = new Vector2f(dimHexaPX.x * (dimMapHX.x + 0.5f), dimHexaPX.y * dimMapHX.y);
         System.out.println("Dimension de la map (pixel) : "+dimMapPX);
 
         float scale;
@@ -237,15 +237,17 @@ public class Map extends BasicGameState {
         System.out.println(scaleForHexa);
         System.out.println(scaleForHexa2);
 
-        this.hexagone = this.hexagone.getScaledCopy(scaleForHexa);
-        this.node = this.node.getScaledCopy(scaleForHexa);
+        float min = Math.min(scaleForHexa, scaleForHexa2);
+
+        this.hexagone = this.hexagone.getScaledCopy(min);
+        this.node = this.node.getScaledCopy(min);
 
         System.out.println("WIDTH : "+this.hexagone.getWidth()*dimMapHX.x);
         System.out.println("HEIGHT : "+this.hexagone.getHeight()*dimMapHX.y);
 
-        int posX = 100;
+        int posX = this.background.getPos().x + ((this.background.getImage().getWidth() - this.gridDim.width)/2);
         System.out.println("posX : "+posX);
-        int posY = 300;
+        int posY = this.background.getPos().y + ((this.background.getImage().getHeight() - this.gridDim.height));
         System.out.println("posY : "+posY);
         this.gridPos = new Point(posX, posY);
     }
