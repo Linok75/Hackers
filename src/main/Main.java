@@ -46,10 +46,10 @@ public class Main {
 
         String descriptionMission = "Bonjour,\n"
                 + "Nous sommes une société spécialiste de la distribution dans le domaine agroalimentaire.\n"
-                + "Nous faisons appel à vos service dans le but de faire tomber le site Web d'un de "
+                + "Nous faisons appel à vos services dans le but de faire tomber le site web d'un de "
                 + "nos concurrents qui commence à prendre beaucoup trop d'ampleur sur le marché...\n"
-                + "Vous avez jusqu'à demain pour tomber leur site Web par tout les moyens possible, un retard sera synonyme d'échec...";
-        String levelName = "MISSION 1 : On est tous passé par là... quoi que...";
+                + "Vous avez jusqu'à demain pour tomber leur site par tous les moyens possibles, un retard sera synonyme d'échec...";
+        String levelName = "MISSION 1 : On est tous passés par là... quoi que...";
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Virus"));
 
@@ -59,24 +59,7 @@ public class Main {
     }
     public static void makeLevel2() {
 
-        ArrayList<Defence> defPhishing = new ArrayList<Defence>();
-        ArrayList<Defence> defVirus = new ArrayList<Defence>();
-        ArrayList<Defence> defTrojan = new ArrayList<Defence>();
-        String test = MapHexa.NODEDEFAULTPATH;
-
-        Target target = makeDefaultTarget(30);
-
-        IMap map = new MapHexa();
-
-        // defense anti phishing
-        defPhishing.add(Defence.Phishing);
-
-        defVirus.add(Defence.Phishing);
-        defVirus.add(Defence.Virus);
-
-        defTrojan.add(Defence.Phishing);
-        defTrojan.add(Defence.Virus);
-        defTrojan.add(Defence.Trojan);
+        IMap map = new MapHexa(8,10);
 
         // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 5, 4, getPhishing());
@@ -86,7 +69,7 @@ public class Main {
         mapAddDefaultNode(map, 3, 8, getPhishing());
 
         mapAddDefaultNode(map, 5, 3, getVirus());
-
+        /*
         map.setNode(5, 3, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(4, 4, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(6, 1, new Node(defVirus, test, MapHexa.NODEDEFAULTPATH));
@@ -98,13 +81,10 @@ public class Main {
         map.setNode(3, 2, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(5, 7, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
         map.setNode(1, 1, new Node(defTrojan, test, MapHexa.NODEDEFAULTPATH));
+*/
+        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !", makeRewardNewAttack("Trojan"));
 
-        Reward r = new Reward(0);
-        r.addAttack(new Trojan());
-
-        Mission mission = new Mission("Level_2", "Créez ton botnet et attaque la cible de la mission !", r);
-
-        Level level = new Level(map, 20, target, mission);
+        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
