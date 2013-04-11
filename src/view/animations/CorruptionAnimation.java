@@ -109,6 +109,7 @@ public class CorruptionAnimation {
                 }
             }
             state++;
+            this.sas.clear();
             if (state < this.nodeViews.size()) {
                 for (NodeView nodeViewTarget : this.nodeViews.get(state)) {
                     for (NodeView nodeViewSource : this.nodeViews.get(state-1)) {
