@@ -16,11 +16,17 @@ public final class Target extends Node {
 
     //private int difficulty;
     private int life;
-    //private int defence;
+    private int defence;
 
     public Target(int life, String description, String path) {
         super(null, description, path);
         this.life = life;
+        this.defence = 0;
+    }
+
+    public Target(int life, int defence, String description, String path) {
+        this(life, description, path);
+        this.defence = defence;
     }
 
     @Override
@@ -32,7 +38,9 @@ public final class Target extends Node {
             throw new IllegalArgumentException("Pour attaquer la cible, il faut obligatoirement une attaque DDoS");
         }
         DDoS ddos = (DDoS) attack;
-        if (ddos.getPower() >= this.life) {
+        int power = ddos.getPower() - this.defence;
+
+        if (power >= this.life) {
             this.isHack = true;
             //...
 
@@ -40,7 +48,7 @@ public final class Target extends Node {
 
             return true;
         } else {
-            this.life-=ddos.getPower();
+            this.life -= power;
             return false;
         }
     }
