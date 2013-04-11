@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
+import model.maps.MapHexa;
 import model.maps.Node;
 import model.ressources.attacks.Attack;
 import org.newdawn.slick.Color;
@@ -99,12 +100,9 @@ public class CorruptionAnimation {
     }
 
     private void nextState() {
-        //TOREMAKE
         if (state < this.nodeViews.size()) {
             for (NodeView nodeView : this.nodeViews.get(state)) {
                 try {
-                    //System.out.println(atk);
-                    //System.out.println(nodeView);
                     nodeView.corrupt(atk.getTitle());
                 } catch (SlickException ex) {
                     Logger.getLogger(CorruptionAnimation.class.getName()).log(Level.SEVERE, null, ex);
@@ -112,15 +110,23 @@ public class CorruptionAnimation {
             }
             state++;
             if (state < this.nodeViews.size()) {
-                ArrayList<NodeView> array = this.nodeViews.get(state);
-                for (NodeView nodeView : array) {
-                    this.sas.add(new SegmentAnimation(source, nodeView.getCenter()));
+                for (NodeView nodeViewTarget : this.nodeViews.get(state)) {
+                    for (NodeView nodeViewSource : this.nodeViews.get(state-1)) {
+                        if (isNearTo(nodeViewSource, nodeViewTarget))
+                            this.sas.add(new SegmentAnimation(nodeViewSource.getCenter(), nodeViewTarget.getCenter()));
+                    }
                 }
             }
-            //this.nodeViews.remove(0);
         } else {
             currentTime++;
         }
+    }
+
+    public boolean isNearTo(NodeView nvS, NodeView nvT) {
+        Node source = Game.getInstance().getLevel().getMap().getNode(nvS.getLinkToNode().x, nvS.getLinkToNode().y);
+        Node target = Game.getInstance().getLevel().getMap().getNode(nvT.getLinkToNode().x, nvT.getLinkToNode().y);
+
+        return Game.getInstance().getLevel().getMap().isNearTo(source, target);
     }
 
     public boolean isEnded() {

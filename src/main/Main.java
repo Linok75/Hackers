@@ -23,7 +23,6 @@ public class Main {
         //Menu.run();
         makeLevels();
     }
-
     public static void makeLevels() {
         makeLevel1(); //Phishing
         makeLevel2(); //BruteForcing
@@ -32,10 +31,9 @@ public class Main {
         makeLevel5(); //Trojan
         makeLevel6(); //Exploitation
     }
-
     public static void makeLevel1() {
 
-        IMap map = new MapHexa(10,10);
+        IMap map = new MapHexa();
 
         mapAddDefaultNode(map, 5, 4, getPhishing());
         mapAddDefaultNode(map, 1, 5, getPhishing());
@@ -59,7 +57,6 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
-
     public static void makeLevel2() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -112,7 +109,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel3() {
         // In Progress
         Player player = new Player();
@@ -165,7 +161,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel4() {
         // In Progress
         Player player = new Player();
@@ -217,7 +212,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel5() {
 
         ArrayList<Defence> defPhishing = new ArrayList<Defence>();
@@ -267,7 +261,6 @@ public class Main {
         //Game.makeInstance(player, level);
         //Game.getInstance().play();
     }
-
     public static void makeLevel6() {
     }
     // TOOLS

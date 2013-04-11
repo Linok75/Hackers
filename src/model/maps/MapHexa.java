@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import main.Main;
+import model.Game;
 import model.ressources.attacks.*;
 
 
@@ -316,5 +317,12 @@ public final class MapHexa implements IMap {
         } else {
             return this.getNode(li - 1, co + 1);
         }
+    }
+
+    @Override
+    public boolean isNearTo(Node source, Node target) {
+
+        return this.getEst(source) == target || this.getNordEst(source) == target || this.getNordOuest(source) == target ||
+                this.getOuest(source) == target || this.getSudEst(source) == target || this.getSudOuest(source) == target;
     }
 }

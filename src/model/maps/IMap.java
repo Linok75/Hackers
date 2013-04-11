@@ -19,6 +19,8 @@ public interface IMap {
     public Point getPoint(Node node);
     public Dimension getDimensionMap();
 
+    public boolean isNearTo(Node nS, Node nT);
+
     public int countAllNodesHack();
 
     public ArrayList<ArrayList<Node>> phishing(Node node);
