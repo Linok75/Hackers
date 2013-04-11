@@ -247,7 +247,8 @@ public class Map extends BasicGameState {
         System.out.println("posX : "+posX);
         int posY = 300;
         System.out.println("posY : "+posY);
-        this.gridPos = new Point(posX, posY);
+//        this.gridPos = new Point(posX, posY);
+        this.gridPos = new Point((int) (this.background.getPos().getX() + (((this.background.getImage().getWidth()) - this.gridDim.getWidth())) / 2), (int) (this.background.getPos().getY() + (this.background.getImage().getHeight() - this.gridDim.height)/2));
     }
 
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
