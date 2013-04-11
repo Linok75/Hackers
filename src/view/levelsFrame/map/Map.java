@@ -234,6 +234,10 @@ public class Map extends BasicGameState {
         return nodeViewList;
     }
 
+    public boolean canIDoDDoS() {
+        return this.corruptionAnimations.isEmpty();
+    }
+
     public int getNbCorrupt() {
         int nbCorrupt;
 
