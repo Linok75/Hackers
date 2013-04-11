@@ -92,7 +92,7 @@ public class Main {
     }
     public static void makeLevel3() {
         // In Progress
-        IMap map = new MapHexa(15,15);
+        IMap map = new MapHexa(10,10);
 
         // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getBruteForcing());
@@ -116,14 +116,15 @@ public class Main {
         mapAddDefaultNode(map, 7, 6, getPhishing());
         mapAddDefaultNode(map, 9, 1, getEffraction());
         mapAddDefaultNode(map, 1, 4, getPhishing());
-        mapAddDefaultNode(map, 10, 12, getBruteForcing());
-        mapAddDefaultNode(map, 11, 2, getPhishing());
-        mapAddDefaultNode(map, 10, 5, getEffraction());
-        mapAddDefaultNode(map, 14, 1, getBruteForcing());
-        mapAddDefaultNode(map, 0, 5, getPhishing());
-        mapAddDefaultNode(map, 10, 1, getBruteForcing());
-        mapAddDefaultNode(map, 10, 10, getPhishing());
-        mapAddDefaultNode(map, 14, 12, getEffraction());
+        
+        mapAddDefaultNode(map, 0, 8, getBruteForcing());
+        mapAddDefaultNode(map, 4, 7, getPhishing());
+        mapAddDefaultNode(map, 4, 9, getEffraction());
+        mapAddDefaultNode(map, 5, 3, getBruteForcing());
+        mapAddDefaultNode(map, 5, 5, getPhishing());
+        mapAddDefaultNode(map, 6, 1, getBruteForcing());
+        mapAddDefaultNode(map, 6, 9, getPhishing());
+        mapAddDefaultNode(map, 7, 0, getEffraction());
 
         String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
         String levelName = "MISSION 3";
