@@ -33,7 +33,7 @@ public class Main {
     }
     public static void makeLevel1() {
 
-        IMap map = new MapHexa(20,20);
+        IMap map = new MapHexa(15,10);
 
         mapAddDefaultNode(map, 5, 4, getPhishing());
         mapAddDefaultNode(map, 1, 5, getPhishing());

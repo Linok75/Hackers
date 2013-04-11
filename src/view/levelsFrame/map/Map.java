@@ -60,7 +60,7 @@ public class Map extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(-50, 180));
+        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(72, 271));
         this.hexagone = new Image(getClass().getResource("../../ressources/hexagone.png").getPath());
         this.node = new Image(getClass().getResource("../../ressources/nodeMap.png").getPath());
 
@@ -73,7 +73,7 @@ public class Map extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.drawImage(this.background.getImage(), (int) this.background.getPos().getX(), (int) this.background.getPos().getY());
-
+        
         for (NodeView nd : this.nodeViewList) {
             if (!nd.isCorrupt()) {
                 g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
