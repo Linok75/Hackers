@@ -32,7 +32,6 @@ public class GameOver extends BasicGameState implements ComponentListener {
     private int stateID;
     private StateBasedGame parentState;
     private UnicodeFont font;
-    private UnicodeFont fontCitation;
     private GameContainer container;
     private MouseOverArea quit;
     private MouseOverArea recommencer;
@@ -69,6 +68,7 @@ public class GameOver extends BasicGameState implements ComponentListener {
         this.container = container;
         if (!this.citations.isEmpty()) {
             this.citation = this.citations.get((int) (Math.random() * this.citations.size()));
+            System.out.println(this.citation);
         }
         this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
         this.font.addAsciiGlyphs();
@@ -91,8 +91,7 @@ public class GameOver extends BasicGameState implements ComponentListener {
         recommencer.render(container, g);
         g.setFont(font);
         g.drawString("GAME OVER", 100, 100);
-        g.setFont(fontCitation);
-        if (this.citation != null) g.drawString(this.citation, 100, 200);
+        g.drawString(this.citation, 100, 200);
     }
 
     @Override
