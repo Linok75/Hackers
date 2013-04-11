@@ -4,6 +4,11 @@
  */
 package model.maps;
 
+import model.ressources.attacks.DF_Hexa.DF_Hexa_Trojan;
+import model.ressources.attacks.DF_Hexa.DF_Hexa_Effraction;
+import model.ressources.attacks.DF_Hexa.DF_Hexa_Phishing;
+import model.ressources.attacks.DF_Hexa.DF_Hexa_Exploitation;
+import model.ressources.attacks.DF_Hexa.DF_Hexa_Virus;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -15,6 +20,7 @@ import java.util.logging.Logger;
 import main.Main;
 import model.Game;
 import model.ressources.attacks.*;
+import model.ressources.attacks.DF_Hexa.*;
 
 
 /**
@@ -45,7 +51,6 @@ public final class MapHexa implements IMap {
             }
         }
     }
-
     public MapHexa() {
         this(7,9); // default
     }
@@ -53,7 +58,6 @@ public final class MapHexa implements IMap {
     public static String getNextNameOfNode() {
         return getNextFirstNameOfNode() + " " + getNextLastNameOfNode() + "\n" + NODEDEFAULTDESC;
     }
-
     private static String getNextFirstNameOfNode() {
         String s = null;
         try {
@@ -71,7 +75,6 @@ public final class MapHexa implements IMap {
         }
         return s.split(" ")[0];
     }
-
     private static String getNextLastNameOfNode() {
         String s = null;
         try {
@@ -98,7 +101,14 @@ public final class MapHexa implements IMap {
         }
 
     }
-
+    public void setNode(int li, int co, Node node) {
+        // verifier li et co ...
+        if (li >= 0 && li < LI && co >= 0 && co < CO) {
+            this.nodes[li][co] = node;
+        } else {
+            throw new RuntimeException("Impossible d'ajouter des noeuds en dehors de la map ;)");
+        }
+    }
     public int countAllNodesHack() {
         int nbNodesHack = 0;
         for (Node[] n1 : nodes) {
@@ -110,19 +120,15 @@ public final class MapHexa implements IMap {
         }
         return nbNodesHack;
     }
-
     public int nbNodes() {
         return LI * CO;
     }
-
     public boolean in0_LI(int n) {
         return n >= 0 && n < LI;
     }
-
     public boolean in0_CO(int n) {
         return n >= 0 && n < CO;
     }
-
     public Point getPoint(Node node) {
         for (int i = 0; i < nodes.length; i++) {
             Node[] nodes1 = nodes[i];
@@ -135,13 +141,10 @@ public final class MapHexa implements IMap {
         }
         return null;
     }
-
-    @Override
     public Dimension getDimensionMap() {
         return new Dimension(CO, LI);
     }
 
-    @Override
     public ArrayList<ArrayList<Node>> phishing(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -149,7 +152,6 @@ public final class MapHexa implements IMap {
         dm.run(nodes);
         return dm.getNodesHack();
     }
-    @Override
     public ArrayList<ArrayList<Node>> virus(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -157,8 +159,6 @@ public final class MapHexa implements IMap {
         dm.run(nodes);
         return dm.getNodesHack();
     }
-
-    @Override
     public ArrayList<ArrayList<Node>> trojan(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -166,8 +166,6 @@ public final class MapHexa implements IMap {
         dm.run(nodes);
         return dm.getNodesHack();
     }
-
-    @Override
     public ArrayList<ArrayList<Node>> effraction(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -175,7 +173,6 @@ public final class MapHexa implements IMap {
         dm.run(nodes);
         return dm.getNodesHack();
     }
-
     public ArrayList<ArrayList<Node>> exploitation(Node node) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         nodes.add(node);
@@ -183,23 +180,14 @@ public final class MapHexa implements IMap {
         dm.run(nodes);
         return dm.getNodesHack();
     }
-
     public ArrayList<ArrayList<Node>> bruteForcing(Node node) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        nodes.add(node);
+        DiffusionMethod dm = new DF_Hexa_BruteForcing(new BruteForcing(), this);
+        dm.run(nodes);
+        return dm.getNodesHack();
     }
 
-
-    @Override
-    public void setNode(int li, int co, Node node) {
-        // verifier li et co ...
-        if (li >= 0 && li < LI && co >= 0 && co < CO) {
-            this.nodes[li][co] = node;
-        } else {
-            throw new RuntimeException("Impossible d'ajouter des noeuds en dehors de la map ;)");
-        }
-    }
-
-    @Override
     public String toString() {
         String str = "   ";
 
@@ -253,7 +241,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li - 1, co);
         }
     }
-
     public Node getOuest(Node node) {
         if (node == null) return null;
 
@@ -266,7 +253,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li, co - 1);
         }
     }
-
     public Node getSudOuest(Node node) {
         if (node == null) return null;
 
@@ -279,7 +265,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li + 1, co);
         }
     }
-
     public Node getSudEst(Node node) {
         if (node == null) return null;
 
@@ -292,7 +277,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li + 1, co + 1);
         }
     }
-
     public Node getEst(Node node) {
         if (node == null) return null;
 
@@ -305,7 +289,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li, co + 1);
         }
     }
-
     public Node getNordEst(Node node) {
         if (node == null) return null;
 
@@ -318,8 +301,6 @@ public final class MapHexa implements IMap {
             return this.getNode(li - 1, co + 1);
         }
     }
-
-    @Override
     public boolean isNearTo(Node source, Node target) {
 
         return this.getEst(source) == target || this.getNordEst(source) == target || this.getNordOuest(source) == target ||
