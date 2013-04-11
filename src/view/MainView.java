@@ -15,7 +15,6 @@ public class MainView {
     public static void main(String arg[]) {
         //Construction Model...
         ViewLauncher viewLauncher = new ViewLauncher();
-        //IMap map = new MapHexa(); //Pour des raisons inconnues, sans cette ligne, la map ne s'affiche pas...
         Menu.loadLevels();
         Menu.loadPlayers();
 

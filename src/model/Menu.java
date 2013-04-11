@@ -69,6 +69,8 @@ public class Menu {
     }
 
     public static void loadLevels() {
+        if(!levels.isEmpty()) levels.clear();
+
         XStreamer<Level> xsLevels = new XStreamer<Level>();
         File f = new File(Menu.class.getResource("../levels/").getPath());
 
@@ -101,6 +103,8 @@ public class Menu {
     }
 
     public static void loadPlayers() {
+        if(!players.isEmpty()) players.clear();
+
         XStreamer<Player> xsPlayers = new XStreamer<Player>();
         File f = new File(Menu.class.getResource("../saves/").getPath());
         FileFilter ff = new FileFilter() {
@@ -338,6 +342,7 @@ public class Menu {
 
     public static void replay() {
         player.reset();
+        loadLevels();
         Game.getInstance().setLevel(levels.get(currentLevel));
     }
 

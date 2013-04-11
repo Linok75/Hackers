@@ -68,7 +68,7 @@ public class GameOver extends BasicGameState implements ComponentListener {
         this.container = container;
         if (!this.citations.isEmpty()) {
             this.citation = this.citations.get((int) (Math.random() * this.citations.size()));
-            System.out.println(this.citation);
+            //System.out.println(this.citation);
         }
         this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
         this.font.addAsciiGlyphs();
