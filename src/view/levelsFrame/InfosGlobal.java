@@ -23,7 +23,7 @@ import view.tools.Illustration;
  * @author Ara
  */
 public class InfosGlobal extends BasicGameState {
-    
+
     private int stateID;
     private Game gameInstance;
     private Illustration targetView;
@@ -58,24 +58,24 @@ public class InfosGlobal extends BasicGameState {
         g.drawImage(this.targetView.getImage(), this.targetView.getPos().x, this.targetView.getPos().y);
         g.drawString(this.gameInstance.getLevel().getTarget().getDescription(), this.targetView.getPos().x+this.targetView.getImage().getWidth()+10, this.targetView.getPos().y+20);
         g.drawString("Vie du serveur : ", this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+400);
-        
-        
+
+
         g.drawImage(progressBar.getSubImage(0, 0,this.gameInstance.getLevel().getTarget().getLife()*10 ,25), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
-        
+
         g.drawRect(this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450, this.gameInstance.getLevel().getTarget().getLife()*10, 25);
         g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
         g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
         g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
         g.drawImage(this.ddosButton.getImage(), this.ddosButton.getPos().x, this.ddosButton.getPos().y);
         g.drawString("Launch DDOS", this.ddosButton.getPos().x+33, this.ddosButton.getPos().y+30);
-        
+
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-       
+
     }
-    
+
     public boolean launchDdos(int x, int y, float scaleX, float scaleY){
         Rectangle scaleArea;
 

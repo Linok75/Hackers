@@ -53,7 +53,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("BruteForcing"));
 
-        Level level = new Level(map, 30, makeDefaultTarget(30), mission);
+        Target target = new Target(50, 25, "Serveur Web", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 30, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
@@ -87,7 +89,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Effraction"));
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target target = new Target(50, 30, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, target, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());
     }
     public static void makeLevel3() {
@@ -167,7 +171,7 @@ public class Main {
         mapAddDefaultNode(map, 10, 1, getVirus());
         mapAddDefaultNode(map, 10, 10, getPhishing());
         mapAddDefaultNode(map, 14, 12, getEffraction());
-        
+
         mapAddDefaultNode(map, 15, 6, getPhishing());
         mapAddDefaultNode(map, 18, 1, getEffraction());
         mapAddDefaultNode(map, 19, 4, getVirus());
