@@ -92,7 +92,7 @@ public class Main {
     }
     public static void makeLevel3() {
         // In Progress
-        IMap map = new MapHexa(10,15);
+        IMap map = new MapHexa(15,15);
 
         // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getBruteForcing());
