@@ -181,7 +181,7 @@ public class Main {
         mapAddDefaultNode(map, 18, 12, getVirus());
 
         String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
-        String levelName = "MISSION 3";
+        String levelName = "MISSION 4";
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Trojan"));
 
