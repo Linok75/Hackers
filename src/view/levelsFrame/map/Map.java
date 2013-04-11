@@ -39,17 +39,19 @@ public class Map extends BasicGameState {
     private ArrayList<NodeView> nodeViewList;
     private HashMap<Attack, Color> assocColorAtk;
     private Point gridPos;
+    private float globalScaleX;
     // Contamination Animation
     private ArrayList<CorruptionAnimation> corruptionAnimations = new ArrayList<CorruptionAnimation>();
     //
 
-    public Map(Game instance, int stateID, StateBasedGame game) throws SlickException {
+    public Map(Game instance, int stateID, StateBasedGame game, float globalScaleX) throws SlickException {
         this.instance = instance;
         this.parentState=game;
         this.dim = this.instance.getLevel().getMap().getDimensionMap();
         this.stateID = stateID;
         this.nodeViewList = new ArrayList<NodeView>();
         this.assocColorAtk = new HashMap<Attack,Color>();
+        this.globalScaleX = globalScaleX;
     }
 
     @Override
@@ -194,7 +196,11 @@ public class Map extends BasicGameState {
         double scale;
 
         this.gridDim = new Dimension((int) (this.hexagone.getWidth() * this.dim.getWidth()), (int) (this.hexagone.getHeight() * this.dim.getHeight()));
-        scale = this.gridDim.getWidth() / this.background.getImage().getWidth();
+        System.out.println(this.hexagone.getWidth() + " : " + this.hexagone.getHeight());
+        System.out.println(this.gridDim.getWidth() + " : " + this.gridDim.getHeight());
+        scale = (this.gridDim.getWidth() / this.background.getImage().getWidth())*this.globalScaleX;
+        System.out.println(this.gridDim.getWidth()+ " / " + this.background.getImage().getWidth());
+        System.out.println(scale);
         this.hexagone = this.hexagone.getScaledCopy((float) scale);
         this.node = this.node.getScaledCopy((float) scale);
         this.gridDim.setSize(this.gridDim.getWidth() * scale, this.gridDim.getHeight() * scale);
