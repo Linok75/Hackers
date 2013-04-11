@@ -53,9 +53,7 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("BruteForcing"));
 
-        Target target = new Target(50, 25, "Serveur Web", MapHexa.NODEDEFAULTPATH);
-
-        Level level = new Level(map, 30, target, mission);
+        Level level = new Level(map, 30, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
