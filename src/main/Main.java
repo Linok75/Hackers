@@ -501,7 +501,7 @@ public class Main {
         String descriptionMission = "Créez ton botnet et attaque la cible de la mission !";
         String levelName = "MISSION 6";
 
-        Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack(null));
+        Mission mission = new Mission(levelName, descriptionMission, null);
 
         Level level = new Level(map, 20, makeDefaultTarget(30), mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level6.xml").getPath());
