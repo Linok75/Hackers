@@ -28,6 +28,7 @@ import view.tools.Illustration;
  * @author Ara
  */
 public class Map extends BasicGameState {
+
     private StateBasedGame parentState;
     private Illustration background;
     private Image hexagone;
@@ -46,11 +47,11 @@ public class Map extends BasicGameState {
 
     public Map(Game instance, int stateID, StateBasedGame game, float globalScaleX) throws SlickException {
         this.instance = instance;
-        this.parentState=game;
+        this.parentState = game;
         this.dim = this.instance.getLevel().getMap().getDimensionMap();
         this.stateID = stateID;
         this.nodeViewList = new ArrayList<NodeView>();
-        this.assocColorAtk = new HashMap<Attack,Color>();
+        this.assocColorAtk = new HashMap<Attack, Color>();
         this.globalScaleX = globalScaleX;
     }
 
@@ -61,7 +62,7 @@ public class Map extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(-50, 180));
+        this.background = new Illustration(new Image(getClass().getResource("../../ressources/map.png").getPath()), new Point(72, 271));
         this.hexagone = new Image(getClass().getResource("../../ressources/hexagone.png").getPath());
         this.node = new Image(getClass().getResource("../../ressources/nodeMap.png").getPath());
 
@@ -74,7 +75,7 @@ public class Map extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.drawImage(this.background.getImage(), (int) this.background.getPos().getX(), (int) this.background.getPos().getY());
-
+        
         for (NodeView nd : this.nodeViewList) {
             if (!nd.isCorrupt()) {
                 g.drawImage(nd.getState(), (int) nd.getPos().getX(), (int) nd.getPos().getY(), nd.getColor());
@@ -201,10 +202,16 @@ public class Map extends BasicGameState {
         scale = (this.gridDim.getWidth() / this.background.getImage().getWidth())*this.globalScaleX;
         System.out.println(this.gridDim.getWidth()+ " / " + this.background.getImage().getWidth());
         System.out.println(scale);
-        this.hexagone = this.hexagone.getScaledCopy((float) scale);
-        this.node = this.node.getScaledCopy((float) scale);
-        this.gridDim.setSize(this.gridDim.getWidth() * scale, this.gridDim.getHeight() * scale);
-        this.gridPos = new Point((int) (this.background.getPos().getX() + ((this.background.getImage().getWidth() - 50) - this.gridDim.getWidth()) / 2), (int) (this.background.getPos().getY() + ((this.background.getImage().getHeight() + 200) - this.gridDim.getHeight()) / 2));
+
+        Dimension newDim = new Dimension(this.gridDim.width * (int)scale, this.gridDim.height * (int)scale);
+        System.out.println(newDim);
+
+        double realScale = ((double)newDim.width) / ((double)this.dim.width);
+
+        this.hexagone = this.hexagone.getScaledCopy((float)(realScale/((double)this.hexagone.getWidth())));
+        this.node = this.node.getScaledCopy(((float)(realScale/((double)this.hexagone.getWidth()))));
+        this.gridDim.setSize((int) (this.hexagone.getWidth() * this.dim.getWidth()), (int) (this.hexagone.getHeight() * this.dim.getHeight()));
+        this.gridPos = new Point((int) (this.background.getPos().getX() + (((this.background.getImage().getWidth()) - this.gridDim.getWidth())) / 2), (int) (this.background.getPos().getY() + (this.gridDim.getHeight() - this.background.getImage().getHeight()) / 2));
     }
 
     public NodeView nodeClicked(int x, int y, float scaleX, float scaleY) {
