@@ -11,6 +11,9 @@ import java.awt.Point;
  *
  * @author MyMac
  */
+
+//USELESS
+
 public class MapGrille implements IMap {
 
     private static final int LI = 8;
