@@ -49,8 +49,8 @@ public final class View {
     public void start() {
         try {
             AppGameContainer baseFrame = new AppGameContainer(new MasterFrame());
-            baseFrame.setDisplayMode(baseFrame.getScreenWidth() * 75 / 100, baseFrame.getScreenHeight() * 75 / 100, false);
-//            baseFrame.setDisplayMode(baseFrame.getScreenWidth(), baseFrame.getScreenHeight(), true);
+//            baseFrame.setDisplayMode(baseFrame.getScreenWidth() * 75 / 100, baseFrame.getScreenHeight() * 75 / 100, false);
+            baseFrame.setDisplayMode(baseFrame.getScreenWidth(), baseFrame.getScreenHeight(), true);
             baseFrame.setShowFPS(false);
             baseFrame.start();
         } catch (SlickException e) {

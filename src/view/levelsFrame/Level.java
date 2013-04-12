@@ -88,7 +88,7 @@ public class Level extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        container.sleep(20);
+        //container.sleep(20);
         g.setAntiAlias(true);
         g.scale(this.scaleX, this.scaleY);
         g.setFont(this.font);
