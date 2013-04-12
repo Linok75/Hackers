@@ -18,9 +18,9 @@ public final class Game {
     //L'utilisation du mot clé volatile permet, en Java version 5 et supérieur, d'éviter le cas où "Singleton.instance" est non-nul,
     // mais pas encore "réellement" instancié.
     private static volatile Game instance = null;
-    private static final Scanner sc = new Scanner(System.in);
-    private boolean PLAY;
-    //private ... time;
+    private static final Scanner sc = new Scanner(System.in); //gestion de la saisie en mode console
+    private boolean PLAY; //gestion de la fin du jeu en mode console
+    //private ... time; // TODO : système de temps
     private Player player;
     private Level level;
 
@@ -34,7 +34,6 @@ public final class Game {
     public void setLevel(Level level) {
         this.level = level;
     }
-
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -42,7 +41,6 @@ public final class Game {
     public Level getLevel() {
         return level;
     }
-
     public Player getPlayer() {
         return player;
     }
@@ -54,16 +52,15 @@ public final class Game {
         Game.instance = new Game(player, level);
         return Game.instance;
     }
-
     public static Game getInstance() {
         if (instance == null) {
-//            throw new RuntimeException("La classe 'Game' n'a pas encore été instanciée !");
             return null;
         } else {
             return instance;
         }
     }
 
+    // Jeu console
     public void play() {
         this.PLAY = true;
 
@@ -144,8 +141,7 @@ public final class Game {
         //System.out.println("**************** END OF GAME ****************");
 
     }
-
-    public void makeAttack(String nameOfAttack) {
+    private void makeAttack(String nameOfAttack) {
         System.out.println("Quel 'node' voulez vous hacker ?");
         System.out.println("\n**************** MAP ****************\n" + this.level.getMap() + "************************************\n");
 
@@ -181,8 +177,6 @@ public final class Game {
             }
         }
 
-//                + "- phishing\tlance une attaque 'phishing' sur un 'node'\n\t"
-//                + "- virus\t\tlance une attaque 'virus' sur un 'node'\n\t"
         str += "- ddos\t\tlance une attaque DDoS sur le serveur cible\n\t"
                 + "- map\t\taffiche la map\n\t"
                 + "- exit\t\tpermet de quitter le jeu\n";
