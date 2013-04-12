@@ -19,7 +19,6 @@ import tools.XStreamer;
 public class Main {
 
     public static void main(String args[]) {
-        //IMap m = new MapHexa();
         //Menu.run();
         makeLevels();
     }
@@ -63,7 +62,6 @@ public class Main {
 
         IMap map = new MapHexa(8,10);
 
-        // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getPhishing());
         mapAddDefaultNode(map, 1, 1, getPhishing());
         mapAddDefaultNode(map, 1, 7, getPhishing());
@@ -95,10 +93,9 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());
     }
     public static void makeLevel3() {
-        // In Progress
+
         IMap map = new MapHexa(10,10);
 
-        // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getBruteForcing());
         mapAddDefaultNode(map, 1, 1, getPhishing());
         mapAddDefaultNode(map, 1, 7, getPhishing());
@@ -141,10 +138,8 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level3.xml").getPath());
     }
     public static void makeLevel4() {
-        // In Progress
         IMap map = new MapHexa(10,13);
 
-        // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getBruteForcing());
         mapAddDefaultNode(map, 1, 1, getPhishing());
         mapAddDefaultNode(map, 1, 7, getPhishing());
@@ -196,11 +191,8 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level4.xml").getPath());
     }
     public static void makeLevel5() {
-
-        // In Progress
         IMap map = new MapHexa(13,13);
 
-        // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 3, getTrojan());
         mapAddDefaultNode(map, 1, 1, getPhishing());
         mapAddDefaultNode(map, 1, 7, getTrojan());
@@ -261,10 +253,8 @@ public class Main {
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level5.xml").getPath());
     }
     public static void makeLevel6() {
-        // In Progress
         IMap map = new MapHexa(15,15);
 
-        // placement des cibles anti phishing sur la map
         mapAddDefaultNode(map, 0, 0, getVirus());
         mapAddDefaultNode(map, 0, 1, getExploitation());
         mapAddDefaultNode(map, 0, 2, getExploitation());
