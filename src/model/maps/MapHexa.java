@@ -66,7 +66,6 @@ public final class MapHexa implements IMap {
             int i = 0;
             while (i<=idOfFirstNameForNode && (s = br.readLine()) != null) {
                 i++;
-                //System.out.println(s.split(" ")[0]);
             }
             fr.close();
             idOfFirstNameForNode++;
@@ -83,7 +82,6 @@ public final class MapHexa implements IMap {
             int i = 0;
             while (i<=idOfLastNameForNode && (s = br.readLine()) != null) {
                 i++;
-                //System.out.println(s.split(" ")[0]);
             }
             fr.close();
             idOfLastNameForNode++;
@@ -102,7 +100,6 @@ public final class MapHexa implements IMap {
 
     }
     public void setNode(int li, int co, Node node) {
-        // verifier li et co ...
         if (li >= 0 && li < LI && co >= 0 && co < CO) {
             this.nodes[li][co] = node;
         } else {
@@ -301,9 +298,11 @@ public final class MapHexa implements IMap {
             return this.getNode(li - 1, co + 1);
         }
     }
+
+    /*
     public boolean isNearTo(Node source, Node target) {
 
         return this.getEst(source) == target || this.getNordEst(source) == target || this.getNordOuest(source) == target ||
                 this.getOuest(source) == target || this.getSudEst(source) == target || this.getSudOuest(source) == target;
-    }
+    }*/
 }
