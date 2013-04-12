@@ -6,7 +6,6 @@
 package model;
 
 import model.maps.IMap;
-import model.maps.Node;
 import model.maps.Target;
 
 /**
@@ -16,7 +15,7 @@ import model.maps.Target;
 public final class Level {
 
     private IMap map;
-    private int time;
+    private int time; // TO-DO : gestion du temps
     private Target target;
     private Mission mission;
     private boolean isCompleted;
@@ -65,7 +64,5 @@ public final class Level {
         str += "************ MISSION ************\n"+this.mission.toString()+"\n";
         return str;
     }
-
-
 
 }
