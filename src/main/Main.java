@@ -53,7 +53,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("BruteForcing"));
 
-        Level level = new Level(map, 30, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 30, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 30, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level1.xml").getPath());
 
     }
@@ -87,7 +89,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Effraction"));
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 25, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level2.xml").getPath());
     }
     public static void makeLevel3() {
@@ -131,7 +135,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Virus"));
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 25, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level3.xml").getPath());
     }
     public static void makeLevel4() {
@@ -184,7 +190,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Trojan"));
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 25, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level4.xml").getPath());
     }
     public static void makeLevel5() {
@@ -247,7 +255,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, makeRewardNewAttack("Exploitation"));
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 25, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level5.xml").getPath());
     }
     public static void makeLevel6() {
@@ -503,7 +513,9 @@ public class Main {
 
         Mission mission = new Mission(levelName, descriptionMission, null);
 
-        Level level = new Level(map, 20, makeDefaultTarget(30), mission);
+        Target t = new Target(30, 25, "Test", MapHexa.NODEDEFAULTPATH);
+
+        Level level = new Level(map, 20, t, mission);
         new XStreamer<Level>().save(level, Main.class.getResource("../levels/level6.xml").getPath());
     }
     // TOOLS

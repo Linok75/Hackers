@@ -25,7 +25,8 @@ public final class Target extends Node {
     }
 
     public Target(int life, int defence, String description, String path) {
-        this(life, description, path);
+        super(null, description, path);
+        this.life = life;
         this.defence = defence;
     }
 
@@ -39,6 +40,7 @@ public final class Target extends Node {
         }
         DDoS ddos = (DDoS) attack;
         int power = ddos.getPower() - this.defence;
+        //System.out.println(ddos.getPower()+" - "+this.defence+" = "+power);
 
         if (power >= this.life) {
             this.isHack = true;

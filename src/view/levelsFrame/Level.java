@@ -139,6 +139,7 @@ public class Level extends BasicGameState {
 
         if (this.map.canIDoDDoS() && this.infosTarget.launchDdos(x, y, scaleX, scaleY)) {
             try {
+                //System.out.println("NB Corrupt : "+this.map.getNbCorrupt());
                 this.gameInstance.getPlayer().ddos(this.map.getNbCorrupt(), this.gameInstance.getLevel().getTarget());
                 if (this.gameInstance.getLevel().completed()) {
                     this.parentState.enterState(MasterFrame.FINISHLEVELSTATE);

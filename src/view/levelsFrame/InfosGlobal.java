@@ -63,7 +63,7 @@ public class InfosGlobal extends BasicGameState {
         g.drawImage(progressBar.getSubImage(0, 0,this.gameInstance.getLevel().getTarget().getLife()*10 ,25), this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450);
 
         g.drawRect(this.targetBackground.getPos().x+120, this.targetBackground.getPos().y+450, this.gameInstance.getLevel().getTarget().getLife()*10, 25);
-        g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
+        //g.drawString("Taille du botnet : ", this.ddosButton.getPos().x-150,this.ddosButton.getPos().y-50);
         g.drawString("PA restant : ",this.ddosButton.getPos().x-150,this.ddosButton.getPos().y);
         g.drawString(""+this.gameInstance.getPlayer().getPower(), this.ddosButton.getPos().x-100, this.ddosButton.getPos().y+35);
         g.drawImage(this.ddosButton.getImage(), this.ddosButton.getPos().x, this.ddosButton.getPos().y);
