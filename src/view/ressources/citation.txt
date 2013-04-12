@@ -1,6 +1,9 @@
-Si vous ne réussissez pas du premier coup, appelez ça "version 1.0".
-Je ne suis pas asocial, Je ne suis juste pas orienté utilisateur.
-J'adorerais changer le monde, mais ils ne veulent pas me fournir le code source.
-Mes logiciels n'ont jamais de bug. Ils développent juste certaines fonctions aléatoires.
-Quand la vie apporte des questions, Google donne les réponses.
-ATTENTION : ERREUR UTILISATEUR, REMPLACER L'UTILISATEUR ET RECOMMENCER.
+Phishing : Ne pas cliquer sur des liens dans des mails.
+Phishing : Faire des vérifications d'url.
+Brute Force : Limitez le nombre de tentative.
+Brute Force : Complexifiez votre mot de passe.
+Virus / Cheval de Troie : Vérifiez la source des executables.
+Virus : Avoir un Anti-Virus à jour.
+Cheval de Troie : Utiliser un firewall.
+Exploitation / Effraction : Avoir un système d'exploitation à jour.
+DDoS : Bannir les IPs "suspectes".
