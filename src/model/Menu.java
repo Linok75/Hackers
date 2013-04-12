@@ -24,7 +24,6 @@ public class Menu {
     private static final Scanner sc = new Scanner(System.in); //mode console
     private static Player player;
     private static int idOfSave = -1;
-    //private static ArrayList<Level> levels;
     private static ArrayList<Level> levels = new ArrayList<Level>();
     private static ArrayList<Player> players = new ArrayList<Player>();
     //
@@ -32,11 +31,7 @@ public class Menu {
     //
     private static boolean menu = true;
 
-    //View :
-    // 0 - Menu
-    // 1 - Nouvelle Partie
-    // 2 - Charger Partie
-    // 3 - Paramv®tres
+    //Lancement du mode console
     public static void run() throws EndOfGame {
 
         Menu.MODE_CONSOLE = 1;
@@ -90,18 +85,15 @@ public class Menu {
                 level = xsLevels.load(file.getAbsolutePath());
                 levels.add(level);
             } catch (Exception e) {
-                //e.printStackTrace();
-                //System.err.println("Erreur de chargement");
                 mauvaisChargement = true;
             }
         }
 
         if (mauvaisChargement) {
-            System.out.println("/!\\ Certains niveaux n'ont pas pu v™tre chargv©s.");
+            System.out.println("/!\\ Certains niveaux n'ont pas pu être chargés.");
         }
 
     }
-
     public static void loadPlayers() {
         if(!players.isEmpty()) players.clear();
 
@@ -127,7 +119,7 @@ public class Menu {
         }
 
         if (mauvaisChargement) {
-            System.out.println("/!\\ Certains players n'ont pas pu v™tre chargv©s.");
+            System.out.println("/!\\ Certains players n'ont pas pu être chargés.");
         }
     }
 
@@ -135,10 +127,9 @@ public class Menu {
         System.out.println("Menu");
         System.out.println("\t1 - Nouvelle Partie");
         System.out.println("\t2 - Charger Partie");
-        System.out.println("\t3 - Paramv®tres");
+        System.out.println("\t3 - Paramètres");
         System.out.println("\t4 - Quitter");
     }
-
     private static void saisieMenu() {
 
         String saisie = sc.nextLine();
@@ -163,7 +154,6 @@ public class Menu {
         System.out.println("\t0 - Retour");
         System.out.println("\tVeuillez saisir votre surnom :");
     }
-
     private static void saisieNouvellePartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -216,7 +206,6 @@ public class Menu {
         }
         System.out.println("-----------------------");
     }
-
     private static void saisieChargerPartie() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -283,7 +272,6 @@ public class Menu {
         }
         System.out.println("-----------------------");
     }
-
     private static void saisieListOfLevels() {
         String saisie = sc.nextLine();
         if (saisie.equals("0")) {
@@ -325,7 +313,6 @@ public class Menu {
     private static void affichParametre() {
         System.out.println("Pas de paramv®tres pour le moment ...");
     }
-
     private static void saisieParametre() {
         currentView = 0;
     }
@@ -345,7 +332,6 @@ public class Menu {
         loadLevels();
         Game.getInstance().setLevel(levels.get(currentLevel));
     }
-
     public static void nextLevel() throws EndOfGame { //TODOEND
         if (Menu.MODE_CONSOLE == 1) {
             System.out.println("NEXT LEVEL");
