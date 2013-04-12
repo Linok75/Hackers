@@ -59,7 +59,7 @@ public class Level extends BasicGameState {
         this.gameInstance = Game.getInstance();
 
 
-        this.font = new UnicodeFont(getClass().getResource("../ressources/Serif.ttf").getPath(), 22, false, false);
+        this.font = new UnicodeFont(getClass().getResource("../ressources/AgencyFB.ttf").getPath(), 40, false, false);
         this.font.addAsciiGlyphs();
         this.font.addGlyphs(400, 600);
         this.font.getEffects().add(new ColorEffect(this.fontColor));
@@ -95,7 +95,6 @@ public class Level extends BasicGameState {
 
         g.drawImage(this.background.getImage(), this.background.getPos().x, this.background.getPos().y);
 
-        this.font.drawString(100, 100, "Test d'écriture jolie !");
         this.infosNode.render(container, game, g);
         this.map.render(container, game, g);
         this.atkList.render(container, game, g);
