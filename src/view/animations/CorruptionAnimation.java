@@ -36,7 +36,7 @@ public class CorruptionAnimation {
     //
     private ArrayList<SegmentAnimation> sas;
     //
-    private static final int TIME = 200;
+    private static final int TIME = 100;
     private int currentTime = 0;
     //
     private int state = 0;
@@ -110,13 +110,14 @@ public class CorruptionAnimation {
                 }
             }
             state++;
-            this.sas.clear();
+            //this.sas.clear();
             if (state < this.nodeViews.size()) {
                 for (NodeView nodeViewTarget : this.nodeViews.get(state)) {
-                    for (NodeView nodeViewSource : this.nodeViews.get(state-1)) {
-                        if (isNearTo(nodeViewSource, nodeViewTarget))
-                            this.sas.add(new SegmentAnimation(nodeViewSource.getCenter(), nodeViewTarget.getCenter()));
-                    }
+                    addNearNode(nodeViewTarget);
+                    /*for (NodeView nodeViewSource : this.nodeViews.get(state - 1)) {
+                        //if (isNearTo(nodeViewSource, nodeViewTarget))
+                        this.sas.add(new SegmentAnimation(nodeViewSource.getCenter(), nodeViewTarget.getCenter()));
+                    }*/
                 }
             }
         } else {
@@ -124,12 +125,46 @@ public class CorruptionAnimation {
         }
     }
 
-    public boolean isNearTo(NodeView nvS, NodeView nvT) {
+    private void addNearNode(NodeView nvT) {
+        double distance = Double.MAX_VALUE;
+        ArrayList<NodeView> moreNear = new ArrayList<NodeView>();
+
+        for (NodeView nodeViewSource : this.nodeViews.get(state - 1)) {
+            if (distance(nodeViewSource, nvT) < distance) {
+                distance = distance(nodeViewSource, nvT);
+                moreNear.clear();
+                moreNear.add(nodeViewSource);
+            } else if (distance(nodeViewSource, nvT) == distance) {
+                moreNear.add(nodeViewSource);
+            }
+        }
+
+        for (NodeView nodeViewSource : moreNear) {
+            this.sas.add(new SegmentAnimation(nodeViewSource.getCenter(), nvT.getCenter()));
+        }
+
+    }
+
+    private double distance(NodeView nvS, NodeView nvT) {
         Node source = Game.getInstance().getLevel().getMap().getNode(nvS.getLinkToNode().x, nvS.getLinkToNode().y);
         Node target = Game.getInstance().getLevel().getMap().getNode(nvT.getLinkToNode().x, nvT.getLinkToNode().y);
 
-        return Game.getInstance().getLevel().getMap().isNearTo(source, target);
+        Point src = Game.getInstance().getLevel().getMap().getPoint(source);
+        Point trg = Game.getInstance().getLevel().getMap().getPoint(target);
+
+        return src.distance(trg);
     }
+
+    /*
+    private boolean isNearTo(NodeView nvS, NodeView nvT) {
+        Node source = Game.getInstance().getLevel().getMap().getNode(nvS.getLinkToNode().x, nvS.getLinkToNode().y);
+        Node target = Game.getInstance().getLevel().getMap().getNode(nvT.getLinkToNode().x, nvT.getLinkToNode().y);
+
+        Point src = Game.getInstance().getLevel().getMap().getPoint(source);
+        Point trg = Game.getInstance().getLevel().getMap().getPoint(target);
+
+        return Game.getInstance().getLevel().getMap().isNearTo(source, target);
+    }*/
 
     public boolean isEnded() {
         return currentTime == TIME;
