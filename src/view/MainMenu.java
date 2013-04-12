@@ -28,6 +28,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
     private int stateID;
     private StateBasedGame game;
     private GameContainer container;
+    private Image logo;
 
     /* les deux boutons en bas du ChoixState*/
     private MouseOverArea quit;
@@ -54,7 +55,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
         play.setNormalColor(new Color(0.7f, 0.7f, 0.7f, 1f));
         play.setMouseOverColor(new Color(0.9f, 0.9f, 0.9f, 1f));
 
-        
+        this.logo = new Image(getClass().getResource("ressources/logo.png").getPath());
 
     }
 
@@ -62,7 +63,7 @@ public class MainMenu extends BasicGameState implements ComponentListener {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         quit.render(container, g);
         play.render(container, g);
-        g.drawString("HACKERS", 100, 100);
+        g.drawImage(this.logo, 100, 100);
     }
 
     @Override
