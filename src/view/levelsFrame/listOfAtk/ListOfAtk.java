@@ -50,8 +50,8 @@ public class ListOfAtk extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.background = new Illustration(new Image(getClass().getResource("../../ressources/atkList.png").getPath()), new Point(1100, 607));
-        this.cadreList = new Illustration(new Image(getClass().getResource("../../ressources/cadreAtk.png").getPath()), new Point(this.background.getPos().x+80, this.background.getPos().y+131));
-        this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/buttonScroll.png").getPath()), new Point(this.background.getPos().x+380, this.background.getPos().y+200));
+        this.cadreList = new Illustration(new Image(getClass().getResource("../../ressources/cadreAtk.png").getPath()), new Point(this.background.getPos().x + 80, this.background.getPos().y + 131));
+        this.nextButton = new Illustration(new Image(getClass().getResource("../../ressources/buttonScroll.png").getPath()), new Point(this.background.getPos().x + 380, this.background.getPos().y + 200));
         this.preButton = new Illustration(this.nextButton.getImage().getFlippedCopy(false, true), new Point(this.nextButton.getPos().x, this.nextButton.getPos().y + this.nextButton.getImage().getHeight() + 50));
         this.clipArea = new Rectangle(this.cadreList.getPos().x, this.cadreList.getPos().y, this.cadreList.getImage().getWidth(), this.cadreList.getImage().getHeight() * 5 - 10);
     }
@@ -121,15 +121,18 @@ public class ListOfAtk extends BasicGameState {
         Rectangle scaleArea;
         int numLigne;
 
-        numLigne = 0;
-        for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
-            if (!"DDoS".equals(atk.getTitle())) {
-                scaleArea = new Rectangle((int) (this.cadreList.getPos().x * scaleX), (int) ((this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne) * scaleY), (int) (this.cadreList.getImage().getWidth() * scaleX), (int) (this.cadreList.getImage().getHeight() * scaleY));
-                if (scaleArea.contains(x, y)) {
-                    return atk.getTitle();
+        scaleArea = new Rectangle((int) (this.clipArea.getX() * scaleX), (int) (this.clipArea.getY() * scaleY), (int) (this.clipArea.getWidth() * scaleX), (int) (this.clipArea.getHeight() * scaleY));
+        if (scaleArea.contains(x, y)) {
+            numLigne = 0;
+            for (Attack atk : this.gameInstance.getPlayer().getAttackList()) {
+                if (!"DDoS".equalsIgnoreCase(atk.getTitle())) {
+                    scaleArea = new Rectangle((int) (this.cadreList.getPos().x * scaleX), (int) ((this.cadreList.getPos().y + this.cadreList.getImage().getHeight() * numLigne) * scaleY), (int) (this.cadreList.getImage().getWidth() * scaleX), (int) (this.cadreList.getImage().getHeight() * scaleY));
+                    if (scaleArea.contains(x, y)) {
+                        return atk.getTitle();
+                    }
+                    numLigne++;
                 }
-                numLigne++;
-            }       
+            }
         }
         return null;
     }

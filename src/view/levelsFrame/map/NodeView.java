@@ -81,7 +81,7 @@ public class NodeView {
             this.corBy = new Image(getClass().getResource("../../ressources/bruteForce.png").getPath());
         }
 
-        this.corBy = this.corBy.getScaledCopy((float) (this.corBy.getWidth() / (this.base.getWidth() * 1.75)));
+        this.corBy = this.corBy.getScaledCopy(this.base.getWidth(), this.base.getWidth());
         this.refresh();
 
     }
